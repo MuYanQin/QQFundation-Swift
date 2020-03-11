@@ -13,11 +13,11 @@ class QQTableViewItem: NSObject {
     var bgColor :UIColor?
     var cellHeight:CGFloat = 0
     var allowSlide = false;
-    var trailingTextArray = Array<String>();
-    var trailingColorArray = Array<UIColor>();
+    var trailingTArray = Array<String>();
+    var trailingCArray = Array<UIColor>();
     
-    var leadingTextArray = Array<String>();
-    var leadingColorArray = Array<UIColor>();
+    var leadingTArray = Array<String>();
+    var leadingCArray = Array<UIColor>();
     
     var selcetCellHandler: ((_ item :QQTableViewItem)->())?
     var leadingSwipeHandler: ((QQTableViewItem,NSInteger)->())?

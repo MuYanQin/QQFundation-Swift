@@ -111,23 +111,30 @@ class QQTabeViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
     @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let item = self.sections[indexPath.section].items![indexPath.row]
-        return configAction(textArray: item.trailingTextArray, colorArray: item.trailingColorArray,item: item)
+        return configAction(textArray: item.trailingTArray, colorArray: item.trailingCArray,item: item,trailing: true)
     }
     @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let item = self.sections[indexPath.section].items![indexPath.row]
-        return configAction(textArray: item.leadingTextArray, colorArray: item.leadingColorArray,item: item)
+        return configAction(textArray: item.leadingTArray, colorArray: item.leadingCArray,item: item,trailing: false)
     }
     @available(iOS 11.0, *)
-    func configAction(textArray : Array<String>,colorArray :Array<UIColor>,item :QQTableViewItem) -> UISwipeActionsConfiguration {
+    func configAction(textArray : Array<String>,colorArray :Array<UIColor>,item :QQTableViewItem,trailing :Bool) -> UISwipeActionsConfiguration {
         var actions = Array<UIContextualAction>();
         if textArray.count>0 {
               for(index,value) in textArray.enumerated(){
                   let rowAct = UIContextualAction(style: .normal, title: value) {
                       (action, view, completionHandler) in
-                        if (item.trailingSwipeHandler != nil) {
-                            item.trailingSwipeHandler!(item,index)
+                        if trailing{
+                            if (item.trailingSwipeHandler != nil) {
+                                item.trailingSwipeHandler!(item,index)
+                            }
+                        }else{
+                            if (item.leadingSwipeHandler != nil) {
+                                item.leadingSwipeHandler!(item,index)
+                            }
                         }
+                        
                       completionHandler(true)
                   }
                   if colorArray.count > index {
@@ -145,15 +152,15 @@ class QQTabeViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         var actions = Array<UITableViewRowAction>();
         let item = self.sections[indexPath.section].items![indexPath.row]
-        if item.trailingTextArray.count>0 {
-            for(index,value) in item.trailingTextArray.enumerated(){
+        if item.trailingTArray.count>0 {
+            for(index,value) in item.trailingTArray.enumerated(){
                 let rowAct = UITableViewRowAction.init(style: .destructive, title: value) { (action, indexPath) in
                     if (item.trailingSwipeHandler != nil) {
                         item.trailingSwipeHandler!(item,index)
                     }
                 }
-                if item.trailingColorArray.count > index {
-                    rowAct.backgroundColor = item.trailingColorArray[index]
+                if item.trailingCArray.count > index {
+                    rowAct.backgroundColor = item.trailingCArray[index]
                 }else{
                     rowAct.backgroundColor = UIColor.red;
                 }
