@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         self.view.addSubview(self.tableView);
         let tab =  QQTabeViewManager.init(tableView: self.tableView)
         tab.register(cellClass: testCell.self, itemClass: testItem.self)
-        tab.register(viewClass: TestTTView.self, itemClass: TestTTItem.self)
+        tab.register(cellClass: TestTTView.self, itemClass: TestTTItem.self)
         let section = QQTableViewSection();
         
         let secviewItem = TestTTItem.init()
