@@ -107,7 +107,7 @@ class QQTabeViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
         let item = self.sections[indexPath.section].items![indexPath.row]
         return item.allowSlide;
     }
-    
+    //MARk -- 侧滑相关
     @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let item = self.sections[indexPath.section].items![indexPath.row]

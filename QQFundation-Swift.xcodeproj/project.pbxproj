@@ -14,11 +14,11 @@
 		421142C42415E59100B71E07 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 421142C22415E59100B71E07 /* LaunchScreen.storyboard */; };
 		421142CF2415E59200B71E07 /* QQFundation_SwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421142CE2415E59200B71E07 /* QQFundation_SwiftTests.swift */; };
 		421142DA2415E59200B71E07 /* QQFundation_SwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421142D92415E59200B71E07 /* QQFundation_SwiftUITests.swift */; };
-		4256C3222418755100B08EBF /* QQTableViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256C3212418755100B08EBF /* QQTableViewItem.swift */; };
-		4256C3242418756E00B08EBF /* QQTableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256C3232418756E00B08EBF /* QQTableViewSection.swift */; };
-		4256C3262418757900B08EBF /* QQTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256C3252418757900B08EBF /* QQTableViewCell.swift */; };
-		4256C32824188C7200B08EBF /* QQTabeViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256C32724188C7200B08EBF /* QQTabeViewManager.swift */; };
 		4256C32A2418BEBB00B08EBF /* testCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256C3292418BEBB00B08EBF /* testCell.swift */; };
+		427A3B282419CA9B00FE162B /* QQTabeViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256C32724188C7200B08EBF /* QQTabeViewManager.swift */; };
+		427A3B292419CA9B00FE162B /* QQTableViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256C3212418755100B08EBF /* QQTableViewItem.swift */; };
+		427A3B2A2419CA9B00FE162B /* QQTableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256C3232418756E00B08EBF /* QQTableViewSection.swift */; };
+		427A3B2B2419CA9B00FE162B /* QQTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256C3252418757900B08EBF /* QQTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -287,13 +287,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4256C3222418755100B08EBF /* QQTableViewItem.swift in Sources */,
+				427A3B282419CA9B00FE162B /* QQTabeViewManager.swift in Sources */,
+				427A3B292419CA9B00FE162B /* QQTableViewItem.swift in Sources */,
+				427A3B2A2419CA9B00FE162B /* QQTableViewSection.swift in Sources */,
+				427A3B2B2419CA9B00FE162B /* QQTableViewCell.swift in Sources */,
 				4256C32A2418BEBB00B08EBF /* testCell.swift in Sources */,
-				4256C3242418756E00B08EBF /* QQTableViewSection.swift in Sources */,
 				421142BC2415E58F00B71E07 /* ViewController.swift in Sources */,
 				421142B82415E58F00B71E07 /* AppDelegate.swift in Sources */,
-				4256C32824188C7200B08EBF /* QQTabeViewManager.swift in Sources */,
-				4256C3262418757900B08EBF /* QQTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

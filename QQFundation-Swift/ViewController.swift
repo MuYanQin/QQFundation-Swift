@@ -34,6 +34,8 @@ class ViewController: UIViewController {
         item.leadingSwipeHandler = {(item,index)->() in
             print(item , index);
         }
+        section.sectionTitle = "我的"
+        section.sectionHeight = 100
         section .addItem(item: item)
         tab .reloadDataFromArray(sections: [section]);
         
