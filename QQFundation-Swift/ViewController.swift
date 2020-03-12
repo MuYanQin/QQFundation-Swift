@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 class ViewController: UIViewController {
     var tableView = UITableView();
     
@@ -24,8 +23,8 @@ class ViewController: UIViewController {
         let section = QQTableViewSection();
         let item = testItem.init()
         item.allowSlide = true;
-        item.trailingTextArray = ["收藏","喜欢"]
-        item.leadingTextArray = ["删除","卸载"]
+        item.trailingTArray = ["收藏","喜欢"]
+        item.leadingTArray = ["删除","卸载"]
         item.selcetCellHandler = {(item) ->() in
             print("123")
         }

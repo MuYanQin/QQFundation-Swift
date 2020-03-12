@@ -107,13 +107,10 @@
 		421142B62415E58F00B71E07 /* QQFundation-Swift */ = {
 			isa = PBXGroup;
 			children = (
+				427A3B272419C6FA00FE162B /* QQTableViewManager */,
 				4256C32B2418CEF900B08EBF /* New Group */,
 				421142B72415E58F00B71E07 /* AppDelegate.swift */,
 				421142BB2415E58F00B71E07 /* ViewController.swift */,
-				4256C32724188C7200B08EBF /* QQTabeViewManager.swift */,
-				4256C3212418755100B08EBF /* QQTableViewItem.swift */,
-				4256C3232418756E00B08EBF /* QQTableViewSection.swift */,
-				4256C3252418757900B08EBF /* QQTableViewCell.swift */,
 				421142BD2415E58F00B71E07 /* Main.storyboard */,
 				421142C02415E59100B71E07 /* Assets.xcassets */,
 				421142C22415E59100B71E07 /* LaunchScreen.storyboard */,
@@ -146,6 +143,17 @@
 				4256C3292418BEBB00B08EBF /* testCell.swift */,
 			);
 			path = "New Group";
+			sourceTree = "<group>";
+		};
+		427A3B272419C6FA00FE162B /* QQTableViewManager */ = {
+			isa = PBXGroup;
+			children = (
+				4256C32724188C7200B08EBF /* QQTabeViewManager.swift */,
+				4256C3212418755100B08EBF /* QQTableViewItem.swift */,
+				4256C3232418756E00B08EBF /* QQTableViewSection.swift */,
+				4256C3252418757900B08EBF /* QQTableViewCell.swift */,
+			);
+			path = QQTableViewManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
