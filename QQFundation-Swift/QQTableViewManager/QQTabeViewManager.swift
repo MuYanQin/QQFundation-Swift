@@ -47,13 +47,14 @@ class QQTabeViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
         let bundle = Bundle.main
         if (bundle.path(forResource: "\(cellClass)", ofType: "nib") != nil) {
             self.tableView.register(UINib.init(nibName: "\(cellClass)" , bundle: bundle), forCellReuseIdentifier: "\(itemClass)");
-        }else{
+        }else if "\(cellClass)".contains("Cell") {
             self.tableView.register(cellClass, forCellReuseIdentifier: "\(itemClass)")
+        } else{
+            tableView.register(cellClass, forHeaderFooterViewReuseIdentifier: "\(itemClass)")
         }
     }
-    func registerSec(viewClass:AnyClass,itemClass:Any) -> Void {
+    private func registerSec(viewClass:AnyClass,itemClass:Any) -> Void {
         tableView.register(viewClass, forHeaderFooterViewReuseIdentifier: "\(itemClass)")
-
     }
     //MARk -- cell相关
 
