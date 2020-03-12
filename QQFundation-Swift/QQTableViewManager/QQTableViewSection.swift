@@ -10,10 +10,10 @@ import UIKit
 
 class QQTableViewSection: NSObject {
     
-    var tableViewManager = QQTabeViewManager();
+    var tableViewManager :QQTabeViewManager?
     var index :Int?{
         get{
-            return self.tableViewManager.sections.firstIndex(of: self);
+            return self.tableViewManager!.sections.firstIndex(of: self);
         }
     }
     var items :Array<QQTableViewItem>?{
@@ -21,10 +21,11 @@ class QQTableViewSection: NSObject {
             return self.mutiItems;
         }
     }
+    var item:QQTableViewSecItem?
     private var mutiItems = Array<QQTableViewItem>();
     
-    var sectionHeight =  0.00;
-    var sectionTitle =  NSString();
+    var sectionHeight :CGFloat?;
+    var sectionTitle :String?;
     var indexTitle :String?;
     
     func section() -> QQTableViewSection {
@@ -48,5 +49,8 @@ class QQTableViewSection: NSObject {
     }
     func insertItem(item:QQTableViewItem,index:Int) -> Void {
         self.mutiItems.insert(item, at: index);
+    }
+    func reload(animation:UITableView.RowAnimation) -> Void {
+        self.tableViewManager!.tableView .reloadSections(IndexSet.init(integer: self.index!), with: animation)
     }
 }

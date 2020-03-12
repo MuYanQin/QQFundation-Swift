@@ -10,7 +10,6 @@ import UIKit
 
 class QQTabeViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
     var tableView = UITableView();
-    open var registeredClasses = Dictionary<String, String>();
     var sections = Array<QQTableViewSection>();
     
     var allItems :Array<QQTableViewItem>?{
@@ -29,25 +28,35 @@ class QQTabeViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
         self.tableView.dataSource = self;
         return self;
     }
+    init(tableView:UITableView){
+        super.init()
+        self.tableView = tableView;
+        self.tableView.delegate = self;
+        self.tableView.dataSource = self;
+    }
     //下标算法 自定义下标
-    subscript(key :String) -> String{
+    /*subscript(key :String) -> Any{
         get {
-            return self.registeredClasses[key]!;
         }
         set(obj) {
-            self.registeredClasses[key] = obj
-            registerClass(objectClass: key, forCellWithReuseIdentifier: obj , bundle: Bundle.main);
+        }
+    }*/
+    
+    //注册 cell
+    func register(cellClass :AnyClass ,itemClass: AnyClass) -> Void {
+        let bundle = Bundle.main
+        if (bundle.path(forResource: "\(cellClass)", ofType: "nib") != nil) {
+            self.tableView.register(UINib.init(nibName: "\(cellClass)" , bundle: bundle), forCellReuseIdentifier: "\(itemClass)");
+        }else{
+            self.tableView.register(cellClass, forCellReuseIdentifier: "\(itemClass)")
         }
     }
-    
-    //注册nib cell
-    func registerClass(objectClass:String,forCellWithReuseIdentifier identifier:String,bundle:Bundle) -> Void {
-        self.registeredClasses[objectClass] = identifier;
-        if (bundle.path(forResource: identifier as String, ofType: "nib") != nil) {
-            self.tableView.register(UINib.init(nibName: identifier , bundle: bundle), forCellReuseIdentifier: identifier);
-        }
+    func registerSec(viewClass:AnyClass,itemClass:Any) -> Void {
+        tableView.register(viewClass, forHeaderFooterViewReuseIdentifier: "\(itemClass)")
+
     }
-    
+    //MARk -- cell相关
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.sections[section].items!.count;
     }
@@ -56,22 +65,10 @@ class QQTabeViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let  item = self.sections[indexPath.section].items![indexPath.row]
         item.tableViewManager = self
         let identifier = String(describing: type(of: item))
-        
-        var projectName = Bundle.main.infoDictionary!["CFBundleExecutable"] as? String
-        projectName = projectName!.replacingOccurrences(of: "-", with: "_")
-        let className = projectName! + "." + self.registeredClasses[identifier]!
-        
-        let cellClass = NSClassFromString(className) as! QQTableViewCell.Type
-        
-        var cell  = tableView.dequeueReusableCell(withIdentifier: identifier) as? QQTableViewCell;
-        if cell == nil {
-            cell =  cellClass.init();
-            cell!.cellDidLoad();
-        }
+        let cell  = tableView.dequeueReusableCell(withIdentifier: identifier) as? QQTableViewCell;
         cell?.item = item;
         cell?.cellWillAppear();
         cell?.detailTextLabel?.text = nil;
@@ -80,7 +77,6 @@ class QQTabeViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
         }
         return cell!;
     }
-    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath){
 
     }
@@ -102,12 +98,50 @@ class QQTabeViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
         }
 
     }
+    //MARk -- headView相关
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        let sec = self.sections[section];
+        if sec.item?.secHeight != nil {
+            return sec.item!.secHeight!;
+        }
+        if sec.sectionHeight != nil {
+            return sec.sectionHeight!;
+        }
+        if sec.sectionTitle != nil {
+            return 30;
+        }
+        return 0
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let sec = self.sections[section];
+        if (sec.item == nil){
+            return nil;
+        }
+        let identifier = NSStringFromClass(object_getClass(sec.item)!).components(separatedBy: ".").last
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: identifier!) as? QQTableViewSecView
+        view?.item = sec.item;
+        return view;
+    }
     
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if view.isKind(of: QQTableViewSecView.self){
+            let tv =  view as! QQTableViewSecView;
+            tv.secViewWillAppear()
+        }
+        
+    }
+    func tableView(_ tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int) {
+        if view.isKind(of: QQTableViewSecView.self){
+            let tv =  view as! QQTableViewSecView;
+            tv.secViewDidDisappear()
+        }
+    }
+    //MARk -- 侧滑相关
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         let item = self.sections[indexPath.section].items![indexPath.row]
         return item.allowSlide;
     }
-    //MARk -- 侧滑相关
+    
     @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let item = self.sections[indexPath.section].items![indexPath.row]
@@ -177,7 +211,7 @@ class QQTabeViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
             return nil;
         }
         let sec = self.sections[section];
-        return sec.sectionTitle as String;
+        return sec.sectionTitle;
     }
     
     func sectionIndexTitles(for tableView: UITableView) -> [String]? {

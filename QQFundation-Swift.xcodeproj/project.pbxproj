@@ -19,6 +19,10 @@
 		427A3B292419CA9B00FE162B /* QQTableViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256C3212418755100B08EBF /* QQTableViewItem.swift */; };
 		427A3B2A2419CA9B00FE162B /* QQTableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256C3232418756E00B08EBF /* QQTableViewSection.swift */; };
 		427A3B2B2419CA9B00FE162B /* QQTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256C3252418757900B08EBF /* QQTableViewCell.swift */; };
+		427A3B2D2419CFED00FE162B /* QQTableViewSecItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B2C2419CFED00FE162B /* QQTableViewSecItem.swift */; };
+		427A3B2F2419D01200FE162B /* QQTableViewSecView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B2E2419D01200FE162B /* QQTableViewSecView.swift */; };
+		427A3B312419DAC000FE162B /* TestTTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B302419DAC000FE162B /* TestTTView.swift */; };
+		427A3B332419EB9200FE162B /* oneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B322419EB9200FE162B /* oneCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +61,10 @@
 		4256C3252418757900B08EBF /* QQTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QQTableViewCell.swift; sourceTree = "<group>"; };
 		4256C32724188C7200B08EBF /* QQTabeViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QQTabeViewManager.swift; sourceTree = "<group>"; };
 		4256C3292418BEBB00B08EBF /* testCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testCell.swift; sourceTree = "<group>"; };
+		427A3B2C2419CFED00FE162B /* QQTableViewSecItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QQTableViewSecItem.swift; sourceTree = "<group>"; };
+		427A3B2E2419D01200FE162B /* QQTableViewSecView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QQTableViewSecView.swift; sourceTree = "<group>"; };
+		427A3B302419DAC000FE162B /* TestTTView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTTView.swift; sourceTree = "<group>"; };
+		427A3B322419EB9200FE162B /* oneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = oneCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +149,8 @@
 			isa = PBXGroup;
 			children = (
 				4256C3292418BEBB00B08EBF /* testCell.swift */,
+				427A3B322419EB9200FE162B /* oneCell.swift */,
+				427A3B302419DAC000FE162B /* TestTTView.swift */,
 			);
 			path = "New Group";
 			sourceTree = "<group>";
@@ -152,6 +162,8 @@
 				4256C3212418755100B08EBF /* QQTableViewItem.swift */,
 				4256C3232418756E00B08EBF /* QQTableViewSection.swift */,
 				4256C3252418757900B08EBF /* QQTableViewCell.swift */,
+				427A3B2C2419CFED00FE162B /* QQTableViewSecItem.swift */,
+				427A3B2E2419D01200FE162B /* QQTableViewSecView.swift */,
 			);
 			path = QQTableViewManager;
 			sourceTree = "<group>";
@@ -288,9 +300,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				427A3B282419CA9B00FE162B /* QQTabeViewManager.swift in Sources */,
+				427A3B2F2419D01200FE162B /* QQTableViewSecView.swift in Sources */,
+				427A3B332419EB9200FE162B /* oneCell.swift in Sources */,
 				427A3B292419CA9B00FE162B /* QQTableViewItem.swift in Sources */,
+				427A3B2D2419CFED00FE162B /* QQTableViewSecItem.swift in Sources */,
 				427A3B2A2419CA9B00FE162B /* QQTableViewSection.swift in Sources */,
 				427A3B2B2419CA9B00FE162B /* QQTableViewCell.swift in Sources */,
+				427A3B312419DAC000FE162B /* TestTTView.swift in Sources */,
 				4256C32A2418BEBB00B08EBF /* testCell.swift in Sources */,
 				421142BC2415E58F00B71E07 /* ViewController.swift in Sources */,
 				421142B82415E58F00B71E07 /* AppDelegate.swift in Sources */,

@@ -8,7 +8,7 @@
 
 import UIKit
 class QQTableViewItem: NSObject {
-    var tableViewManager = QQTabeViewManager();
+    var tableViewManager :QQTabeViewManager?
     var section = QQTableViewSection();
     var bgColor :UIColor?
     var cellHeight:CGFloat = 0
@@ -26,10 +26,10 @@ class QQTableViewItem: NSObject {
     func reloadRowWithAnimation(animation:UITableView.RowAnimation) -> Void {
         if animation == .none {
             UIView.performWithoutAnimation {
-                tableViewManager.tableView .reloadRows(at: [self.indexPath!], with: animation);
+                tableViewManager!.tableView .reloadRows(at: [self.indexPath!], with: animation);
             };
         }else{
-            tableViewManager.tableView .reloadRows(at: [self.indexPath!], with: animation);
+            tableViewManager!.tableView .reloadRows(at: [self.indexPath!], with: animation);
         }
         
     }
@@ -39,10 +39,10 @@ class QQTableViewItem: NSObject {
         self.section.removeItemAtIndex(index: row!);
         if animation == .none {
             UIView .performWithoutAnimation {
-                tableViewManager.tableView .deleteRows(at: [IndexPath.init(row: row!, section: self.section.index!)], with: animation);
+                tableViewManager!.tableView .deleteRows(at: [IndexPath.init(row: row!, section: self.section.index!)], with: animation);
             };
         }else{
-            tableViewManager.tableView .deleteRows(at: [IndexPath.init(row: row!, section: self.section.index!)], with: animation);
+            tableViewManager!.tableView .deleteRows(at: [IndexPath.init(row: row!, section: self.section.index!)], with: animation);
         }
         
     }
