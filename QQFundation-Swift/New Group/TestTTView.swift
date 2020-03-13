@@ -15,10 +15,8 @@ class TestTTView: QQTableViewSecView {
     var btn :UILabel?
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        let btn = QQButton.init(type: .custom).qframe(item: CGRect.init(x: 0, y: 0, width: 100, height: 50)).qbgClolor(item: UIColor.red)
-            .qtextClolor(item: UIColor.purple).qtext(item: "测试按钮").qtextPosition(item: .bottom).qimage(item: "icon_em_al").qfont(item: 14).qtarget(item: self, action: #selector(tttt))
-        btn.setTitle("123", for: .normal)
-        self.addSubview(btn)
+        let label = UILabel.getLabel().qtext(item: "测试label").qbgColor(item: UIColor.yellow).qframe(item: CGRect.init(x: 0, y: 0, width: 100, height: 50)).qtarget(item: self, sel: "tttt")
+        self.addSubview(label)
     }
     @objc func tttt()->Void{
         print("!@3")

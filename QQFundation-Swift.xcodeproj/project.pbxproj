@@ -30,6 +30,7 @@
 		427A3B41241B527C00FE162B /* UIView+Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B40241B527C00FE162B /* UIView+Frame.swift */; };
 		427A3B43241B613700FE162B /* UIButton+Chained.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B42241B613700FE162B /* UIButton+Chained.swift */; };
 		427A3B45241B626600FE162B /* QQButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B44241B626600FE162B /* QQButton.swift */; };
+		427A3B47241B7E7000FE162B /* UILabel+Chained.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B46241B7E7000FE162B /* UILabel+Chained.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		427A3B40241B527C00FE162B /* UIView+Frame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Frame.swift"; sourceTree = "<group>"; };
 		427A3B42241B613700FE162B /* UIButton+Chained.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Chained.swift"; sourceTree = "<group>"; };
 		427A3B44241B626600FE162B /* QQButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QQButton.swift; sourceTree = "<group>"; };
+		427A3B46241B7E7000FE162B /* UILabel+Chained.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Chained.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				427A3B42241B613700FE162B /* UIButton+Chained.swift */,
+				427A3B46241B7E7000FE162B /* UILabel+Chained.swift */,
 				427A3B44241B626600FE162B /* QQButton.swift */,
 				427A3B40241B527C00FE162B /* UIView+Frame.swift */,
 			);
@@ -350,6 +353,7 @@
 				427A3B2A2419CA9B00FE162B /* QQTableViewSection.swift in Sources */,
 				427A3B2B2419CA9B00FE162B /* QQTableViewCell.swift in Sources */,
 				427A3B41241B527C00FE162B /* UIView+Frame.swift in Sources */,
+				427A3B47241B7E7000FE162B /* UILabel+Chained.swift in Sources */,
 				427A3B312419DAC000FE162B /* TestTTView.swift in Sources */,
 				4256C32A2418BEBB00B08EBF /* testCell.swift in Sources */,
 				421142BC2415E58F00B71E07 /* ViewController.swift in Sources */,
