@@ -12,12 +12,13 @@ class TestTTItem: QQTableViewSecItem {
 }
 
 class TestTTView: QQTableViewSecView {
-    var label :UILabel?
+    var btn :UILabel?
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        label = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: 100, height: 40))
-        label!.backgroundColor = UIColor.purple
-        self.addSubview(label!)
+        let btn = QQButton.init(type: .custom).qframe(item: CGRect.init(x: 0, y: 0, width: 100, height: 50)).qbgClolor(item: UIColor.red)
+            .qtextClolor(item: UIColor.purple).qtext(item: "测试按钮").qtextPosition(item: .bottom).qimage(item: "icon_em_al").qfont(item: 14)
+        btn.setTitle("123", for: .normal)
+        self.addSubview(btn)
     }
     
     required init?(coder: NSCoder) {
@@ -25,6 +26,5 @@ class TestTTView: QQTableViewSecView {
     }
     override func secViewWillAppear() {
         let item  = self.item as! TestTTItem
-        label!.text = item.name;
     }
 }

@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.view.backgroundColor = UIColor.red;
+        self.view.backgroundColor = UIColor.white;
 
         self.tableView.frame = CGRect.init(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height);
         self.tableView.backgroundColor = UIColor.yellow;
@@ -29,7 +29,7 @@ class ViewController: UIViewController {
         
         let secviewItem = TestTTItem.init()
         secviewItem.name = "测试View"
-//        section.item = secviewItem
+        section.item = secviewItem
         secviewItem.secHeight = 100
         
         let item = testItem.init()
@@ -46,13 +46,12 @@ class ViewController: UIViewController {
         item.leadingSwipeHandler = {(item,index)->() in
             print(item , index);
         }
-//        section.sectionTitle = "我的"
         
-//        section .addItem(item: item)
+        section .addItem(item: item)
         
         let item1 = testItem.init()
         item1.name = "测试3333"
-//        section .addItem(item: item1)
+        section .addItem(item: item1)
 
         
         tab .reloadDataFromArray(sections: [section]);

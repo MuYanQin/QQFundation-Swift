@@ -19,8 +19,15 @@ class QQTableViewItem: NSObject {
     var leadingTArray = Array<String>();
     var leadingCArray = Array<UIColor>();
     
+    //闭包 就是oc的Block
+    
+    /// cell选中方法
     var selcetCellHandler: ((_ item :QQTableViewItem)->())?
+    
+    /// 向右滑事件
     var leadingSwipeHandler: ((QQTableViewItem,NSInteger)->())?
+    
+    /// 向左滑事件头
     var trailingSwipeHandler: ((QQTableViewItem,NSInteger)->())?
     
     func reloadRowWithAnimation(animation:UITableView.RowAnimation) -> Void {

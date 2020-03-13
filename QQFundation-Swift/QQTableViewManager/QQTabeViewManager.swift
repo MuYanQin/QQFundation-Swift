@@ -21,13 +21,6 @@ class QQTabeViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
             return itemArray;
         }
     }
-    
-    open func initWithTableView(tableView:UITableView) -> QQTabeViewManager {
-        self.tableView = tableView;
-        self.tableView.delegate = self;
-        self.tableView.dataSource = self;
-        return self;
-    }
     init(tableView:UITableView){
         super.init()
         self.tableView = tableView;

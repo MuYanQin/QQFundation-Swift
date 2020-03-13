@@ -8,6 +8,7 @@
 
 import UIKit
 
+//代理
 @objc protocol QQTableViewDelegate: NSObjectProtocol{
     
     /// 请求失败回调
@@ -25,6 +26,7 @@ class QQTableView: UITableView ,SelfAware {
     }
     
     weak var qdelegate: QQTableViewDelegate?
+    //懒加载 其实就是闭包 
     lazy var emptyView: EmptyView? = { () -> EmptyView in
         
         var subHeight : CGFloat = 0 

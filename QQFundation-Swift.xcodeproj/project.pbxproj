@@ -27,6 +27,9 @@
 		427A3B39241A361200FE162B /* icon_em_al.png in Resources */ = {isa = PBXBuildFile; fileRef = 427A3B37241A361200FE162B /* icon_em_al.png */; };
 		427A3B3A241A361200FE162B /* multi_network_error_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 427A3B38241A361200FE162B /* multi_network_error_icon@2x.png */; };
 		427A3B3C241B19A700FE162B /* SelfAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B3B241B19A700FE162B /* SelfAware.swift */; };
+		427A3B41241B527C00FE162B /* UIView+Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B40241B527C00FE162B /* UIView+Frame.swift */; };
+		427A3B43241B613700FE162B /* UIButton+Chained.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B42241B613700FE162B /* UIButton+Chained.swift */; };
+		427A3B45241B626600FE162B /* QQButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B44241B626600FE162B /* QQButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +76,9 @@
 		427A3B37241A361200FE162B /* icon_em_al.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_em_al.png; sourceTree = "<group>"; };
 		427A3B38241A361200FE162B /* multi_network_error_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "multi_network_error_icon@2x.png"; sourceTree = "<group>"; };
 		427A3B3B241B19A700FE162B /* SelfAware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfAware.swift; sourceTree = "<group>"; };
+		427A3B40241B527C00FE162B /* UIView+Frame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Frame.swift"; sourceTree = "<group>"; };
+		427A3B42241B613700FE162B /* UIButton+Chained.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Chained.swift"; sourceTree = "<group>"; };
+		427A3B44241B626600FE162B /* QQButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QQButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +129,7 @@
 		421142B62415E58F00B71E07 /* QQFundation-Swift */ = {
 			isa = PBXGroup;
 			children = (
+				427A3B3D241B351900FE162B /* MCChained */,
 				427A3B34241A2E8F00FE162B /* QQTableView */,
 				427A3B272419C6FA00FE162B /* QQTableViewManager */,
 				4256C32B2418CEF900B08EBF /* New Group */,
@@ -186,6 +193,16 @@
 				427A3B3B241B19A700FE162B /* SelfAware.swift */,
 			);
 			path = QQTableView;
+			sourceTree = "<group>";
+		};
+		427A3B3D241B351900FE162B /* MCChained */ = {
+			isa = PBXGroup;
+			children = (
+				427A3B42241B613700FE162B /* UIButton+Chained.swift */,
+				427A3B44241B626600FE162B /* QQButton.swift */,
+				427A3B40241B527C00FE162B /* UIView+Frame.swift */,
+			);
+			path = MCChained;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,11 +342,14 @@
 				427A3B3C241B19A700FE162B /* SelfAware.swift in Sources */,
 				427A3B36241A2EB600FE162B /* QQTableView.swift in Sources */,
 				427A3B2F2419D01200FE162B /* QQTableViewSecView.swift in Sources */,
+				427A3B43241B613700FE162B /* UIButton+Chained.swift in Sources */,
 				427A3B332419EB9200FE162B /* oneCell.swift in Sources */,
 				427A3B292419CA9B00FE162B /* QQTableViewItem.swift in Sources */,
+				427A3B45241B626600FE162B /* QQButton.swift in Sources */,
 				427A3B2D2419CFED00FE162B /* QQTableViewSecItem.swift in Sources */,
 				427A3B2A2419CA9B00FE162B /* QQTableViewSection.swift in Sources */,
 				427A3B2B2419CA9B00FE162B /* QQTableViewCell.swift in Sources */,
+				427A3B41241B527C00FE162B /* UIView+Frame.swift in Sources */,
 				427A3B312419DAC000FE162B /* TestTTView.swift in Sources */,
 				4256C32A2418BEBB00B08EBF /* testCell.swift in Sources */,
 				421142BC2415E58F00B71E07 /* ViewController.swift in Sources */,
