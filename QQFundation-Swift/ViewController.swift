@@ -8,16 +8,20 @@
 
 import UIKit
 class ViewController: UIViewController {
-    var tableView = UITableView();
+    var tableView = QQTableView();
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor.red;
+
         self.tableView.frame = CGRect.init(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height);
         self.tableView.backgroundColor = UIColor.yellow;
+        self.tableView.emptyView?.hintText = "通过tableView给的文字"
         self.view.addSubview(self.tableView);
+        
+        
         let tab =  QQTabeViewManager.init(tableView: self.tableView)
         tab.register(cellClass: testCell.self, itemClass: testItem.self)
         tab.register(cellClass: TestTTView.self, itemClass: TestTTItem.self)
@@ -25,7 +29,7 @@ class ViewController: UIViewController {
         
         let secviewItem = TestTTItem.init()
         secviewItem.name = "测试View"
-        section.item = secviewItem
+//        section.item = secviewItem
         secviewItem.secHeight = 100
         
         let item = testItem.init()
@@ -44,11 +48,11 @@ class ViewController: UIViewController {
         }
 //        section.sectionTitle = "我的"
         
-        section .addItem(item: item)
+//        section .addItem(item: item)
         
         let item1 = testItem.init()
         item1.name = "测试3333"
-        section .addItem(item: item1)
+//        section .addItem(item: item1)
 
         
         tab .reloadDataFromArray(sections: [section]);

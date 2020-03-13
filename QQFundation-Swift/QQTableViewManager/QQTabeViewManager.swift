@@ -231,6 +231,6 @@ class QQTabeViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
             section.tableViewManager = self
         }
         self.sections.append(contentsOf: sections)
-        self.tableView .reloadData();
+        self.tableView.reloadData();
     }
 }

@@ -23,6 +23,10 @@
 		427A3B2F2419D01200FE162B /* QQTableViewSecView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B2E2419D01200FE162B /* QQTableViewSecView.swift */; };
 		427A3B312419DAC000FE162B /* TestTTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B302419DAC000FE162B /* TestTTView.swift */; };
 		427A3B332419EB9200FE162B /* oneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B322419EB9200FE162B /* oneCell.swift */; };
+		427A3B36241A2EB600FE162B /* QQTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B35241A2EB600FE162B /* QQTableView.swift */; };
+		427A3B39241A361200FE162B /* icon_em_al.png in Resources */ = {isa = PBXBuildFile; fileRef = 427A3B37241A361200FE162B /* icon_em_al.png */; };
+		427A3B3A241A361200FE162B /* multi_network_error_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 427A3B38241A361200FE162B /* multi_network_error_icon@2x.png */; };
+		427A3B3C241B19A700FE162B /* SelfAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B3B241B19A700FE162B /* SelfAware.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +69,10 @@
 		427A3B2E2419D01200FE162B /* QQTableViewSecView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QQTableViewSecView.swift; sourceTree = "<group>"; };
 		427A3B302419DAC000FE162B /* TestTTView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTTView.swift; sourceTree = "<group>"; };
 		427A3B322419EB9200FE162B /* oneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = oneCell.swift; sourceTree = "<group>"; };
+		427A3B35241A2EB600FE162B /* QQTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QQTableView.swift; sourceTree = "<group>"; };
+		427A3B37241A361200FE162B /* icon_em_al.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_em_al.png; sourceTree = "<group>"; };
+		427A3B38241A361200FE162B /* multi_network_error_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "multi_network_error_icon@2x.png"; sourceTree = "<group>"; };
+		427A3B3B241B19A700FE162B /* SelfAware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfAware.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +123,7 @@
 		421142B62415E58F00B71E07 /* QQFundation-Swift */ = {
 			isa = PBXGroup;
 			children = (
+				427A3B34241A2E8F00FE162B /* QQTableView */,
 				427A3B272419C6FA00FE162B /* QQTableViewManager */,
 				4256C32B2418CEF900B08EBF /* New Group */,
 				421142B72415E58F00B71E07 /* AppDelegate.swift */,
@@ -166,6 +175,17 @@
 				427A3B2E2419D01200FE162B /* QQTableViewSecView.swift */,
 			);
 			path = QQTableViewManager;
+			sourceTree = "<group>";
+		};
+		427A3B34241A2E8F00FE162B /* QQTableView */ = {
+			isa = PBXGroup;
+			children = (
+				427A3B37241A361200FE162B /* icon_em_al.png */,
+				427A3B38241A361200FE162B /* multi_network_error_icon@2x.png */,
+				427A3B35241A2EB600FE162B /* QQTableView.swift */,
+				427A3B3B241B19A700FE162B /* SelfAware.swift */,
+			);
+			path = QQTableView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,9 +292,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				427A3B3A241A361200FE162B /* multi_network_error_icon@2x.png in Resources */,
 				421142C42415E59100B71E07 /* LaunchScreen.storyboard in Resources */,
 				421142C12415E59100B71E07 /* Assets.xcassets in Resources */,
 				421142BF2415E58F00B71E07 /* Main.storyboard in Resources */,
+				427A3B39241A361200FE162B /* icon_em_al.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +322,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				427A3B282419CA9B00FE162B /* QQTabeViewManager.swift in Sources */,
+				427A3B3C241B19A700FE162B /* SelfAware.swift in Sources */,
+				427A3B36241A2EB600FE162B /* QQTableView.swift in Sources */,
 				427A3B2F2419D01200FE162B /* QQTableViewSecView.swift in Sources */,
 				427A3B332419EB9200FE162B /* oneCell.swift in Sources */,
 				427A3B292419CA9B00FE162B /* QQTableViewItem.swift in Sources */,
