@@ -15,8 +15,11 @@ import UIKit
     /// - Parameters:
     ///   - tableView: 对象
     ///   - error: 失败原因
+    
    @objc optional func requestFailed(tableView:QQTableView ,error:NSError)
-
+   
+   @objc optional func requestData(tableView:QQTableView ,result : [String : Any])
+     
 }
 
 class QQTableView: UITableView ,SelfAware {
@@ -26,10 +29,10 @@ class QQTableView: UITableView ,SelfAware {
     }
     
     weak var qdelegate: QQTableViewDelegate?
-    //懒加载 其实就是闭包 
+    //懒加载 其实就是闭包
     lazy var emptyView: EmptyView? = { () -> EmptyView in
         
-        var subHeight : CGFloat = 0 
+        var subHeight : CGFloat = 0
         if self.tableHeaderView != nil {
             subHeight = (self.tableHeaderView?.frame.size.height)!
         }
@@ -41,6 +44,9 @@ class QQTableView: UITableView ,SelfAware {
     var hasHeaderRefresh:Bool?{
         willSet{
             self.hasHeaderRefresh = newValue
+            if !newValue! {
+                self.mj_header = nil
+            }
         }
     };
     var requestURL :String?{
@@ -59,7 +65,7 @@ class QQTableView: UITableView ,SelfAware {
             self.vc = newValue
         }
     }
-    let pageIndex = "pageSize"
+    let pageIndex = "page"
 
     /*
      在swift中实现方法交换必须满足以下条件：
@@ -113,7 +119,7 @@ class QQTableView: UITableView ,SelfAware {
     ///   - url: 请求的网址
     ///   - vc: 请求的界面
     ///   - param: 请求的参数
-    func netWorkBegain(url:String,vc:UIViewController,param:Dictionary<String, Any>) -> Void {
+    func netWorkBegain(vc:UIViewController,param:Dictionary<String, Any>,url:String) -> Void {
         self.requestURL = url
         self.requestParam = param
         self.vc = vc
@@ -125,16 +131,16 @@ class QQTableView: UITableView ,SelfAware {
     
     private func netWork(param:Dictionary<String, Any>,down:Bool) -> Void {
         
-        
+    //FIXME:  (数据请求h处)
         
     }
     
     @objc private func requestData() -> Void {
-        if requestURL == nil {
-            print("QQTablView:请输入下载网址")
-            self.mj_header?.endRefreshing()
-            return
-        }
+//        if requestURL == nil {
+//            print("QQTablView:请输入下载网址")
+//            self.mj_header?.endRefreshing()
+//            return
+//        }
         if requestParam!.keys.contains(pageIndex) {
             changeIndex(status: 1)
         }
@@ -148,16 +154,16 @@ class QQTableView: UITableView ,SelfAware {
         
     }
     private func changeIndex(status: Int) ->Void{
-        var number = self.requestParam?[pageIndex] as! Int
+        var number = Int.init(self.requestParam?[pageIndex] as! String)
         
         if status == 1 {
             number = 1;
         } else if status == 2 {
-            number += 1
+            number! += 1
         } else {
-            number -= 1
+            number! -= 1
         };
-        self.requestParam?[pageIndex] = number
+        self.requestParam?[pageIndex] = "\(String(describing: number))"
     }
     private func endRefresh() -> Void{
         self.mj_header?.endRefreshing()

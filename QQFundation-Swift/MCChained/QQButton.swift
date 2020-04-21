@@ -18,7 +18,7 @@ class QQButton: UIButton {
     
     var gapBetweenTI: CGFloat = 5
     
-    var position: Position?
+    var position :Position = .none
     
     @objc override func qinfo(item :Any) -> UIButton {
         self.info = item
@@ -42,11 +42,10 @@ class QQButton: UIButton {
     
     open override func layoutSubviews() {
         super.layoutSubviews()
-        buildTextP(positoin: self.position!)
+        buildTextP(positoin: self.position)
     }
     
     func buildTextP(positoin:Position) -> Void {
-        self.titleLabel!.backgroundColor = UIColor.white
         self.titleLabel!.numberOfLines = 0
         let lwidth = self.titleLabel?.sizeThatFits(CGSize.init(width: 0, height: 0)).width
         

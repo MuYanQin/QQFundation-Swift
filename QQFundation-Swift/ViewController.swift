@@ -21,7 +21,6 @@ class ViewController: UIViewController {
         self.tableView.emptyView?.hintText = "通过tableView给的文字"
         self.view.addSubview(self.tableView);
         
-        let dic = ["name":3]
         let tab =  QQTabeViewManager.init(tableView: self.tableView)
         tab.register(cellClass: testCell.self, itemClass: testItem.self)
         tab.register(cellClass: TestTTView.self, itemClass: TestTTItem.self)
