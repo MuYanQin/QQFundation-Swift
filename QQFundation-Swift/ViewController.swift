@@ -10,18 +10,18 @@ import UIKit
 class ViewController: UIViewController {
     var tableView = QQTableView();
     
-    
+    var dic : Dictionary<String,String>! = Dictionary()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor.white;
-
+        print(dic["key"] as Any)
         self.tableView.frame = CGRect.init(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height);
         self.tableView.backgroundColor = UIColor.yellow;
         self.tableView.emptyView?.hintText = "通过tableView给的文字"
         self.view.addSubview(self.tableView);
         
-        
+        let dic = ["name":3]
         let tab =  QQTabeViewManager.init(tableView: self.tableView)
         tab.register(cellClass: testCell.self, itemClass: testItem.self)
         tab.register(cellClass: TestTTView.self, itemClass: TestTTItem.self)

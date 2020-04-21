@@ -25,6 +25,6 @@ class TestTTView: QQTableViewSecView {
         fatalError("init(coder:) has not been implemented")
     }
     override func secViewWillAppear() {
-        let item  = self.item as! TestTTItem
+
     }
 }

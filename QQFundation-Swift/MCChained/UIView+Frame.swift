@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 extension UIView{
-    var height :CGFloat?{
+    var q_height :CGFloat?{
         set{
             self.frame.size.height = newValue!
         }
@@ -19,7 +19,7 @@ extension UIView{
         }
     }
     
-    var width :CGFloat?{
+    var q_width :CGFloat?{
         set{
             self.frame.size.width = newValue!
         }
@@ -28,7 +28,7 @@ extension UIView{
         }
     }
     
-    var top :CGFloat?{
+    var q_top :CGFloat?{
         set{
             self.frame.origin.y = newValue!
         }
@@ -37,7 +37,7 @@ extension UIView{
         }
     }
     
-    var bottom :CGFloat?{
+    var q_bottom :CGFloat?{
         set{
             var tfram = self.frame
             tfram.origin.y = newValue! - self.frame.size.height
@@ -48,7 +48,7 @@ extension UIView{
         }
     }
     
-    var right :CGFloat?{
+    var q_right :CGFloat?{
         set{
             let delta = newValue! - (self.frame.origin.x + self.frame.size.width)
             var tfram = self.frame
@@ -60,7 +60,7 @@ extension UIView{
         }
     }
     
-    var left :CGFloat?{
+    var q_left :CGFloat?{
         set{
             var tfram = self.frame
             tfram.origin.x = newValue!

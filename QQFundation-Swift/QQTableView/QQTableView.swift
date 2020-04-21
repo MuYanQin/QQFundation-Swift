@@ -38,9 +38,29 @@ class QQTableView: UITableView ,SelfAware {
         te.hintText = "暂无数据"
         return te
     }()
-    var hasHeaderRefresh:Bool = true;
-    var requestURL :String?
-    var requestParam = Dictionary<String,Any>();
+    var hasHeaderRefresh:Bool?{
+        willSet{
+            self.hasHeaderRefresh = newValue
+        }
+    };
+    var requestURL :String?{
+        willSet{
+            self.requestURL = newValue
+        }
+    }
+    var requestParam : Dictionary<String,Any>? {
+        willSet{
+            self.requestParam = newValue
+        }
+    }
+    var footView = UIView()
+    var vc:UIViewController?{
+        willSet{
+            self.vc = newValue
+        }
+    }
+    let pageIndex = "pageSize"
+
     /*
      在swift中实现方法交换必须满足以下条件：
      1，类class必须继承于NSObject
@@ -64,10 +84,19 @@ class QQTableView: UITableView ,SelfAware {
         fatalError("init(coder:) has not been implemented")
     }
     func initTableView() -> Void {
-        
+        self.mj_header = MJRefreshNormalHeader.init(refreshingTarget: self, refreshingAction: #selector(requestData));
+        if #available(iOS 11.0, *) {
+            self.contentInsetAdjustmentBehavior = .never
+        }
+        self.footView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.q_width ?? 0, height: 0))
+        self.tableFooterView = self.footView
+        self.sectionFooterHeight = 0
+        self.sectionHeaderHeight = 0
+        self.estimatedRowHeight = 0
+        self.estimatedSectionFooterHeight = 0
+        self.estimatedSectionHeaderHeight = 0
     }
-    
-    func totalItem() -> Int {
+    private func totalItem() -> Int {
         let sectionNum = self.numberOfSections;
         var itemNum :Int = 0
         for idx in 0..<sectionNum {
@@ -77,6 +106,62 @@ class QQTableView: UITableView ,SelfAware {
             return sectionNum + itemNum
         }
         return itemNum
+    }
+    
+    /// 开始数据请求
+    /// - Parameters:
+    ///   - url: 请求的网址
+    ///   - vc: 请求的界面
+    ///   - param: 请求的参数
+    func netWorkBegain(url:String,vc:UIViewController,param:Dictionary<String, Any>) -> Void {
+        self.requestURL = url
+        self.requestParam = param
+        self.vc = vc
+        if param.keys.contains(pageIndex) {
+            self.mj_footer = MJRefreshBackStateFooter.init(refreshingTarget: self, refreshingAction: #selector(footerRefresh))
+        }
+        self.mj_header?.beginRefreshing()
+    }
+    
+    private func netWork(param:Dictionary<String, Any>,down:Bool) -> Void {
+        
+        
+        
+    }
+    
+    @objc private func requestData() -> Void {
+        if requestURL == nil {
+            print("QQTablView:请输入下载网址")
+            self.mj_header?.endRefreshing()
+            return
+        }
+        if requestParam!.keys.contains(pageIndex) {
+            changeIndex(status: 1)
+        }
+        netWork(param: requestParam!, down: true)
+    }
+    
+
+    @objc private func footerRefresh() -> Void {
+        changeIndex(status: 2)
+        netWork(param: requestParam!, down: false)
+        
+    }
+    private func changeIndex(status: Int) ->Void{
+        var number = self.requestParam?[pageIndex] as! Int
+        
+        if status == 1 {
+            number = 1;
+        } else if status == 2 {
+            number += 1
+        } else {
+            number -= 1
+        };
+        self.requestParam?[pageIndex] = number
+    }
+    private func endRefresh() -> Void{
+        self.mj_header?.endRefreshing()
+        self.mj_footer?.endRefreshing()
     }
 
 }

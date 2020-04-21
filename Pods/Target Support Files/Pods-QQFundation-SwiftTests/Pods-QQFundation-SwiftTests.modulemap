@@ -1,0 +1,6 @@
+framework module Pods_QQFundation_SwiftTests {
+  umbrella header "Pods-QQFundation-SwiftTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

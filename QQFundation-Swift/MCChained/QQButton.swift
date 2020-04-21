@@ -58,13 +58,13 @@ class QQButton: UIButton {
             imageWith = self.imageSize!.width
             imageHeight = self.imageSize!.height
         }else{
-            imageWith = self.width!/3;
-            imageHeight = self.height!/3;
+            imageWith = self.q_width!/3;
+            imageHeight = self.q_height!/3;
         }
         
         let total = imageWith + lwidth! + self.gapBetweenTI
-        let imagex = (self.width! - total)/2
-        let imagey = (self.height! - imageHeight)/2
+        let imagex = (self.q_width! - total)/2
+        let imagey = (self.q_height! - imageHeight)/2
         //MARK:文字在右
         if positoin == .right{
             self.titleLabel!.textAlignment = .left
@@ -78,33 +78,33 @@ class QQButton: UIButton {
         }else if (positoin == .top){
             self.titleLabel!.textAlignment = .center
             let total = imageHeight + lheight! + self.gapBetweenTI
-            let imagey = (self.height! - total)/2
+            let imagey = (self.q_height! - total)/2
             
             self.titleLabel?.center.x = self.center.x;
-            self.titleLabel?.width = self.width
-            self.titleLabel?.height = lheight
-            self.titleLabel?.top = imagey
+            self.titleLabel?.q_width = self.q_width
+            self.titleLabel?.q_height = lheight
+            self.titleLabel?.q_top = imagey
             
             self.imageView?.center.x = self.center.x;
-            self.imageView?.width = imageWith
-            self.imageView?.height = imageHeight
-            self.imageView?.top = self.titleLabel!.bottom! + self.gapBetweenTI
+            self.imageView?.q_width = imageWith
+            self.imageView?.q_height = imageHeight
+            self.imageView?.q_top = self.titleLabel!.q_bottom! + self.gapBetweenTI
         }else if (positoin == .bottom){
             self.titleLabel!.textAlignment = .center
             
             self.titleLabel!.textAlignment = .center
             let total = imageHeight + lheight! + self.gapBetweenTI
-            let imagey = (self.height! - total)/2
+            let imagey = (self.q_height! - total)/2
             
             self.imageView?.center.x = self.center.x;
-            self.imageView?.width = imageWith
-            self.imageView?.height = imageHeight
-            self.imageView?.top =  imagey
+            self.imageView?.q_width = imageWith
+            self.imageView?.q_height = imageHeight
+            self.imageView?.q_top =  imagey
             
             self.titleLabel?.center.x = self.center.x;
-            self.titleLabel?.width = self.width
-            self.titleLabel?.height = lheight
-            self.titleLabel?.top = self.imageView!.bottom! + self.gapBetweenTI
+            self.titleLabel?.q_width = self.q_width
+            self.titleLabel?.q_height = lheight
+            self.titleLabel?.q_top = self.imageView!.q_bottom! + self.gapBetweenTI
             
 
         }

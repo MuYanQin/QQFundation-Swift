@@ -1,0 +1,6 @@
+framework module Pods_QQFundation_Swift {
+  umbrella header "Pods-QQFundation-Swift-umbrella.h"
+
+  export *
+  module * { export * }
+}
