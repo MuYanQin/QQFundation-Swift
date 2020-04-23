@@ -33,6 +33,13 @@
 		427A3B47241B7E7000FE162B /* UILabel+Chained.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B46241B7E7000FE162B /* UILabel+Chained.swift */; };
 		428CC881244471AC007F42B1 /* String+tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428CC880244471AC007F42B1 /* String+tool.swift */; };
 		428CC885244473D6007F42B1 /* QQTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428CC884244473D6007F42B1 /* QQTool.swift */; };
+		42C40D1F2451387100359796 /* UITabBar+MCBigItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C40D1E2451387100359796 /* UITabBar+MCBigItem.swift */; };
+		42C40D222451388300359796 /* QQTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C40D202451388300359796 /* QQTabBarItem.swift */; };
+		42C40D232451388300359796 /* tab_launch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C40D212451388300359796 /* tab_launch@2x.png */; };
+		42C40D252451389100359796 /* QQTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C40D242451389100359796 /* QQTabBarController.swift */; };
+		42DB5037245134CC0050869B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB5036245134CC0050869B /* HomeViewController.swift */; };
+		42DB5039245134D40050869B /* MineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB5038245134D40050869B /* MineViewController.swift */; };
+		42DB503B245134E50050869B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB503A245134E50050869B /* SearchViewController.swift */; };
 		A1D24C5572AAD71111F5508E /* Pods_QQFundation_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496D9601C4BD8CBA37B79A04 /* Pods_QQFundation_Swift.framework */; };
 		D0BC3A3C34C1C03D0AACEBAF /* Pods_QQFundation_SwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1E9C5192F695F4903C9DBFE /* Pods_QQFundation_SwiftTests.framework */; };
 		EE1FB99E223C7422F2C357B3 /* Pods_QQFundation_Swift_QQFundation_SwiftUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5058F4714CF7CB57C5AAE70 /* Pods_QQFundation_Swift_QQFundation_SwiftUITests.framework */; };
@@ -92,6 +99,13 @@
 		428CC87124446440007F42B1 /* QQFundation-Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "QQFundation-Swift-Bridging-Header.h"; sourceTree = "<group>"; };
 		428CC880244471AC007F42B1 /* String+tool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+tool.swift"; sourceTree = "<group>"; };
 		428CC884244473D6007F42B1 /* QQTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QQTool.swift; sourceTree = "<group>"; };
+		42C40D1E2451387100359796 /* UITabBar+MCBigItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITabBar+MCBigItem.swift"; sourceTree = "<group>"; };
+		42C40D202451388300359796 /* QQTabBarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QQTabBarItem.swift; sourceTree = "<group>"; };
+		42C40D212451388300359796 /* tab_launch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_launch@2x.png"; sourceTree = "<group>"; };
+		42C40D242451389100359796 /* QQTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QQTabBarController.swift; sourceTree = "<group>"; };
+		42DB5036245134CC0050869B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		42DB5038245134D40050869B /* MineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineViewController.swift; sourceTree = "<group>"; };
+		42DB503A245134E50050869B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		496D9601C4BD8CBA37B79A04 /* Pods_QQFundation_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QQFundation_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1E9C5192F695F4903C9DBFE /* Pods_QQFundation_SwiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QQFundation_SwiftTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEBEAB89392D7A21CC6DC90F /* Pods-QQFundation-Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QQFundation-Swift.release.xcconfig"; path = "Target Support Files/Pods-QQFundation-Swift/Pods-QQFundation-Swift.release.xcconfig"; sourceTree = "<group>"; };
@@ -153,6 +167,7 @@
 		421142B62415E58F00B71E07 /* QQFundation-Swift */ = {
 			isa = PBXGroup;
 			children = (
+				42DB502F245041BC0050869B /* Base */,
 				428CC87F2444716C007F42B1 /* core */,
 				427A3B3D241B351900FE162B /* MCChained */,
 				427A3B34241A2E8F00FE162B /* QQTableView */,
@@ -160,6 +175,9 @@
 				4256C32B2418CEF900B08EBF /* New Group */,
 				421142B72415E58F00B71E07 /* AppDelegate.swift */,
 				421142BB2415E58F00B71E07 /* ViewController.swift */,
+				42DB5036245134CC0050869B /* HomeViewController.swift */,
+				42DB5038245134D40050869B /* MineViewController.swift */,
+				42DB503A245134E50050869B /* SearchViewController.swift */,
 				421142BD2415E58F00B71E07 /* Main.storyboard */,
 				421142C02415E59100B71E07 /* Assets.xcassets */,
 				421142C22415E59100B71E07 /* LaunchScreen.storyboard */,
@@ -239,6 +257,17 @@
 				428CC884244473D6007F42B1 /* QQTool.swift */,
 			);
 			path = core;
+			sourceTree = "<group>";
+		};
+		42DB502F245041BC0050869B /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				42C40D242451389100359796 /* QQTabBarController.swift */,
+				42C40D202451388300359796 /* QQTabBarItem.swift */,
+				42C40D212451388300359796 /* tab_launch@2x.png */,
+				42C40D1E2451387100359796 /* UITabBar+MCBigItem.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		B8833227DAF63864FD2F2E47 /* Frameworks */ = {
@@ -375,6 +404,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				427A3B3A241A361200FE162B /* multi_network_error_icon@2x.png in Resources */,
+				42C40D232451388300359796 /* tab_launch@2x.png in Resources */,
 				421142C42415E59100B71E07 /* LaunchScreen.storyboard in Resources */,
 				421142C12415E59100B71E07 /* Assets.xcassets in Resources */,
 				421142BF2415E58F00B71E07 /* Main.storyboard in Resources */,
@@ -512,14 +542,20 @@
 				427A3B2F2419D01200FE162B /* QQTableViewSecView.swift in Sources */,
 				427A3B43241B613700FE162B /* UIButton+Chained.swift in Sources */,
 				427A3B332419EB9200FE162B /* oneCell.swift in Sources */,
+				42DB5037245134CC0050869B /* HomeViewController.swift in Sources */,
 				427A3B292419CA9B00FE162B /* QQTableViewItem.swift in Sources */,
 				427A3B45241B626600FE162B /* QQButton.swift in Sources */,
+				42C40D252451389100359796 /* QQTabBarController.swift in Sources */,
 				427A3B2D2419CFED00FE162B /* QQTableViewSecItem.swift in Sources */,
+				42DB5039245134D40050869B /* MineViewController.swift in Sources */,
 				428CC885244473D6007F42B1 /* QQTool.swift in Sources */,
 				427A3B2A2419CA9B00FE162B /* QQTableViewSection.swift in Sources */,
 				427A3B2B2419CA9B00FE162B /* QQTableViewCell.swift in Sources */,
+				42DB503B245134E50050869B /* SearchViewController.swift in Sources */,
 				427A3B41241B527C00FE162B /* UIView+Frame.swift in Sources */,
 				427A3B47241B7E7000FE162B /* UILabel+Chained.swift in Sources */,
+				42C40D1F2451387100359796 /* UITabBar+MCBigItem.swift in Sources */,
+				42C40D222451388300359796 /* QQTabBarItem.swift in Sources */,
 				427A3B312419DAC000FE162B /* TestTTView.swift in Sources */,
 				428CC881244471AC007F42B1 /* String+tool.swift in Sources */,
 				4256C32A2418BEBB00B08EBF /* testCell.swift in Sources */,
