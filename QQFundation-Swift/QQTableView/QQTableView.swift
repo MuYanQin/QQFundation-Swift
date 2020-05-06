@@ -52,6 +52,7 @@ class QQTableView: UITableView ,SelfAware {
     var requestURL :String?{
         willSet{
             self.requestURL = newValue
+            self.mj_header = MJRefreshNormalHeader.init(refreshingTarget: self, refreshingAction: #selector(requestData));
         }
     }
     var requestParam : Dictionary<String,Any>? {
@@ -90,7 +91,6 @@ class QQTableView: UITableView ,SelfAware {
         fatalError("init(coder:) has not been implemented")
     }
     func initTableView() -> Void {
-        self.mj_header = MJRefreshNormalHeader.init(refreshingTarget: self, refreshingAction: #selector(requestData));
         if #available(iOS 11.0, *) {
             self.contentInsetAdjustmentBehavior = .never
         }

@@ -11,8 +11,12 @@ import UIKit
 class QQTableViewCell: UITableViewCell {
 
     public var item :QQTableViewItem?
-    
-     func cellDidLoad() -> Void {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+        self.selectionStyle = .none;
+    }
+    func cellDidLoad() -> Void {
         
     }
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -21,7 +25,7 @@ class QQTableViewCell: UITableViewCell {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
     }
     
     func cellWillAppear() -> Void {

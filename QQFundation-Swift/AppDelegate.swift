@@ -24,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var sItem = QQTabBarItem.init()
         sItem.vc = serach
         sItem.text = "搜索"
-        sItem.isBigItem = true
         sItem.defaultImg = UIImage.init(named: "tab_launch@2x")
         sItem.selectedImg = UIImage.init(named: "tab_launch@2x")
         
