@@ -54,6 +54,8 @@ class QQTableView: UITableView ,SelfAware {
             self.requestURL = newValue
             self.mj_header = MJRefreshNormalHeader.init(refreshingTarget: self, refreshingAction: #selector(requestData));
         }
+        //set get是计算属性 在里面设置】读取的时候会循环
+        //最好willSet didSet 是专门属性监听器。类似oc的setter getter 方法
     }
     var requestParam : Dictionary<String,Any>? {
         willSet{
@@ -79,7 +81,7 @@ class QQTableView: UITableView ,SelfAware {
         if total == 0 {
             self.tableFooterView = self.emptyView
         }else{
-            self.tableFooterView = nil
+            self.tableFooterView = self.footView
         }
     }
     override init(frame: CGRect, style: UITableView.Style) {
@@ -95,7 +97,7 @@ class QQTableView: UITableView ,SelfAware {
             self.contentInsetAdjustmentBehavior = .never
         }
         self.footView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.q_width ?? 0, height: 0))
-        self.tableFooterView = self.footView
+        self.tableHeaderView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.q_width ?? 0, height: 0))
         self.sectionFooterHeight = 0
         self.sectionHeaderHeight = 0
         self.estimatedRowHeight = 0
