@@ -8,11 +8,14 @@
 
 import UIKit
 
-protocol QYBaseNavBackDelegate :NSObjectProtocol{
+@objc protocol QYBaseNavBackDelegate :NSObjectProtocol{
     
     /// 需要拦截返回事件
     /// - Returns: 返回需要拦截的界面
     func needInterceptBack() -> UIViewController;
+    
+    /// 获取到点击事件
+    func backClickEvent();
 }
 
 @objc protocol QYBaseNavHiddenDelegate :NSObjectProtocol{
@@ -101,6 +104,12 @@ class QYBaseNavViewController: UINavigationController,UIGestureRecognizerDelegat
         if self.viewControllers.count < navigationBar.items!.count{
             return true;
         }
+        
+        if (self.needInterceptDelegate?.needInterceptBack() == self.topViewController){
+            self.needInterceptDelegate?.backClickEvent();
+            return false;
+        }
+        
         if #available(iOS 13.0, *) {
             //系统版本高于13.0
         } else {

@@ -8,15 +8,18 @@
 
 import UIKit
 
-class QYBackNavViewController: UIViewController,QYBaseNavHiddenDelegate {
+class QYBackNavViewController: UIViewController,QYBaseNavHiddenDelegate,QYBaseNavBackDelegate {
     func needHiddenNav() -> UIViewController {
         return self;
     }
     
-    
+    func needInterceptBack() -> UIViewController {
+        print("123")
+        return self;
+    }
     override func viewWillAppear(_ animated: Bool) {
         let tc =  self.navigationController as! QYBaseNavViewController;
-        tc.navHiddenDelegate  = self;
+        tc.needInterceptDelegate  = self;
     }
     override func viewDidLoad() {
         super.viewDidLoad()
