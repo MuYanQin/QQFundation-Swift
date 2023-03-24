@@ -8,8 +8,16 @@
 
 import UIKit
 
-class QYBackNavViewController: UIViewController {
-
+class QYBackNavViewController: UIViewController,QYBaseNavHiddenDelegate {
+    func needHiddenNav() -> UIViewController {
+        return self;
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let tc =  self.navigationController as! QYBaseNavViewController;
+        tc.navHiddenDelegate  = self;
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -17,6 +25,9 @@ class QYBackNavViewController: UIViewController {
         self.view.backgroundColor = UIColor.white;
     }
     
+    deinit {
+        print("123");
+    }
 
     /*
     // MARK: - Navigation

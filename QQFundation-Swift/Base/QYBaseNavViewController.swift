@@ -8,12 +8,29 @@
 
 import UIKit
 
+protocol QYBaseNavBackDelegate :NSObjectProtocol{
+    
+    /// 需要拦截返回事件
+    /// - Returns: 返回需要拦截的界面
+    func needInterceptBack() -> UIViewController;
+}
+
+@objc protocol QYBaseNavHiddenDelegate :NSObjectProtocol{
+    
+    
+    /// 需要隐藏nav
+    /// - Returns: 需要返回隐藏nav的界面
+    func needHiddenNav() -> UIViewController;
+}
 class QYBaseNavViewController: UINavigationController,UIGestureRecognizerDelegate,UINavigationControllerDelegate,UINavigationBarDelegate {
     
     ///<判断push动作有么有完成
     var isSwitching = false;
     ///<是否禁止滑动
     var forbidSlider = false;
+    
+    weak var navHiddenDelegate : QYBaseNavHiddenDelegate?;
+    weak var needInterceptDelegate : QYBaseNavBackDelegate?;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +84,17 @@ class QYBaseNavViewController: UINavigationController,UIGestureRecognizerDelegat
                 
             }
         });
+        
+        ///设置隐藏 nav 如果遵循代理且viewController 同一个就隐藏
+        if (self.navHiddenDelegate?.needHiddenNav() == viewController){
+            navigationController.setNavigationBarHidden(true, animated: true);
+        }else{
+            ///如果出来的是图片选择的 则不做处理
+            if (navigationController.isKind(of: UIImagePickerController.self)) {
+                return;
+            }
+            navigationController.setNavigationBarHidden(false, animated: true);
+        }
     }
 //MARK: - UINavigationBarDelegate
     func navigationBar(_ navigationBar: UINavigationBar, shouldPop item: UINavigationItem) -> Bool {
@@ -76,7 +104,7 @@ class QYBaseNavViewController: UINavigationController,UIGestureRecognizerDelegat
         if #available(iOS 13.0, *) {
             //系统版本高于13.0
         } else {
-          let tc =  self.popViewController(animated: true);
+          _ = self.popViewController(animated: true);
         }
         return true;
     }
