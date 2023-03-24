@@ -23,6 +23,6 @@ let kScreenHeight = UIScreen.main.bounds.size.height;
 
 let onePoint = (1 / UIScreen.main.scale);
 
-func RGB(a:CGFloat,g:CGFloat,b:CGFloat) -> UIColor {
-    return UIColor.init(red: a, green: g, blue: b, alpha: 1);
+func RGB(r:CGFloat,g:CGFloat,b:CGFloat) -> UIColor {
+    return UIColor.init(red:r/255, green: g/255, blue: b/255, alpha: 1);
 }

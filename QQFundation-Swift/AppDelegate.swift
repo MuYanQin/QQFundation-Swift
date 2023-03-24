@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         mItem.defaultImg = UIImage.init(named: "navigation_mine_defaut")
         mItem.selectedImg = UIImage.init(named: "navigation_mine_active")
         
-        let t = QQTabBarController.init(items: [hItem,sItem,mItem], navClass: UINavigationController.self)
+        let t = QQTabBarController.init(items: [hItem,sItem,mItem], navClass: QYBaseNavViewController.self)
         t.defaultColor = UIColor.black
         t.selectedColor = UIColor.red
         return t

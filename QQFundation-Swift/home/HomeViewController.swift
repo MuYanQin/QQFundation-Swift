@@ -33,6 +33,7 @@ class HomeViewController: QYBaseViewController {
         item.name = "测试"
         item.selcetCellHandler = {(item) ->() in
             print("123")
+            self.navigationController?.pushViewController(QYBackNavViewController(), animated: true);
         }
         item.trailingSwipeHandler = {(item,index)->() in
             print(item , index);

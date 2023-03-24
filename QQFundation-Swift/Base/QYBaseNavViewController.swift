@@ -31,11 +31,11 @@ class QYBaseNavViewController: UINavigationController,UIGestureRecognizerDelegat
         //ios13 之后开始添加
         if #available(iOS 13.0, *){
             let barApp = UINavigationBarAppearance();
-            barApp.backgroundColor = RGB(a: 0, g: 122, b: 255);
+            barApp.backgroundColor = RGB(r: 0, g: 122, b: 255);
             barApp.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white,NSAttributedString.Key.font:UIFont.systemFont(ofSize: 18)];
         }else{
             //导航条的颜色
-            self.navigationBar.barTintColor = RGB(a: 0, g: 122, b: 255);
+            self.navigationBar.barTintColor = RGB(r: 0, g: 122, b: 255);
             //导航条title的颜色
             self.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white,NSAttributedString.Key.font:UIFont.systemFont(ofSize: 18)];
             
@@ -61,10 +61,23 @@ class QYBaseNavViewController: UINavigationController,UIGestureRecognizerDelegat
     }
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        
+        let tc = navigationController.topViewController?.transitionCoordinator;
+        tc?.notifyWhenInteractionEnds({ context in
+            if !context.isCancelled{
+                
+            }
+        });
     }
 //MARK: - UINavigationBarDelegate
     func navigationBar(_ navigationBar: UINavigationBar, shouldPop item: UINavigationItem) -> Bool {
+        if self.viewControllers.count < navigationBar.items!.count{
+            return true;
+        }
+        if #available(iOS 13.0, *) {
+            //系统版本高于13.0
+        } else {
+          let tc =  self.popViewController(animated: true);
+        }
         return true;
     }
     
@@ -99,11 +112,11 @@ class QYBaseNavViewController: UINavigationController,UIGestureRecognizerDelegat
             viewController.hidesBottomBarWhenPushed = true;
         }
         
-        var backItem = UIBarButtonItem.init(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil);
+        let backItem = UIBarButtonItem.init(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil);
         var textAttrs = Dictionary<String, Any>();
         textAttrs[NSAttributedString.Key.foregroundColor.rawValue] = UIColor.white;
         textAttrs[NSAttributedString.Key.font.rawValue] = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.regular);
-        backItem.tintColor = UIColor.yellow;//返回的颜色
+        backItem.tintColor = UIColor.white;//返回的颜色
         viewController.navigationItem.backBarButtonItem = backItem;
         super.pushViewController(viewController, animated: animated);
     }
