@@ -45,16 +45,42 @@ class QYBaseViewController: UIViewController ,QQTableViewDelegate{
         print("dealloc" + "\(self)");
     }
     
+
+}
+
+extension UIViewController{
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    /// nav右边添加图片按钮
+    /// - Parameters:
+    ///   - imgName: 图片名称
+    ///   - self: 方法
+    /// - Returns: 无
+    func nav_rightImgItem(imgName:String,sel:Selector) -> Void {
+        let rightCustomButton = UIButton.init(frame: CGRect(x: 0, y: 0, width: 30, height: 30));
+        rightCustomButton.widthAnchor.constraint(equalToConstant: 20).isActive = true;
+        rightCustomButton.heightAnchor.constraint(equalToConstant: 20).isActive = true;
+        rightCustomButton.addTarget(self, action: sel, for: UIControl.Event.touchUpInside);
+        rightCustomButton.setImage(UIImage(named: imgName), for: UIControl.State.normal);
+        rightCustomButton.setImage(UIImage(named: imgName), for: UIControl.State.highlighted);
+        let rightItem = UIBarButtonItem.init(customView: rightCustomButton);
+        self.navigationItem.rightBarButtonItem = rightItem;
+        
     }
-    */
-
+    
+    /// nav右边添加文字按钮
+    /// - Parameters:
+    ///   - title: 文字
+    ///   - color: 文字颜色
+    ///   - font: 文字大小字体
+    ///   - sel: 方法
+    /// - Returns: 无
+    func nav_rightStrItem(title:String,color:UIColor?,font:UIFont,sel:Selector) -> Void {
+        let rightItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: sel);
+        let dic = [NSAttributedString.Key.foregroundColor:UIColor.white,NSAttributedString.Key.font:UIFont().withSize(14)];
+        rightItem .setTitleTextAttributes(dic, for: UIControl.State.normal);
+        rightItem .setTitleTextAttributes(dic, for: UIControl.State.highlighted);
+        self.navigationItem.rightBarButtonItem = rightItem;
+    }
+ 
+    
 }

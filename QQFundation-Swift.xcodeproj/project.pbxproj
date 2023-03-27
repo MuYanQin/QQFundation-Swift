@@ -269,11 +269,8 @@
 		42DB502F245041BC0050869B /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				6EE7DE4D29D1440D00AA5FE5 /* tabbar */,
 				6E37989729CD690200D3168D /* QYBaseViewController.swift */,
-				42C40D242451389100359796 /* QQTabBarController.swift */,
-				42C40D202451388300359796 /* QQTabBarItem.swift */,
-				42C40D212451388300359796 /* tab_launch@2x.png */,
-				42C40D1E2451387100359796 /* UITabBar+MCBigItem.swift */,
 				6E37989929CD6B3D00D3168D /* BaseDefine.swift */,
 				6E37989B29CD7A1300D3168D /* QYBaseNavViewController.swift */,
 			);
@@ -288,6 +285,17 @@
 				6EE7DE4B29D12EAE00AA5FE5 /* QYTestLazyViewController.swift */,
 			);
 			path = home;
+			sourceTree = "<group>";
+		};
+		6EE7DE4D29D1440D00AA5FE5 /* tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				42C40D242451389100359796 /* QQTabBarController.swift */,
+				42C40D202451388300359796 /* QQTabBarItem.swift */,
+				42C40D212451388300359796 /* tab_launch@2x.png */,
+				42C40D1E2451387100359796 /* UITabBar+MCBigItem.swift */,
+			);
+			path = tabbar;
 			sourceTree = "<group>";
 		};
 		B8833227DAF63864FD2F2E47 /* Frameworks */ = {
