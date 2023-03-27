@@ -12,7 +12,7 @@ class QQTableViewSecView: UITableViewHeaderFooterView {
     var item:QQTableViewSecItem?
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        self.backgroundColor = UIColor.white
+//        self.backgroundColor = UIColor.white
         self.contentView.backgroundColor = UIColor.white
     }
     

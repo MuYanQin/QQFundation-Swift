@@ -8,29 +8,16 @@
 
 import UIKit
 
-class QYBackNavViewController: UIViewController,QYBaseNavHiddenDelegate,QYBaseNavBackDelegate {
-    func needHiddenNav() -> UIViewController {
-        return self;
-    }
-    
-    func needInterceptBack() -> UIViewController {
-        print("123")
-        return self;
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        let tc =  self.navigationController as! QYBaseNavViewController;
-        tc.needInterceptDelegate  = self;
-    }
+class QYBackNavViewController: QYBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor.white;
+        self.tableManager.register(cellClass: testCell.self, itemClass: testItem.self);
     }
     
-    deinit {
-        print("123");
-    }
+
 
     /*
     // MARK: - Navigation

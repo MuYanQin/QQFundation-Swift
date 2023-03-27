@@ -51,8 +51,13 @@ class QYBaseNavViewController: UINavigationController,UIGestureRecognizerDelegat
         //ios13 之后开始添加
         if #available(iOS 13.0, *){
             let barApp = UINavigationBarAppearance();
-            barApp.backgroundColor = RGB(r: 0, g: 122, b: 255);
+            barApp.configureWithOpaqueBackground()
             barApp.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white,NSAttributedString.Key.font:UIFont.systemFont(ofSize: 18)];
+            barApp.backgroundColor = RGB(r: 0, g: 122, b: 255);
+            
+            self.navigationBar.standardAppearance = barApp
+            self.navigationBar.scrollEdgeAppearance = barApp
+
         }else{
             //导航条的颜色
             self.navigationBar.barTintColor = RGB(r: 0, g: 122, b: 255);
@@ -105,6 +110,7 @@ class QYBaseNavViewController: UINavigationController,UIGestureRecognizerDelegat
             return true;
         }
         
+        //swift 不需要和OC一样判断是否响应的问题。只需要利用optional的可选类型 空判断即可
         if (self.needInterceptDelegate?.needInterceptBack() == self.topViewController){
             self.needInterceptDelegate?.backClickEvent();
             return false;
