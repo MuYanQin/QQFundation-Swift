@@ -1,2 +1,3 @@
 ${PODS_ROOT}/Target Support Files/Pods-QQFundation-Swift/Pods-QQFundation-Swift-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework

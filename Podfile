@@ -7,6 +7,7 @@ target 'QQFundation-Swift' do
 
   # Pods for QQFundation-Swift
   pod 'MJRefresh'
+  pod 'Alamofire', '~> 5.6.4'
 
   target 'QQFundation-SwiftTests' do
     inherit! :search_paths

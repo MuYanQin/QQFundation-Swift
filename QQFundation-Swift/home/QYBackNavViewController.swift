@@ -15,6 +15,14 @@ class QYBackNavViewController: QYBaseViewController {
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor.white;
 //        self.tableManager.register(cellClass: testCell.self, itemClass: testItem.self);
+        QYNetManager.RTGet(url: "", param: [:], from: self) { res in
+            
+        } failed: { err in
+            
+        }
+
+
+
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let vc = QYTestLazyViewController();

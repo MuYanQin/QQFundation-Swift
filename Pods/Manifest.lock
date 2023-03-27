@@ -1,16 +1,20 @@
 PODS:
-  - MJRefresh (3.3.1)
+  - Alamofire (5.6.4)
+  - MJRefresh (3.7.5)
 
 DEPENDENCIES:
+  - Alamofire (~> 5.6.4)
   - MJRefresh
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - MJRefresh
 
 SPEC CHECKSUMS:
-  MJRefresh: eeda70fbf0ad277f3178cef1cd0c3532591d6237
+  Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
+  MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
 
-PODFILE CHECKSUM: 4a24f08ecfc985554585a12c2c49b8278bcddd13
+PODFILE CHECKSUM: 6dbe751a31eaa798cb463ab002fbad506efc2fb5
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.12.0
