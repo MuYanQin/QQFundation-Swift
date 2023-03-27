@@ -10,7 +10,7 @@ import UIKit
 
 class QQTableViewSection: NSObject {
     
-    var tableViewManager :QQTabeViewManager?
+    var tableViewManager :QQTableViewManager?
     var index :Int?{
         get{
             return self.tableViewManager!.sections.firstIndex(of: self);

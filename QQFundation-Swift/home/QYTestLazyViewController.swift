@@ -1,29 +1,40 @@
 //
-//  QYBackNavViewController.swift
+//  QYTestLazyViewController.swift
 //  QQFundation-Swift
 //
-//  Created by peanut on 2023/3/24.
+//  Created by peanut on 2023/3/27.
 //  Copyright © 2023 leaduadmin. All rights reserved.
 //
 
 import UIKit
 
-class QYBackNavViewController: QYBaseViewController {
+class QYTestLazyViewController: QYBaseViewController {
+
+    lazy var name: String = {() -> String in
+        self.view.addSubview(self.baseTableView);
+        return "";
+    }()
+      
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
         self.view.backgroundColor = UIColor.white;
-//        self.tableManager.register(cellClass: testCell.self, itemClass: testItem.self);
+        self.tableManager.register(cellClass: testCell.self, itemClass: testItem.self);
+        
+        print(CFGetRetainCount(self));
+        
+        var arr = Array<Any>();
+        var arr1 = Array<Any>();
+        arr.append(arr1)
+        arr1.append(arr)
     }
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let vc = QYTestLazyViewController();
-        vc.name  = "123";
-        print(CFGetRetainCount(vc));
-        self.navigationController?.pushViewController(vc, animated: true);
+    deinit {
+        print("dealloc");
+        print(CFGetRetainCount(self));
     }
-    
-
 
     /*
     // MARK: - Navigation

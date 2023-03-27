@@ -8,7 +8,7 @@
 
 import UIKit
 class QQTableViewItem: NSObject {
-    var tableViewManager :QQTabeViewManager?
+    var tableViewManager :QQTableViewManager?
     var section = QQTableViewSection();
     var bgColor :UIColor?
     var cellHeight:CGFloat = 0

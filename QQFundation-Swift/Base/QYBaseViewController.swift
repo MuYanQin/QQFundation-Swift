@@ -10,9 +10,9 @@ import UIKit
 class QYBaseViewController: UIViewController ,QQTableViewDelegate{
     
     //懒加载父类tableview视图管理器
-    lazy var tableManager: QQTabeViewManager = { () -> QQTabeViewManager in
+    lazy var tableManager: QQTableViewManager = { () -> QQTableViewManager in
         self.view.addSubview(self.baseTableView);
-        var manager = QQTabeViewManager(tableView: self.baseTableView);
+        var manager = QQTableViewManager(tableView: self.baseTableView);
         return manager;
     }()
     

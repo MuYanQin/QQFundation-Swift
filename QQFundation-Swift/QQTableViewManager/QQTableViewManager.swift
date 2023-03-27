@@ -1,5 +1,5 @@
 //
-//  QQTabeViewManager.swift
+//  QQTableViewManager.swift
 //  QQFundation-Swift
 //
 //  Created by leaduMac on 2020/3/11.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class QQTabeViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
+class QQTableViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
     var tableView = UITableView();
     var sections = Array<QQTableViewSection>();
     
