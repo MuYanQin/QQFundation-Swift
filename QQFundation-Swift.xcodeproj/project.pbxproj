@@ -795,7 +795,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "QQ.QQFundation-Swift";
+				PRODUCT_BUNDLE_IDENTIFIER = "QQ.QQFundatio-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "QQFundation-Swift/QQTableView/QQFundation-Swift-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -818,7 +818,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "QQ.QQFundation-Swift";
+				PRODUCT_BUNDLE_IDENTIFIER = "QQ.QQFundatio-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "QQFundation-Swift/QQTableView/QQFundation-Swift-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
