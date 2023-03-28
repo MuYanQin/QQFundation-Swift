@@ -28,32 +28,32 @@ extension UIButton{
     
     /// 设置携带信息
     /// - Parameter item: 携带的信息
-    @objc func qinfo(item :Any) -> UIButton {
+    @objc func qinfo(_ item :Any) -> UIButton {
         return self
     }
     
     /// 设置文字位置
     /// - Parameter item: 位置的枚举
-    @objc func qtextPosition(item :Position) -> UIButton {
+    @objc func qtextPosition(_ item :Position) -> UIButton {
         return self
     }
     
     /// 设置 图片的大小
     /// - Parameter item: size
-    @objc func qimageSize(item :CGSize) -> UIButton {
+    @objc func qimageSize(_ item :CGSize) -> UIButton {
         return self
     }
     
     /// 设置文字图片时间的间距
     /// - Parameter item: 间距
-    @objc func qgapBetweenTI(item :CGFloat) -> UIButton {
+    @objc func qgapBetweenTI(_ item :CGFloat) -> UIButton {
         return self
     }
     
     
     /// 设置title 默认normal
     /// - Parameter item: 内容
-    func qtext(item :String) -> UIButton {
+    func qtext(_ item :String) -> UIButton {
         self.setTitle(item, for: .normal)
         return self;
     }
@@ -62,14 +62,14 @@ extension UIButton{
     /// - Parameters:
     ///   - item: 内容
     ///   - state: UIControl.State
-    func qtextState(item :String,state:UIControl.State) -> UIButton {
+    func qtextState(_ item :String,_ state:UIControl.State) -> UIButton {
         self.setTitle(item, for: state)
         return self;
     }
     
     /// 设置文字颜色 默认normal
     /// - Parameter item: color
-    func qtextClolor(item :UIColor) -> UIButton {
+    func qtextClolor(_ item :UIColor) -> UIButton {
         self.setTitleColor(item, for: .normal)
         return self;
      }
@@ -78,14 +78,14 @@ extension UIButton{
     /// - Parameters:
     ///   - item: color
     ///   - state: UIControl.State
-     func qtextClolorState(item :UIColor,state:UIControl.State) -> UIButton {
+     func qtextClolorState(_ item :UIColor,_ state:UIControl.State) -> UIButton {
         self.setTitleColor(item, for: state)
         return self;
      }
     
     /// 设置图片
     /// - Parameter item: 图片名称
-    func qimage(item :String) -> UIButton {
+    func qimage(_ item :String) -> UIButton {
         self.setImage(UIImage.init(named: item), for: .normal)
         return self;
      }
@@ -94,14 +94,14 @@ extension UIButton{
     /// - Parameters:
     ///   - item: 图片名称
     ///   - state: UIControl.State
-     func qimageState(item :String,state:UIControl.State) -> UIButton {
+     func qimageState(_ item :String,_ state:UIControl.State) -> UIButton {
         self.setImage(UIImage.init(named: item), for: state)
         return self;
      }
     
     /// 设置背景图片 默认normal
     /// - Parameter item: 图片名称
-    func qbgImage(item :String) -> UIButton {
+    func qbgImage(_ item :String) -> UIButton {
         self.setBackgroundImage(UIImage.init(named: item), for: .normal)
         return self;
      }
@@ -110,21 +110,21 @@ extension UIButton{
     /// - Parameters:
     ///   - item: 图片名称
     ///   - state: UIControl.State
-     func qbgImageState(item :String,state:UIControl.State) -> UIButton {
+     func qbgImageState(_ item :String,_ state:UIControl.State) -> UIButton {
         self.setBackgroundImage(UIImage.init(named: item), for: state)
         return self;
      }
     
     /// 设置背景颜色
     /// - Parameter item: color
-    func qbgClolor(item :UIColor) -> UIButton {
+    func qbgClolor(_ item :UIColor) -> UIButton {
         self.backgroundColor = item;
         return self
      }
     
     /// 设置字体 默认regular
     /// - Parameter item: 字体大小
-    func qfont(item :CGFloat) -> UIButton {
+    func qfont(_ item :CGFloat) -> UIButton {
         self.titleLabel?.font = UIFont.systemFont(ofSize: item, weight: .regular)
         return self
      }
@@ -134,7 +134,7 @@ extension UIButton{
     /// - Parameters:
     ///   - item: 字体大小
     ///   - state: UIFont.Weight
-    func qfontWeight(item :CGFloat,state :UIFont.Weight) -> UIButton {
+    func qfontWeight(_ item :CGFloat,_ state :UIFont.Weight) -> UIButton {
        self.titleLabel?.font = UIFont.systemFont(ofSize: item, weight: .regular)
        return self
     }
@@ -142,49 +142,49 @@ extension UIButton{
     
     /// 设置frame
     /// - Parameter item: rect
-    func qframe(item :CGRect) -> UIButton {
+    func qframe(_ item :CGRect) -> UIButton {
         self.frame = item
         return self;
     }
     
     /// 设置隐藏
     /// - Parameter item: bool
-    func qhidden(item :Bool) -> UIButton {
+    func qhidden(_ item :Bool) -> UIButton {
         self.isHidden = item
         return self;
     }
     
     /// 设置tag
     /// - Parameter item: int
-    func qtag(item :Int) -> UIButton {
+    func qtag(_ item :Int) -> UIButton {
        self.tag = item
        return self;
     }
     
     /// 设置是否切割
     /// - Parameter item: bool
-    func qmasksToBounds(item :Bool) -> UIButton {
+    func qmasksToBounds(_ item :Bool) -> UIButton {
         self.layer.masksToBounds = item
        return self;
     }
     
     /// 设置边框颜色
     /// - Parameter item: color
-    func qborderColor(item :UIColor) -> UIButton {
+    func qborderColor(_ item :UIColor) -> UIButton {
         self.layer.borderColor = item.cgColor
        return self;
     }
     
     /// 设置边框粗细
     /// - Parameter item: cgfloat
-    func qborderWidth(item :CGFloat) -> UIButton {
+    func qborderWidth(_ item :CGFloat) -> UIButton {
         self.layer.borderWidth = item
        return self;
     }
     
     /// 设置圆角
     /// - Parameter item: CGFloat
-    func qcornerRadius(item :CGFloat) -> UIButton {
+    func qcornerRadius(_ item :CGFloat) -> UIButton {
         self.layer.cornerRadius = item
        return self;
     }
@@ -194,7 +194,7 @@ extension UIButton{
     /// - Parameters:
     ///   - item: 类
     ///   - action: 动作
-    func qtarget(item :Any? ,action:Selector) -> UIButton {
+    func qtarget(_ item :Any? ,_ action:Selector) -> UIButton {
         self.addTarget(item, action: action, for: .touchUpInside)
        return self;
     }
@@ -204,7 +204,7 @@ extension UIButton{
     ///   - item: 类
     ///   - action: 动作
     ///   - event: UIControl.Event
-    func qtargetEvent(item :Any? ,action:Selector,event:UIControl.Event) -> UIButton {
+    func qtargetEvent(_ item :Any? ,_ action:Selector,_ event:UIControl.Event) -> UIButton {
         self.addTarget(item, action: action, for: event)
        return self;
     }

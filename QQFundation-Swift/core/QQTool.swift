@@ -12,7 +12,7 @@ extension NSObject {
     
     /// 转换为字符串
     /// - Parameter str: 需要转换的值
-    func relay(str:Any) -> String {
+    func relay(_ str:Any) -> String {
         if let a = str as? NSNumber {
             return a.stringValue
         }else if  ((str as? NSNull) != nil){

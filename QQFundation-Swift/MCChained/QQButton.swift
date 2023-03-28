@@ -20,22 +20,22 @@ class QQButton: UIButton {
     
     var position :Position = .none
     
-    @objc override func qinfo(item :Any) -> UIButton {
+    @objc override func qinfo(_ item :Any) -> UIButton {
         self.info = item
         return self
     }
     
-    override func qtextPosition(item: Position) -> UIButton {
+    override func qtextPosition(_ item: Position) -> UIButton {
         self.position = item
         return self
     }
     
-    override func qimageSize(item :CGSize) -> QQButton {
+    override func qimageSize(_ item :CGSize) -> QQButton {
         self.imageSize = item
         return self
     }
     
-    override func qgapBetweenTI(item :CGFloat) -> QQButton {
+    override func qgapBetweenTI(_ item :CGFloat) -> QQButton {
         self.gapBetweenTI = item
         return self
     }
