@@ -15,7 +15,7 @@ class TestTTView: QQTableViewSecView {
     var btn :UILabel?
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        let label = UILabel.getLabel().qtext(item: "测试label").qbgColor(item: UIColor.yellow).qframe(item: CGRect.init(x: 0, y: 0, width: 100, height: 50)).qtarget(item: self, sel: "tttt")
+        let label = UILabel.getLabel().qtext("测试label").qbgColor(UIColor.yellow).qframe(CGRect.init(x: 0, y: 0, width: 100, height: 50)).qtarget(self, "tttt")
         self.addSubview(label)
     }
     @objc func tttt()->Void{

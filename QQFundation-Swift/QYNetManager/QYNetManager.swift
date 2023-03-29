@@ -86,22 +86,42 @@ class QYNetManager{
         }
     }
     static func RTSUpload(url:String,
-                          param:Dictionary<String,Any>,
+                          param:Dictionary<String,Any>? = nil,
                           images:Array<UIImage>,
-                          from:UIViewController,
+                          from:UIViewController? = nil,
                           fileMark:String,
                           progress:@escaping ((_ res:Any) -> Void),
                           success:@escaping ((_ res:Any) -> Void),
                           failed:@escaping  ((_ err:Error) -> Void)){
         
         
-        AF.upload(multipartFormData: { multipartFormData in
-            
-        }, to: "",method: .post,headers: []).uploadProgress(closure: { progress in
-            
+        let dataRequest =  AF.upload(multipartFormData: { multipartFormData in
+            // 添加多张图片数据到 multipartFormData 中
+            for image in images {
+                if let data = image.jpegData(compressionQuality: 1.0) {
+                    multipartFormData.append(data, withName: fileMark, fileName: "\(Date().timeIntervalSince1970).jpg", mimeType: "image/jpeg")
+                }
+            }
+        }, to: url,method: .post).uploadProgress(closure: { progress in
+            print("Upload Progress: \(progress.fractionCompleted)")
         }).responseData{ res in
-            
+            switch res.result{
+           
+            case let .success(data):
+                guard let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) else{
+                     return
+                }
+                let dic = json as! Dictionary<String ,Any>
+                print(json);
+                success(dic);
+                break;
+            case let .failure(error):
+                failed(error as Error)
+                break;
+            }
         };
+        
+        map[url] = dataRequest;
     }
     
     

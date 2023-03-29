@@ -18,8 +18,11 @@ class QYBaseViewController: UIViewController ,QQTableViewDelegate{
     
     //懒加载父类基础tablebview
     lazy var baseTableView: QQTableView = { () -> QQTableView in
-        var tableView = QQTableView(frame: CGRect(x: 0, y: QYNavHeight, width: kScreenWidth, height: kScreenHeight),style: UITableView.Style.plain);
+        var tableView = QQTableView(frame: CGRect(x: 0, y: UIDevice.navigationFullHeight(), width: kScreenWidth, height: kScreenHeight - UIDevice.navigationFullHeight() - UIDevice.safeDistanceBottom()),style: UITableView.Style.plain);
+        tableView.backgroundColor = UIColor.red
         tableView.qdelegate = self;
+        //是否自动适应被tabbar遮挡的地方 automatic 自适应。never 不适应 需要自己手动去修改坐标
+//        tableView.contentInsetAdjustmentBehavior = .automatic;
         return tableView;
     }()
     
@@ -29,7 +32,6 @@ class QYBaseViewController: UIViewController ,QQTableViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.automaticallyAdjustsScrollViewInsets = false;
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle{

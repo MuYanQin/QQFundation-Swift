@@ -14,17 +14,28 @@ class HomeViewController: QYBaseViewController {
 
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor.white
+        print("safeDistanceTop=",UIDevice.safeDistanceTop());
+        print("safeDistanceBottom=",UIDevice.safeDistanceBottom());
+        print("statusBarHeight=",UIDevice.statusBarHeight());
+        print("tabBarFullHeight=",UIDevice.tabBarFullHeight());
+        print("navigationFullHeight=",UIDevice.navigationFullHeight());
+        print("navigationFullHeight=",self.navigationController?.navigationBar.frame.height as Any);
+
         
         self.tableManager.register(cellClass: testCell.self, itemClass: testItem.self);
-        self.tableManager.register(cellClass: TestTTView.self, itemClass: TestTTItem.self);
+        self.tableManager.register(cellClass:StackViewCell.self, itemClass: StackViewItem.self);
+//        self.tableManager.register(cellClass: TestTTView.self, itemClass: TestTTItem.self);
         
         let section = QQTableViewSection();
         
-        let secviewItem = TestTTItem.init()
-        secviewItem.name = "测试View"
-        secviewItem.secHeight = 100
-        section.item = secviewItem
+//        let secviewItem = TestTTItem.init()
+//        secviewItem.name = "测试View"
+//        secviewItem.secHeight = 100
+//        section.item = secviewItem
         
+        let stack = StackViewItem();
+        stack.cellHeight = 100;
+        section.addItem(item: stack);
         
         let item = testItem.init()
         item.allowSlide = true;
@@ -42,9 +53,24 @@ class HomeViewController: QYBaseViewController {
         }
         section .addItem(item: item)
         
-        let item1 = testItem.init()
-        item1.name = "测试3333"
-        section .addItem(item: item1)
+        
+        
+        
+        for _ in 1...3{
+            let item1 = testItem.init()
+            item1.name = "测试3333"
+            item1.selcetCellHandler = { (item) in
+                self.navigationController?.pushViewController(QYTestHeightViewController(), animated: true);
+
+            }
+            section .addItem(item: item1)
+        }
+        
+        for _ in 1...[1,1,1,].count{
+            let item1 = testItem.init()
+            item1.name = "测试3333"
+            section .addItem(item: item1)
+        }
 
         self.baseArray.append(section);
         self.tableManager .reloadDataFromArray(sections: self.baseArray);

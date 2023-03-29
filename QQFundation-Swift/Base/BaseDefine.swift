@@ -9,13 +9,13 @@
 import Foundation
 import UIKit
 
-let QYStatueBarHeight = UIApplication.shared.statusBarFrame.size.height;
+//let QYStatueBarHeight = UIDevice.statueBarHeight();
 
-let QYNavHeight = (QYStatueBarHeight > 20) ? 88.0 : 64.0;
+//let QYNavHeight = (QYStatueBarHeight > 20) ? 88.0 : 64.0;
 
 let QYTablebarHeight = 49;
 
-let QYBottomDistance = (QYStatueBarHeight > 20) ? 34.0 : 0.0;
+//let QYBottomDistance = (QYStatueBarHeight > 20) ? 34.0 : 0.0;
 
 let kScreenWidth = UIScreen.main.bounds.size.width;
 
