@@ -28,7 +28,7 @@
 		427A3B3C241B19A700FE162B /* SelfAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B3B241B19A700FE162B /* SelfAware.swift */; };
 		427A3B41241B527C00FE162B /* UIView+Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B40241B527C00FE162B /* UIView+Frame.swift */; };
 		427A3B43241B613700FE162B /* UIButton+Chained.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B42241B613700FE162B /* UIButton+Chained.swift */; };
-		427A3B45241B626600FE162B /* QQButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B44241B626600FE162B /* QQButton.swift */; };
+		427A3B45241B626600FE162B /* QYButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B44241B626600FE162B /* QYButton.swift */; };
 		427A3B47241B7E7000FE162B /* UILabel+Chained.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B46241B7E7000FE162B /* UILabel+Chained.swift */; };
 		428CC885244473D6007F42B1 /* QQTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428CC884244473D6007F42B1 /* QQTool.swift */; };
 		42C40D1F2451387100359796 /* UITabBar+MCBigItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C40D1E2451387100359796 /* UITabBar+MCBigItem.swift */; };
@@ -112,7 +112,7 @@
 		427A3B3B241B19A700FE162B /* SelfAware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfAware.swift; sourceTree = "<group>"; };
 		427A3B40241B527C00FE162B /* UIView+Frame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Frame.swift"; sourceTree = "<group>"; };
 		427A3B42241B613700FE162B /* UIButton+Chained.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Chained.swift"; sourceTree = "<group>"; };
-		427A3B44241B626600FE162B /* QQButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QQButton.swift; sourceTree = "<group>"; };
+		427A3B44241B626600FE162B /* QYButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QYButton.swift; sourceTree = "<group>"; };
 		427A3B46241B7E7000FE162B /* UILabel+Chained.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Chained.swift"; sourceTree = "<group>"; };
 		428CC87124446440007F42B1 /* QQFundation-Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "QQFundation-Swift-Bridging-Header.h"; sourceTree = "<group>"; };
 		428CC884244473D6007F42B1 /* QQTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QQTool.swift; sourceTree = "<group>"; };
@@ -274,7 +274,7 @@
 			children = (
 				427A3B42241B613700FE162B /* UIButton+Chained.swift */,
 				427A3B46241B7E7000FE162B /* UILabel+Chained.swift */,
-				427A3B44241B626600FE162B /* QQButton.swift */,
+				427A3B44241B626600FE162B /* QYButton.swift */,
 				427A3B40241B527C00FE162B /* UIView+Frame.swift */,
 			);
 			path = MCChained;
@@ -650,7 +650,7 @@
 				42DB5037245134CC0050869B /* HomeViewController.swift in Sources */,
 				427A3B292419CA9B00FE162B /* QQTableViewItem.swift in Sources */,
 				6E81F92E29D44E12002C9FB8 /* StackViewCell.swift in Sources */,
-				427A3B45241B626600FE162B /* QQButton.swift in Sources */,
+				427A3B45241B626600FE162B /* QYButton.swift in Sources */,
 				42C40D252451389100359796 /* QQTabBarController.swift in Sources */,
 				427A3B2D2419CFED00FE162B /* QQTableViewSecItem.swift in Sources */,
 				6E81F93729D51E9F002C9FB8 /* QYCollectionViewItem.swift in Sources */,

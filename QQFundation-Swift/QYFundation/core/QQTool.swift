@@ -24,6 +24,27 @@ extension NSObject {
         }
         return ""
     }
+    
+    func currentShowVC() -> UIViewController {
+        let rootVc = UIApplication.shared.keyWindow?.rootViewController
+        let currentVc = findCurrentShowingVC(rootVc!)
+        return currentVc
+    }
+    
+    private func findCurrentShowingVC(_ vc:UIViewController) ->UIViewController{
+        var currentVc:UIViewController
+         if(vc.presentedViewController != nil) {
+             currentVc = findCurrentShowingVC(vc.presentedViewController!)
+         }else if vc.isKind(of:UITabBarController.classForCoder()) {
+           currentVc = findCurrentShowingVC((vc as! UITabBarController).selectedViewController!)
+         }else if vc.isKind(of:UINavigationController.classForCoder()){
+           currentVc = findCurrentShowingVC((vc as! UINavigationController).visibleViewController!)
+         }else{
+           currentVc = vc
+         }
+         return currentVc
+    }
+    
 }
 extension String{
     

@@ -1,5 +1,5 @@
 //
-//  QQButton.swift
+//  QYButton.swift
 //  QQFundation-Swift
 //
 //  Created by leaduMac on 2020/3/13.
@@ -10,7 +10,7 @@ import UIKit
 
 
 
-class QQButton: UIButton {
+class QYButton: UIButton {
 
     var info: Any?
     
@@ -30,12 +30,12 @@ class QQButton: UIButton {
         return self
     }
     
-    override func qimageSize(_ item :CGSize) -> QQButton {
+    override func qimageSize(_ item :CGSize) -> QYButton {
         self.imageSize = item
         return self
     }
     
-    override func qgapBetweenTI(_ item :CGFloat) -> QQButton {
+    override func qgapBetweenTI(_ item :CGFloat) -> QYButton {
         self.gapBetweenTI = item
         return self
     }
