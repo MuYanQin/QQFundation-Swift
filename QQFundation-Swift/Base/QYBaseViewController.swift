@@ -21,8 +21,6 @@ class QYBaseViewController: UIViewController ,QQTableViewDelegate{
         var tableView = QQTableView(frame: CGRect(x: 0, y: UIDevice.navigationFullHeight(), width: kScreenWidth, height: kScreenHeight - UIDevice.navigationFullHeight() - UIDevice.safeDistanceBottom()),style: UITableView.Style.plain);
         tableView.backgroundColor = UIColor.red
         tableView.qdelegate = self;
-        //是否自动适应被tabbar遮挡的地方 automatic 自适应。never 不适应 需要自己手动去修改坐标
-//        tableView.contentInsetAdjustmentBehavior = .automatic;
         return tableView;
     }()
     

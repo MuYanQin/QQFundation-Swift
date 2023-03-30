@@ -93,13 +93,19 @@ class QQTableView: UITableView ,SelfAware {
         fatalError("init(coder:) has not been implemented")
     }
     func initTableView() -> Void {
+        //是否自动适应被tabbar遮挡的地方 automatic 自适应。never 不适应 需要自己手动去修改坐标
         if #available(iOS 11.0, *) {
             self.contentInsetAdjustmentBehavior = .never
         }
+        // iOS 15 的 UITableView又新增了一个新属性：sectionHeaderTopPadding 会给每一个section header 增加一个默认高度
+        if #available(iOS 15.0, *) {
+             self.sectionHeaderTopPadding = 0;
+          }
         self.footView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.q_width ?? 0, height: 0))
         self.tableHeaderView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.q_width ?? 0, height: 0))
         self.sectionFooterHeight = 0
         self.sectionHeaderHeight = 0
+        self.separatorStyle = .none
         self.estimatedRowHeight = 0
         self.estimatedSectionFooterHeight = 0
         self.estimatedSectionHeaderHeight = 0
