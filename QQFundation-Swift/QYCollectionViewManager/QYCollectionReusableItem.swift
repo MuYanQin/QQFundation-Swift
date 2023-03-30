@@ -1,5 +1,5 @@
 //
-//  QYCollectionViewItem.swift
+//  QYCollectionReusableViewItem.swift
 //  QQFundation-Swift
 //
 //  Created by peanut on 2023/3/30.
@@ -8,8 +8,8 @@
 
 import UIKit
 
-class QYCollectionViewItem: NSObject {
+class QYCollectionReusableItem: NSObject {
 
-    var selcetCellHandler:((QYCollectionViewItem,NSInteger) -> ())?
+    var secHeight :CGFloat?
     
 }

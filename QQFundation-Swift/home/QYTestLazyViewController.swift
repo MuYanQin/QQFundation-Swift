@@ -10,31 +10,56 @@ import UIKit
 
 class QYTestLazyViewController: QYBaseViewController {
 
-    lazy var name: String = {() -> String in
-        self.view.addSubview(self.baseTableView);
-        return "";
-    }()
       
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.view.backgroundColor = UIColor.white
+        self.collectManager.register(cellClass: CollectionViewCell.self, itemClass: CollectionViewItem.self)
+        self.collectManager.register(cellClass: CollectionReusableView.self, itemClass: CollectionReusableItem.self)
+        self.collectManager.register(cellClass: CollectionReusableTwoView.self, itemClass: CollectionReusableTwoItem.self)
         
-        self.view.backgroundColor = UIColor.white;
-        self.tableManager.register(cellClass: testCell.self, itemClass: testItem.self);
+        /*
+        let section = QYCollectionViewSection();
+        let secItem = CollectionReusableItem();
+        secItem.secHeight = 100;
+        section.item = secItem
         
-        print(CFGetRetainCount(self));
         
-        var arr = Array<Any>();
-        var arr1 = Array<Any>();
-        arr.append(arr1)
-        arr1.append(arr)
+        let item = CollectionViewItem();
+        section.items.append(item);
+        
+        
+        let item1 = CollectionViewItem();
+        section.items.append(item1);
+        
+        
+        let item2 = CollectionViewItem();
+        section.items.append(item2);
+        
+        let item3 = CollectionViewItem();
+        section.items.append(item3);
+        
+        for _ in 1...5{
+            let item4 = CollectionViewItem();
+            section.items.append(item4);
+        }
+        
+        self.baseColArray.append(section)
+        
+        */
+        let section1 = QYCollectionViewSection();
+        let secItem1 = CollectionReusableTwoItem();
+        secItem1.secHeight = 30;
+        section1.item = secItem1
+        
+        self.baseColArray.append(section1)
+        
+        self.collectManager.reloadCollection(self.baseColArray)
     }
-    deinit {
-        print("dealloc");
-        print(CFGetRetainCount(self));
-    }
+
 
     /*
     // MARK: - Navigation

@@ -20,12 +20,7 @@ class testItem: QQTableViewItem {
 class testCell: QQTableViewCell {
     
     var label :UILabel?    
-    override func cellDidLoad() {
-        super.cellDidLoad();
-        label = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: 100, height: 40))
-        label!.backgroundColor = UIColor.purple
-        self.addSubview(label!)
-    }
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         label = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: 100, height: 40))

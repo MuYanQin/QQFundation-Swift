@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol SelfAware :class {
+protocol SelfAware :AnyObject {
     static func awake()
     static func swizzlingForClass(_ forClass: AnyClass, originalSelector: Selector, swizzledSelector: Selector)
 }

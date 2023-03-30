@@ -14,7 +14,7 @@ class QYBackNavViewController: QYBaseViewController {
 
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor.white;
-
+        nav_rightStrItem(title: "跳转", color: UIColor.white, font: UIFont.systemFont(ofSize: 14), sel: #selector(click))
         self.tableManager.register(cellClass: testCell.self, itemClass: testItem.self);
         let section = QQTableViewSection()
         
@@ -55,10 +55,8 @@ class QYBackNavViewController: QYBaseViewController {
 
 
     }
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    @objc func click(){
         let vc = QYTestLazyViewController();
-        vc.name  = "123";
-        print(CFGetRetainCount(vc));
         self.navigationController?.pushViewController(vc, animated: true);
     }
     

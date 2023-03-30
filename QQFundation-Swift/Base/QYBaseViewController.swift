@@ -24,12 +24,34 @@ class QYBaseViewController: UIViewController ,QQTableViewDelegate{
         return tableView;
     }()
     
+    lazy var collectManager: QYCollectionViewManager = {
+        let manager = QYCollectionViewManager(collectionView: collectionView)
+        self.view.addSubview(collectionView);
+        return manager
+    }()
+    
+    lazy var collectionView: QYCollectionView = {
+        let width = (kScreenWidth - 40)/2;
+
+        let layout = UICollectionViewFlowLayout();
+        layout.headerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 100)
+        layout.itemSize = CGSize(width: width, height: 180)
+        
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 15, bottom: 20, right: 15)
+        let col = QYCollectionView(frame: CGRect(x: 0, y: UIDevice.navigationFullHeight(), width: kScreenWidth, height: kScreenHeight - UIDevice.navigationFullHeight()), collectionViewLayout: layout)
+        col.backgroundColor = UIColor.white
+        return col
+    }()
+    
+    
     //懒加载父类基础数组给tableview视图的数据源使用
     lazy var baseArray = Array<QQTableViewSection>();
     
+    lazy var baseColArray = Array<QYCollectionViewSection>();
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view.backgroundColor = UIColor.white;
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle{
@@ -75,8 +97,9 @@ extension UIViewController{
     ///   - sel: 方法
     /// - Returns: 无
     func nav_rightStrItem(title:String,color:UIColor?,font:UIFont,sel:Selector) -> Void {
-        let rightItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: sel);
-        let dic = [NSAttributedString.Key.foregroundColor:UIColor.white,NSAttributedString.Key.font:UIFont().withSize(14)];
+
+        let rightItem = UIBarButtonItem(title: title, style:UIBarButtonItem.Style.plain , target: self, action: sel)
+        let dic = [NSAttributedString.Key.foregroundColor:UIColor.white,NSAttributedString.Key.font:font];
         rightItem .setTitleTextAttributes(dic, for: UIControl.State.normal);
         rightItem .setTitleTextAttributes(dic, for: UIControl.State.highlighted);
         self.navigationItem.rightBarButtonItem = rightItem;
