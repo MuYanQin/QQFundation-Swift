@@ -205,16 +205,10 @@
 		421142B62415E58F00B71E07 /* QQFundation-Swift */ = {
 			isa = PBXGroup;
 			children = (
-				6E81F93329D51D10002C9FB8 /* QYCollectionViewManager */,
-				6E81F93029D51CBE002C9FB8 /* QYCollectionview */,
-				6EE7DE5029D1608200AA5FE5 /* QYNetManager */,
-				42DB502F245041BC0050869B /* Base */,
-				428CC87F2444716C007F42B1 /* core */,
-				427A3B3D241B351900FE162B /* MCChained */,
-				427A3B34241A2E8F00FE162B /* QQTableView */,
-				427A3B272419C6FA00FE162B /* QQTableViewManager */,
+				6ECAEB1B29D576720060AF00 /* QYFundation */,
 				4256C32B2418CEF900B08EBF /* cell */,
 				421142B72415E58F00B71E07 /* AppDelegate.swift */,
+				428CC87124446440007F42B1 /* QQFundation-Swift-Bridging-Header.h */,
 				6E37989D29CD8F5100D3168D /* home */,
 				42DB5038245134D40050869B /* MineViewController.swift */,
 				42DB503A245134E50050869B /* SearchViewController.swift */,
@@ -262,6 +256,9 @@
 		427A3B272419C6FA00FE162B /* QQTableViewManager */ = {
 			isa = PBXGroup;
 			children = (
+				427A3B37241A361200FE162B /* icon_em_al.png */,
+				427A3B38241A361200FE162B /* multi_network_error_icon@2x.png */,
+				427A3B35241A2EB600FE162B /* QQTableView.swift */,
 				4256C32724188C7200B08EBF /* QQTableViewManager.swift */,
 				4256C3212418755100B08EBF /* QQTableViewItem.swift */,
 				4256C3232418756E00B08EBF /* QQTableViewSection.swift */,
@@ -270,18 +267,6 @@
 				427A3B2E2419D01200FE162B /* QQTableViewSecView.swift */,
 			);
 			path = QQTableViewManager;
-			sourceTree = "<group>";
-		};
-		427A3B34241A2E8F00FE162B /* QQTableView */ = {
-			isa = PBXGroup;
-			children = (
-				427A3B37241A361200FE162B /* icon_em_al.png */,
-				427A3B38241A361200FE162B /* multi_network_error_icon@2x.png */,
-				427A3B35241A2EB600FE162B /* QQTableView.swift */,
-				427A3B3B241B19A700FE162B /* SelfAware.swift */,
-				428CC87124446440007F42B1 /* QQFundation-Swift-Bridging-Header.h */,
-			);
-			path = QQTableView;
 			sourceTree = "<group>";
 		};
 		427A3B3D241B351900FE162B /* MCChained */ = {
@@ -298,6 +283,7 @@
 		428CC87F2444716C007F42B1 /* core */ = {
 			isa = PBXGroup;
 			children = (
+				427A3B3B241B19A700FE162B /* SelfAware.swift */,
 				428CC884244473D6007F42B1 /* QQTool.swift */,
 			);
 			path = core;
@@ -326,17 +312,10 @@
 			path = home;
 			sourceTree = "<group>";
 		};
-		6E81F93029D51CBE002C9FB8 /* QYCollectionview */ = {
-			isa = PBXGroup;
-			children = (
-				6E81F93129D51CEB002C9FB8 /* QYCollectionView.swift */,
-			);
-			path = QYCollectionview;
-			sourceTree = "<group>";
-		};
 		6E81F93329D51D10002C9FB8 /* QYCollectionViewManager */ = {
 			isa = PBXGroup;
 			children = (
+				6E81F93129D51CEB002C9FB8 /* QYCollectionView.swift */,
 				6E81F93429D51D44002C9FB8 /* QYCollectionViewManager.swift */,
 				6E81F93629D51E9F002C9FB8 /* QYCollectionViewItem.swift */,
 				6E81F93829D51EB9002C9FB8 /* QYCollectionViewCell.swift */,
@@ -345,6 +324,19 @@
 				6ECAEB1529D55AC80060AF00 /* QYCollectionReusableItem.swift */,
 			);
 			path = QYCollectionViewManager;
+			sourceTree = "<group>";
+		};
+		6ECAEB1B29D576720060AF00 /* QYFundation */ = {
+			isa = PBXGroup;
+			children = (
+				427A3B272419C6FA00FE162B /* QQTableViewManager */,
+				427A3B3D241B351900FE162B /* MCChained */,
+				428CC87F2444716C007F42B1 /* core */,
+				42DB502F245041BC0050869B /* Base */,
+				6EE7DE5029D1608200AA5FE5 /* QYNetManager */,
+				6E81F93329D51D10002C9FB8 /* QYCollectionViewManager */,
+			);
+			path = QYFundation;
 			sourceTree = "<group>";
 		};
 		6EE7DE4D29D1440D00AA5FE5 /* tabbar */ = {
