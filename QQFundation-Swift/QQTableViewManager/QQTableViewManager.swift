@@ -38,12 +38,24 @@ class QQTableViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
     //注册 cell
     func register(cellClass :AnyClass ,itemClass: AnyClass) -> Void {
         let bundle = Bundle.main
-        if (bundle.path(forResource: "\(cellClass)", ofType: "nib") != nil) {
-            self.tableView.register(UINib.init(nibName: "\(cellClass)" , bundle: bundle), forCellReuseIdentifier: "\(itemClass)");
-        }else if "\(cellClass)".contains("Cell") {
-            self.tableView.register(cellClass, forCellReuseIdentifier: "\(itemClass)")
-        } else{
-            tableView.register(cellClass, forHeaderFooterViewReuseIdentifier: "\(itemClass)")
+        
+        //判断是以Cell结尾的则是UItableViewCell的注册 反之则是HeaderFooter注册
+        if "\(cellClass)".hasSuffix("Cell"){
+            //这里判断是不是nib初始化的
+            if (bundle.path(forResource: "\(cellClass)", ofType: "nib") != nil) {
+                self.tableView.register(UINib.init(nibName: "\(cellClass)" , bundle: bundle), forCellReuseIdentifier: "\(itemClass)");
+            }else{
+                self.tableView.register(cellClass, forCellReuseIdentifier: "\(itemClass)")
+            }
+            
+        }else{
+            if (bundle.path(forResource: "\(cellClass)", ofType: "nib") != nil){
+                
+                tableView.register(UINib.init(nibName: "\(cellClass)" , bundle: bundle), forHeaderFooterViewReuseIdentifier: "\(itemClass)")
+                                   
+            }else{
+                tableView.register(cellClass, forHeaderFooterViewReuseIdentifier: "\(itemClass)")
+            }
         }
     }
     private func registerSec(viewClass:AnyClass,itemClass:Any) -> Void {

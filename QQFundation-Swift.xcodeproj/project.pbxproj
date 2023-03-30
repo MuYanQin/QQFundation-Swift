@@ -46,6 +46,10 @@
 		6E81F8EF29D3D8A5002C9FB8 /* QYTestHeightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E81F8ED29D3D8A5002C9FB8 /* QYTestHeightViewController.xib */; };
 		6E81F92E29D44E12002C9FB8 /* StackViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E81F92C29D44E12002C9FB8 /* StackViewCell.swift */; };
 		6E81F92F29D44E12002C9FB8 /* StackViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E81F92D29D44E12002C9FB8 /* StackViewCell.xib */; };
+		6E81F93229D51CEB002C9FB8 /* QYCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E81F93129D51CEB002C9FB8 /* QYCollectionView.swift */; };
+		6E81F93529D51D44002C9FB8 /* QYCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E81F93429D51D44002C9FB8 /* QYCollectionViewManager.swift */; };
+		6E81F93729D51E9F002C9FB8 /* QYCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E81F93629D51E9F002C9FB8 /* QYCollectionViewItem.swift */; };
+		6E81F93929D51EB9002C9FB8 /* QYCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E81F93829D51EB9002C9FB8 /* QYCollectionViewCell.swift */; };
 		6EE7DE4C29D12EAE00AA5FE5 /* QYTestLazyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7DE4B29D12EAE00AA5FE5 /* QYTestLazyViewController.swift */; };
 		6EE7DE5529D1779300AA5FE5 /* QYNetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7DE5429D1779300AA5FE5 /* QYNetManager.swift */; };
 		6EE7DE5829D2CC1C00AA5FE5 /* yuanerM.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 6EE7DE5729D2CC1C00AA5FE5 /* yuanerM.jpeg */; };
@@ -122,6 +126,10 @@
 		6E81F8ED29D3D8A5002C9FB8 /* QYTestHeightViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QYTestHeightViewController.xib; sourceTree = "<group>"; };
 		6E81F92C29D44E12002C9FB8 /* StackViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewCell.swift; sourceTree = "<group>"; };
 		6E81F92D29D44E12002C9FB8 /* StackViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StackViewCell.xib; sourceTree = "<group>"; };
+		6E81F93129D51CEB002C9FB8 /* QYCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QYCollectionView.swift; sourceTree = "<group>"; };
+		6E81F93429D51D44002C9FB8 /* QYCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QYCollectionViewManager.swift; sourceTree = "<group>"; };
+		6E81F93629D51E9F002C9FB8 /* QYCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QYCollectionViewItem.swift; sourceTree = "<group>"; };
+		6E81F93829D51EB9002C9FB8 /* QYCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QYCollectionViewCell.swift; sourceTree = "<group>"; };
 		6EE7DE4B29D12EAE00AA5FE5 /* QYTestLazyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QYTestLazyViewController.swift; sourceTree = "<group>"; };
 		6EE7DE5429D1779300AA5FE5 /* QYNetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QYNetManager.swift; sourceTree = "<group>"; };
 		6EE7DE5729D2CC1C00AA5FE5 /* yuanerM.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = yuanerM.jpeg; sourceTree = "<group>"; };
@@ -185,13 +193,15 @@
 		421142B62415E58F00B71E07 /* QQFundation-Swift */ = {
 			isa = PBXGroup;
 			children = (
+				6E81F93329D51D10002C9FB8 /* QYCollectionViewManager */,
+				6E81F93029D51CBE002C9FB8 /* QYCollectionview */,
 				6EE7DE5029D1608200AA5FE5 /* QYNetManager */,
 				42DB502F245041BC0050869B /* Base */,
 				428CC87F2444716C007F42B1 /* core */,
 				427A3B3D241B351900FE162B /* MCChained */,
 				427A3B34241A2E8F00FE162B /* QQTableView */,
 				427A3B272419C6FA00FE162B /* QQTableViewManager */,
-				4256C32B2418CEF900B08EBF /* New Group */,
+				4256C32B2418CEF900B08EBF /* cell */,
 				421142B72415E58F00B71E07 /* AppDelegate.swift */,
 				6E37989D29CD8F5100D3168D /* home */,
 				42DB5038245134D40050869B /* MineViewController.swift */,
@@ -222,7 +232,7 @@
 			path = "QQFundation-SwiftUITests";
 			sourceTree = "<group>";
 		};
-		4256C32B2418CEF900B08EBF /* New Group */ = {
+		4256C32B2418CEF900B08EBF /* cell */ = {
 			isa = PBXGroup;
 			children = (
 				4256C3292418BEBB00B08EBF /* testCell.swift */,
@@ -231,7 +241,7 @@
 				427A3B322419EB9200FE162B /* oneCell.swift */,
 				427A3B302419DAC000FE162B /* TestTTView.swift */,
 			);
-			path = "New Group";
+			path = cell;
 			sourceTree = "<group>";
 		};
 		427A3B272419C6FA00FE162B /* QQTableViewManager */ = {
@@ -299,6 +309,24 @@
 				6E81F8ED29D3D8A5002C9FB8 /* QYTestHeightViewController.xib */,
 			);
 			path = home;
+			sourceTree = "<group>";
+		};
+		6E81F93029D51CBE002C9FB8 /* QYCollectionview */ = {
+			isa = PBXGroup;
+			children = (
+				6E81F93129D51CEB002C9FB8 /* QYCollectionView.swift */,
+			);
+			path = QYCollectionview;
+			sourceTree = "<group>";
+		};
+		6E81F93329D51D10002C9FB8 /* QYCollectionViewManager */ = {
+			isa = PBXGroup;
+			children = (
+				6E81F93429D51D44002C9FB8 /* QYCollectionViewManager.swift */,
+				6E81F93629D51E9F002C9FB8 /* QYCollectionViewItem.swift */,
+				6E81F93829D51EB9002C9FB8 /* QYCollectionViewCell.swift */,
+			);
+			path = QYCollectionViewManager;
 			sourceTree = "<group>";
 		};
 		6EE7DE4D29D1440D00AA5FE5 /* tabbar */ = {
@@ -600,18 +628,21 @@
 			files = (
 				6E37989C29CD7A1300D3168D /* QYBaseNavViewController.swift in Sources */,
 				427A3B282419CA9B00FE162B /* QQTableViewManager.swift in Sources */,
+				6E81F93229D51CEB002C9FB8 /* QYCollectionView.swift in Sources */,
 				6E37989829CD690200D3168D /* QYBaseViewController.swift in Sources */,
 				427A3B3C241B19A700FE162B /* SelfAware.swift in Sources */,
 				427A3B36241A2EB600FE162B /* QQTableView.swift in Sources */,
 				427A3B2F2419D01200FE162B /* QQTableViewSecView.swift in Sources */,
 				427A3B43241B613700FE162B /* UIButton+Chained.swift in Sources */,
 				427A3B332419EB9200FE162B /* oneCell.swift in Sources */,
+				6E81F93929D51EB9002C9FB8 /* QYCollectionViewCell.swift in Sources */,
 				42DB5037245134CC0050869B /* HomeViewController.swift in Sources */,
 				427A3B292419CA9B00FE162B /* QQTableViewItem.swift in Sources */,
 				6E81F92E29D44E12002C9FB8 /* StackViewCell.swift in Sources */,
 				427A3B45241B626600FE162B /* QQButton.swift in Sources */,
 				42C40D252451389100359796 /* QQTabBarController.swift in Sources */,
 				427A3B2D2419CFED00FE162B /* QQTableViewSecItem.swift in Sources */,
+				6E81F93729D51E9F002C9FB8 /* QYCollectionViewItem.swift in Sources */,
 				6EE7DE5529D1779300AA5FE5 /* QYNetManager.swift in Sources */,
 				42DB5039245134D40050869B /* MineViewController.swift in Sources */,
 				428CC885244473D6007F42B1 /* QQTool.swift in Sources */,
@@ -628,6 +659,7 @@
 				6EE7DE4C29D12EAE00AA5FE5 /* QYTestLazyViewController.swift in Sources */,
 				4256C32A2418BEBB00B08EBF /* testCell.swift in Sources */,
 				6E37989A29CD6B3D00D3168D /* BaseDefine.swift in Sources */,
+				6E81F93529D51D44002C9FB8 /* QYCollectionViewManager.swift in Sources */,
 				421142B82415E58F00B71E07 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

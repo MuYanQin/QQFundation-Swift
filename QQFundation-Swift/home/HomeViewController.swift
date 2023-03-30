@@ -24,14 +24,14 @@ class HomeViewController: QYBaseViewController {
         
         self.tableManager.register(cellClass: testCell.self, itemClass: testItem.self);
         self.tableManager.register(cellClass:StackViewCell.self, itemClass: StackViewItem.self);
-//        self.tableManager.register(cellClass: TestTTView.self, itemClass: TestTTItem.self);
+        self.tableManager.register(cellClass: TestTTView.self, itemClass: TestTTItem.self);
         
         let section = QQTableViewSection();
         
-//        let secviewItem = TestTTItem.init()
-//        secviewItem.name = "测试View"
-//        secviewItem.secHeight = 100
-//        section.item = secviewItem
+        let secviewItem = TestTTItem.init()
+        secviewItem.name = "测试View"
+        secviewItem.secHeight = 100
+        section.item = secviewItem
         
         let stack = StackViewItem();
         stack.cellHeight = 100;
