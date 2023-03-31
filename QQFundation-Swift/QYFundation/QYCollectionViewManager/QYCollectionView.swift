@@ -23,13 +23,7 @@ import UIKit
 }
 
 
-class QYCollectionView: UICollectionView,SelfAware {
-
-    static func awake() {
-        swizzlingForClass(QYCollectionView.self, originalSelector: #selector(reloadData), swizzledSelector: #selector(qy_reloadData));
-
-    }
-    
+class QYCollectionView: UICollectionView {
     
     weak var qdelegate: QYCollectionViewDelegate?
     
@@ -70,9 +64,19 @@ class QYCollectionView: UICollectionView,SelfAware {
      在swift中实现方法交换必须满足以下条件：
      1，类class必须继承于NSObject
      2，被交换的两个方法前必须用dynamic标记
-     **/
+     
     @objc dynamic func qy_reloadData() ->Void{
         qy_reloadData()
+        let total = totalItem()
+        if total == 0 {
+            self.backgroundView = self.emptyView
+        }else{
+            self.backgroundView = nil
+        }
+    }
+     **/
+    override func reloadData() {
+        super.reloadData()
         let total = totalItem()
         if total == 0 {
             self.backgroundView = self.emptyView

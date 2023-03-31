@@ -22,11 +22,13 @@ import UIKit
      
 }
 
-class QQTableView: UITableView ,SelfAware {
+class QQTableView: UITableView  {
+    /*
     static func awake() {
         swizzlingForClass(QQTableView.self, originalSelector: #selector(reloadData), swizzledSelector: #selector(mc_reloadData));
 
     }
+     */
     
     weak var qdelegate: QQTableViewDelegate?
     //懒加载 其实就是闭包
@@ -74,9 +76,20 @@ class QQTableView: UITableView ,SelfAware {
      在swift中实现方法交换必须满足以下条件：
      1，类class必须继承于NSObject
      2，被交换的两个方法前必须用dynamic标记
-     **/
+
     @objc dynamic func mc_reloadData() ->Void{
         mc_reloadData()
+        let total = totalItem()
+        if total == 0 {
+            self.tableFooterView = self.emptyView
+        }else{
+            self.tableFooterView = self.footView
+        }
+    }
+     **/
+    
+    override func reloadData() {
+        super.reloadData()
         let total = totalItem()
         if total == 0 {
             self.tableFooterView = self.emptyView
