@@ -31,13 +31,7 @@ class QYBaseViewController: UIViewController ,QQTableViewDelegate{
     }()
     
     lazy var collectionView: QYCollectionView = {
-        let width = (kScreenWidth - 40)/2;
-
         let layout = UICollectionViewFlowLayout();
-        layout.headerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 100)
-        layout.itemSize = CGSize(width: width, height: 180)
-        
-        layout.sectionInset = UIEdgeInsets(top: 20, left: 15, bottom: 20, right: 15)
         let col = QYCollectionView(frame: CGRect(x: 0, y: UIDevice.navigationFullHeight(), width: kScreenWidth, height: kScreenHeight - UIDevice.navigationFullHeight()), collectionViewLayout: layout)
         col.backgroundColor = UIColor.white
         return col

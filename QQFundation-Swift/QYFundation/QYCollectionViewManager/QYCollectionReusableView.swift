@@ -10,12 +10,16 @@ import UIKit
 
 class QYCollectionReusableView: UICollectionReusableView {
     var item:QYCollectionReusableItem?
-    
-    func viewWillAppear() -> Void {
 
+    
+    /// view将要显示 可在这里设置内容
+    /// - Returns: 空
+    func viewWillAppear() -> Void {
+        
         
     }
-    
+    /// view将要消失 可在这里设置内容
+    /// - Returns: 空
     func viewDidDisappear() -> Void {
         
     }

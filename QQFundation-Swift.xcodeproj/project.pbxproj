@@ -25,7 +25,6 @@
 		427A3B36241A2EB600FE162B /* QQTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B35241A2EB600FE162B /* QQTableView.swift */; };
 		427A3B39241A361200FE162B /* icon_em_al.png in Resources */ = {isa = PBXBuildFile; fileRef = 427A3B37241A361200FE162B /* icon_em_al.png */; };
 		427A3B3A241A361200FE162B /* multi_network_error_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 427A3B38241A361200FE162B /* multi_network_error_icon@2x.png */; };
-		427A3B3C241B19A700FE162B /* SelfAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B3B241B19A700FE162B /* SelfAware.swift */; };
 		427A3B41241B527C00FE162B /* UIView+Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B40241B527C00FE162B /* UIView+Frame.swift */; };
 		427A3B43241B613700FE162B /* UIButton+Chained.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B42241B613700FE162B /* UIButton+Chained.swift */; };
 		427A3B45241B626600FE162B /* QYButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B44241B626600FE162B /* QYButton.swift */; };
@@ -38,6 +37,7 @@
 		42DB5037245134CC0050869B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB5036245134CC0050869B /* HomeViewController.swift */; };
 		42DB5039245134D40050869B /* MineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB5038245134D40050869B /* MineViewController.swift */; };
 		42DB503B245134E50050869B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB503A245134E50050869B /* SearchViewController.swift */; };
+		6E1B538429D6A2DE00577795 /* SelfAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1B538329D6A2DE00577795 /* SelfAware.swift */; };
 		6E37989829CD690200D3168D /* QYBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E37989729CD690200D3168D /* QYBaseViewController.swift */; };
 		6E37989A29CD6B3D00D3168D /* BaseDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E37989929CD6B3D00D3168D /* BaseDefine.swift */; };
 		6E37989C29CD7A1300D3168D /* QYBaseNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E37989B29CD7A1300D3168D /* QYBaseNavViewController.swift */; };
@@ -109,7 +109,6 @@
 		427A3B35241A2EB600FE162B /* QQTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QQTableView.swift; sourceTree = "<group>"; };
 		427A3B37241A361200FE162B /* icon_em_al.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_em_al.png; sourceTree = "<group>"; };
 		427A3B38241A361200FE162B /* multi_network_error_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "multi_network_error_icon@2x.png"; sourceTree = "<group>"; };
-		427A3B3B241B19A700FE162B /* SelfAware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfAware.swift; sourceTree = "<group>"; };
 		427A3B40241B527C00FE162B /* UIView+Frame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Frame.swift"; sourceTree = "<group>"; };
 		427A3B42241B613700FE162B /* UIButton+Chained.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Chained.swift"; sourceTree = "<group>"; };
 		427A3B44241B626600FE162B /* QYButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QYButton.swift; sourceTree = "<group>"; };
@@ -124,6 +123,7 @@
 		42DB5038245134D40050869B /* MineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineViewController.swift; sourceTree = "<group>"; };
 		42DB503A245134E50050869B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		496D9601C4BD8CBA37B79A04 /* Pods_QQFundation_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QQFundation_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E1B538329D6A2DE00577795 /* SelfAware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelfAware.swift; path = "../../../../Downloads/QQFundation-Swift-master/QQFundation-Swift/QYFundation/core/SelfAware.swift"; sourceTree = "<group>"; };
 		6E37989729CD690200D3168D /* QYBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QYBaseViewController.swift; sourceTree = "<group>"; };
 		6E37989929CD6B3D00D3168D /* BaseDefine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDefine.swift; sourceTree = "<group>"; };
 		6E37989B29CD7A1300D3168D /* QYBaseNavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QYBaseNavViewController.swift; sourceTree = "<group>"; };
@@ -283,7 +283,7 @@
 		428CC87F2444716C007F42B1 /* core */ = {
 			isa = PBXGroup;
 			children = (
-				427A3B3B241B19A700FE162B /* SelfAware.swift */,
+				6E1B538329D6A2DE00577795 /* SelfAware.swift */,
 				428CC884244473D6007F42B1 /* QQTool.swift */,
 			);
 			path = core;
@@ -640,7 +640,6 @@
 				427A3B282419CA9B00FE162B /* QQTableViewManager.swift in Sources */,
 				6E81F93229D51CEB002C9FB8 /* QYCollectionView.swift in Sources */,
 				6E37989829CD690200D3168D /* QYBaseViewController.swift in Sources */,
-				427A3B3C241B19A700FE162B /* SelfAware.swift in Sources */,
 				427A3B36241A2EB600FE162B /* QQTableView.swift in Sources */,
 				427A3B2F2419D01200FE162B /* QQTableViewSecView.swift in Sources */,
 				427A3B43241B613700FE162B /* UIButton+Chained.swift in Sources */,
@@ -651,6 +650,7 @@
 				427A3B292419CA9B00FE162B /* QQTableViewItem.swift in Sources */,
 				6E81F92E29D44E12002C9FB8 /* StackViewCell.swift in Sources */,
 				427A3B45241B626600FE162B /* QYButton.swift in Sources */,
+				6E1B538429D6A2DE00577795 /* SelfAware.swift in Sources */,
 				42C40D252451389100359796 /* QQTabBarController.swift in Sources */,
 				427A3B2D2419CFED00FE162B /* QQTableViewSecItem.swift in Sources */,
 				6E81F93729D51E9F002C9FB8 /* QYCollectionViewItem.swift in Sources */,
@@ -861,7 +861,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "QQ.QQFundatio-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "QQFundation-Swift/QQTableView/QQFundation-Swift-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/peanut/QQFundation-Swift/QQFundation-Swift/QQFundation-Swift-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -884,7 +884,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "QQ.QQFundatio-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "QQFundation-Swift/QQTableView/QQFundation-Swift-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/peanut/QQFundation-Swift/QQFundation-Swift/QQFundation-Swift-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

@@ -10,7 +10,6 @@ import UIKit
 
 class QYTestLazyViewController: QYBaseViewController {
 
-      
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,41 +20,38 @@ class QYTestLazyViewController: QYBaseViewController {
         self.collectManager.register(cellClass: CollectionReusableView.self, itemClass: CollectionReusableItem.self)
         self.collectManager.register(cellClass: CollectionReusableTwoView.self, itemClass: CollectionReusableTwoItem.self)
         
-        /*
+   
         let section = QYCollectionViewSection();
+        section.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         let secItem = CollectionReusableItem();
-        secItem.secHeight = 100;
+        secItem.secHeadHeight = 100;
         section.item = secItem
         
-        
-        let item = CollectionViewItem();
-        section.items.append(item);
-        
-        
-        let item1 = CollectionViewItem();
-        section.items.append(item1);
-        
-        
-        let item2 = CollectionViewItem();
-        section.items.append(item2);
-        
-        let item3 = CollectionViewItem();
-        section.items.append(item3);
-        
-        for _ in 1...5{
+        for _ in 1...20{
             let item4 = CollectionViewItem();
+            item4.itemSize = CGSize(width: (kScreenWidth - 40)/2, height: 80)
+            item4.selcetCellHandler = {(item,index) in
+                    print(item,index)
+            }
             section.items.append(item4);
         }
         
         self.baseColArray.append(section)
-        
-        */
+
         let section1 = QYCollectionViewSection();
         let secItem1 = CollectionReusableTwoItem();
-        secItem1.secHeight = 30;
+        secItem1.secHeadHeight = 30
+        section1.sectionInset = UIEdgeInsets(top: 10, left: 30, bottom: 10, right: 30)
+        secItem1.secHeadWidth = 80;
         section1.item = secItem1
         
-        self.baseColArray.append(section1)
+        for _ in 1...20{
+            let item4 = CollectionViewItem();
+            item4.itemSize = CGSize(width: kScreenWidth - 60 , height: 80)
+            section1.items.append(item4);
+        }
+        
+//        self.baseColArray.append(section1)
         
         self.collectManager.reloadCollection(self.baseColArray)
     }

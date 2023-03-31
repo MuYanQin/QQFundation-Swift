@@ -22,11 +22,15 @@ class QYCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    /// item将要显示 在这里设置数据
+    /// - Returns: 空
     func cellWillAppear() -> Void {
 
-        
+
     }
     
+    /// item将要消失
+    /// - Returns: 空
     func cellDidDisappear() -> Void {
         
     }
