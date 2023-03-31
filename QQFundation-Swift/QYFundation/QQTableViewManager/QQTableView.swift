@@ -30,6 +30,8 @@ class QQTableView: UITableView  {
     }
      */
     
+    var scrollViewDidScroll:((QQTableView) -> ())?
+    
     weak var qdelegate: QQTableViewDelegate?
     //懒加载 其实就是闭包
     lazy var emptyView: EmptyView? = { () -> EmptyView in

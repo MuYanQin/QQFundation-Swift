@@ -88,7 +88,7 @@ class QQTabBarItem: UIButton {
         }else{
             self.imageView?.frame = CGRect.init(x: CGFloat(imageX), y: CGFloat(5), width: imageWidth, height: CGFloat(imageHeight))
         }
-        self.titleLabel?.frame = CGRect.init(x: CGFloat(0), y: self.imageView!.q_bottom! + CGFloat(margin), width: self.bounds.size.width, height: (self.titleLabel?.frame.size.height)!)
+        self.titleLabel?.frame = CGRect.init(x: CGFloat(0), y: self.imageView!.q_bottom + CGFloat(margin), width: self.bounds.size.width, height: (self.titleLabel?.frame.size.height)!)
         caculate(count: badge)
     }
     private func caculate(count:Int) -> Void{

@@ -27,6 +27,7 @@ class QYCollectionView: UICollectionView {
     
     weak var qdelegate: QYCollectionViewDelegate?
     
+    var scrollViewDidScroll:((QYCollectionView) -> ())?
     
     var vc:UIViewController?{
         willSet{
@@ -99,6 +100,13 @@ class QYCollectionView: UICollectionView {
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
+        
+        let ly = layout as! UICollectionViewFlowLayout
+        if ly.scrollDirection == .horizontal{
+            self.alwaysBounceHorizontal = true
+        }else{
+            self.alwaysBounceVertical = true
+        }
     }
     
     required init?(coder: NSCoder) {

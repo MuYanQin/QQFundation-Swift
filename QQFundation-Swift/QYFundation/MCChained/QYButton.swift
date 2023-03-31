@@ -20,6 +20,12 @@ class QYButton: UIButton {
     
     var position :Position = .none
     
+    
+    static func getButton() -> QYButton {
+        return QYButton.init(type: .custom)
+    }
+    
+    
     @objc override func qinfo(_ item :Any) -> UIButton {
         self.info = item
         return self
@@ -57,13 +63,13 @@ class QYButton: UIButton {
             imageWith = self.imageSize!.width
             imageHeight = self.imageSize!.height
         }else{
-            imageWith = self.q_width!/3;
-            imageHeight = self.q_height!/3;
+            imageWith = self.q_width/3;
+            imageHeight = self.q_height/3;
         }
         
         var total = imageWith + lwidth + self.gapBetweenTI
-        var imagex = (self.q_width! - total)/2
-        var imagey = (self.q_height! - imageHeight)/2
+        var imagex = (self.q_width - total)/2
+        var imagey = (self.q_height - imageHeight)/2
         //MARK:文字在右
         if positoin == .right{
             self.titleLabel!.textAlignment = .left
@@ -77,9 +83,9 @@ class QYButton: UIButton {
         }else if (positoin == .top){
             self.titleLabel!.textAlignment = .center
             total = imageHeight + lheight + self.gapBetweenTI
-            let labely = (self.q_height! - total)/2
-            let labelx = (self.q_width! - lwidth)/2
-            imagex = (self.q_width! - imageWith)/2
+            let labely = (self.q_height - total)/2
+            let labelx = (self.q_width - lwidth)/2
+            imagex = (self.q_width - imageWith)/2
             
             self.titleLabel?.frame = CGRect(x: labelx, y: labely, width: lwidth, height: lheight)
    
@@ -87,9 +93,9 @@ class QYButton: UIButton {
         }else if (positoin == .bottom){
             self.titleLabel!.textAlignment = .center
             total = imageHeight + lheight + self.gapBetweenTI
-            imagey = (self.q_height! - total)/2
-            imagex = (self.q_width! - imageWith)/2
-            let labelx = (self.q_width! - lwidth)/2
+            imagey = (self.q_height - total)/2
+            imagex = (self.q_width - imageWith)/2
+            let labelx = (self.q_width - lwidth)/2
             
             self.imageView?.frame = CGRect(x: imagex, y: imagey, width: imageWith, height: imageHeight)
             self.titleLabel?.frame = CGRect(x: labelx, y: imagey + imageHeight + self.gapBetweenTI, width: lwidth, height: lheight)

@@ -9,7 +9,7 @@
 import UIKit
 
 class QQTableViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
-    var tableView = UITableView();
+    var tableView = QQTableView();
     var sections = Array<QQTableViewSection>();
     
     var allItems :Array<QQTableViewItem>?{
@@ -218,6 +218,12 @@ class QQTableViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
         }
         let sec = self.sections[section];
         return sec.sectionTitle;
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if self.tableView.scrollViewDidScroll != nil{
+            self.tableView.scrollViewDidScroll!(self.tableView)
+        }
     }
     
     func sectionIndexTitles(for tableView: UITableView) -> [String]? {

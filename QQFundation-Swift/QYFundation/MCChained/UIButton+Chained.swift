@@ -21,11 +21,7 @@ import UIKit
 
 extension UIButton{
     
-    
-    static func getButton() -> UIButton {
-        return UIButton.init(type: .custom)
-    }
-    
+
     /// 设置携带信息
     /// - Parameter item: 携带的信息
     @objc func qinfo(_ item :Any) -> UIButton {

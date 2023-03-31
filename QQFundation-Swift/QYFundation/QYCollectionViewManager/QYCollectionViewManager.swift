@@ -148,6 +148,11 @@ class QYCollectionViewManager: NSObject,UICollectionViewDelegate,UICollectionVie
         vw.viewWillAppear()
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if self.collectionView!.scrollViewDidScroll != nil{
+            self.collectionView!.scrollViewDidScroll!(self.collectionView!)
+        }
+    }
     
     func reloadCollection(_ items:Array<QYCollectionViewSection>) -> Void {
         self.dataArray = items;
