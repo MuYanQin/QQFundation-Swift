@@ -89,8 +89,8 @@ class QYCollectionViewManager: NSObject,UICollectionViewDelegate,UICollectionVie
 
     // 设置cell的大小
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let itemSize = self.dataArray![indexPath.section].items[indexPath.row].itemSize ?? CGSize(width: 120, height: 120)
-        return itemSize
+        let item = self.dataArray![indexPath.section].items[indexPath.row]
+        return CGSizeMake(item.itemWidth ?? 20, item.itemHeight ?? 20)
     }
     
     // 设置section的padding
@@ -136,6 +136,15 @@ class QYCollectionViewManager: NSObject,UICollectionViewDelegate,UICollectionVie
         // return size
         let section  = self.dataArray![section] as QYCollectionViewSection
         return CGSize(width: section.item?.secFootWidth ?? 0, height: section.item?.secFootHeight ?? 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        let section  = self.dataArray![section] as QYCollectionViewSection
+        return section.lineSpacing ?? 10
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        let section  = self.dataArray![section] as QYCollectionViewSection
+        return section.interitemSpacing ?? 10
     }
 
     

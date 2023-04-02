@@ -25,4 +25,10 @@ class QYCollectionViewSection: NSObject {
     /// section内容的padding
     var sectionInset:UIEdgeInsets?
     
+    /// 主轴间距 默认10
+    var lineSpacing :CGFloat?
+    
+    /// 侧轴间距 默认10
+    var interitemSpacing :CGFloat?
+    
 }

@@ -21,7 +21,7 @@ class QQTableViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
             return itemArray;
         }
     }
-    init(tableView:UITableView){
+    init(tableView:QQTableView){
         super.init()
         self.tableView = tableView;
         self.tableView.delegate = self;
