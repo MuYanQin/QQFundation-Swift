@@ -39,8 +39,7 @@ class QYTestLazyViewController: QYBaseViewController {
             
             item4.text = text;
             item4.label.text = text;
-            item4.itemWidth = ((kScreenWidth - 43)/2)
-            item4.itemHeight = (item4.label .sizeThatFits(CGSize(width: 0, height: 32))).width
+            item4.itemSize = CGSizeMake((kScreenWidth - 43)/2, 80)
             item4.selcetCellHandler = {(item,index) in
                     print(item,index)
                 

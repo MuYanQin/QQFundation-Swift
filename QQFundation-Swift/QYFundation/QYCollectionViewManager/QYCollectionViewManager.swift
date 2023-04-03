@@ -90,7 +90,7 @@ class QYCollectionViewManager: NSObject,UICollectionViewDelegate,UICollectionVie
     // 设置cell的大小
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let item = self.dataArray![indexPath.section].items[indexPath.row]
-        return CGSizeMake(item.itemWidth ?? 20, item.itemHeight ?? 20)
+        return item.itemSize ?? CGSizeMake(20, 20)
     }
     
     // 设置section的padding

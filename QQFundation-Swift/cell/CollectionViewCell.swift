@@ -10,10 +10,6 @@ import UIKit
 
 class CollectionViewItem: QYCollectionViewItem {
     var text:String?
-    lazy var label: UILabel = {
-        let lb = UILabel().qfont(14).qtextColor(RGB(r: 85, g: 85, b: 85))
-        return lb
-    }()
 }
 
 class CollectionViewCell: QYCollectionViewCell {
