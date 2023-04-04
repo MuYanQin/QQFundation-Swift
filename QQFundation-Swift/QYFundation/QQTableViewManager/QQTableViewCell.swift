@@ -13,7 +13,6 @@ class QQTableViewCell: UITableViewCell {
     public var item :QQTableViewItem?
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         self.selectionStyle = .none;
     }
     func cellDidLoad() -> Void {

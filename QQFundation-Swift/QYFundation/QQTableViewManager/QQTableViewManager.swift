@@ -9,10 +9,16 @@
 import UIKit
 
 class QQTableViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
-    var tableView = QQTableView();
+    
+    /// 被管理的视图
+    var tableView : QQTableView?
+    
+    /// 数据源里面存储所有的section
     var sections = Array<QQTableViewSection>();
     
-    var allItems :Array<QQTableViewItem>?{
+    
+    /// 获取全部的items
+    var allItems :Array<QQTableViewItem>{
         get{
             var itemArray  = Array<QQTableViewItem>();
             for items in self.sections {
@@ -23,9 +29,9 @@ class QQTableViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
     }
     init(tableView:QQTableView){
         super.init()
+        tableView.delegate = self;
+        tableView.dataSource = self;
         self.tableView = tableView;
-        self.tableView.delegate = self;
-        self.tableView.dataSource = self;
     }
     //下标算法 自定义下标
     /*subscript(key :String) -> Any{
@@ -37,15 +43,17 @@ class QQTableViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
     
     //注册 cell
     func register(cellClass :AnyClass ,itemClass: AnyClass) -> Void {
+        
+        guard let tableView = self.tableView else { return  }
         let bundle = Bundle.main
         
         //判断是以Cell结尾的则是UItableViewCell的注册 反之则是HeaderFooter注册
         if "\(cellClass)".hasSuffix("Cell"){
             //这里判断是不是nib初始化的
             if (bundle.path(forResource: "\(cellClass)", ofType: "nib") != nil) {
-                self.tableView.register(UINib.init(nibName: "\(cellClass)" , bundle: bundle), forCellReuseIdentifier: "\(itemClass)");
+                tableView.register(UINib.init(nibName: "\(cellClass)" , bundle: bundle), forCellReuseIdentifier: "\(itemClass)");
             }else{
-                self.tableView.register(cellClass, forCellReuseIdentifier: "\(itemClass)")
+                tableView.register(cellClass, forCellReuseIdentifier: "\(itemClass)")
             }
             
         }else{
@@ -58,20 +66,19 @@ class QQTableViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
             }
         }
     }
-    private func registerSec(viewClass:AnyClass,itemClass:Any) -> Void {
-        tableView.register(viewClass, forHeaderFooterViewReuseIdentifier: "\(itemClass)")
-    }
-    //MARk -- cell相关
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.sections[section].items!.count;
-    }
+    //MARK: - cell相关
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.sections.count;
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.sections[section].items.count;
+    }
+
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let  item = self.sections[indexPath.section].items![indexPath.row]
+        let  item = self.sections[indexPath.section].items[indexPath.row]
         item.tableViewManager = self
         let identifier = String(describing: type(of: item))
         let cell  = tableView.dequeueReusableCell(withIdentifier: identifier) as? QQTableViewCell;
@@ -92,13 +99,13 @@ class QQTableViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let item = self.sections[indexPath.section].items![indexPath.row];
+        let item = self.sections[indexPath.section].items[indexPath.row];
         return item.cellHeight == 0 ? 44 :item.cellHeight;
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true);
-        let item = self.sections[indexPath.section].items![indexPath.row]
+        let item = self.sections[indexPath.section].items[indexPath.row]
         if (item.selcetCellHandler != nil) {
             item.selcetCellHandler!(item)
         }
@@ -144,18 +151,18 @@ class QQTableViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
     }
     //MARk -- 侧滑相关
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        let item = self.sections[indexPath.section].items![indexPath.row]
+        let item = self.sections[indexPath.section].items[indexPath.row]
         return item.allowSlide;
     }
     
     @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let item = self.sections[indexPath.section].items![indexPath.row]
+        let item = self.sections[indexPath.section].items[indexPath.row]
         return configAction(textArray: item.trailingTArray, colorArray: item.trailingCArray,item: item,trailing: true)
     }
     @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let item = self.sections[indexPath.section].items![indexPath.row]
+        let item = self.sections[indexPath.section].items[indexPath.row]
         return configAction(textArray: item.leadingTArray, colorArray: item.leadingCArray,item: item,trailing: false)
     }
     @available(iOS 11.0, *)
@@ -191,7 +198,7 @@ class QQTableViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         var actions = Array<UITableViewRowAction>();
-        let item = self.sections[indexPath.section].items![indexPath.row]
+        let item = self.sections[indexPath.section].items[indexPath.row]
         if item.trailingTArray.count>0 {
             for(index,value) in item.trailingTArray.enumerated(){
                 let rowAct = UITableViewRowAction.init(style: .destructive, title: value) { (action, indexPath) in
@@ -221,8 +228,8 @@ class QQTableViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if self.tableView.scrollViewDidScroll != nil{
-            self.tableView.scrollViewDidScroll!(self.tableView)
+        if self.tableView!.scrollViewDidScroll != nil{
+            self.tableView!.scrollViewDidScroll!(self.tableView!)
         }
     }
     
@@ -242,6 +249,6 @@ class QQTableViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
             section.tableViewManager = self
         }
         self.sections.append(contentsOf: sections)
-        self.tableView.reloadData();
+        self.tableView!.reloadData();
     }
 }

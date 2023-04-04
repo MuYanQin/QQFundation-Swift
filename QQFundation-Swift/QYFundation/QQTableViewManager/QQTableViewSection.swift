@@ -88,6 +88,6 @@ class QQTableViewSection: NSObject {
     /// - Parameter animation: 动画
     /// - Returns: 无
     func reload(_ animation:UITableView.RowAnimation) -> Void {
-        self.tableViewManager!.tableView .reloadSections(IndexSet.init(integer: self.index), with: animation)
+        self.tableViewManager!.tableView! .reloadSections(IndexSet.init(integer: self.index), with: animation)
     }
 }
