@@ -62,11 +62,11 @@ class QYCollectionViewManager: NSObject,UICollectionViewDelegate,UICollectionVie
     }
     //返回section的个数
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return self.dataArray!.count
+        return self.dataArray?.count ?? 0
     }
     //返回每个section中的item个数
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.dataArray![section].items.count
+        return self.dataArray?[section].items.count ?? 0
     }
     
     //注册cell
