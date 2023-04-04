@@ -9,6 +9,8 @@
 import UIKit
 class QYBaseViewController: UIViewController ,QQTableViewDelegate{
     
+    var layout : (() -> (UICollectionViewLayout))?
+    
     //懒加载父类tableview视图管理器
     lazy var tableManager: QQTableViewManager = { () -> QQTableViewManager in
         self.view.addSubview(self.baseTableView);
@@ -31,8 +33,8 @@ class QYBaseViewController: UIViewController ,QQTableViewDelegate{
     }()
     
     lazy var collectionView: QYCollectionView = {
-        let layout = UICollectionViewFlowLayout();
-        let col = QYCollectionView(frame: CGRect(x: 0, y: UIDevice.navigationFullHeight(), width: kScreenWidth, height: kScreenHeight - UIDevice.navigationFullHeight()), collectionViewLayout: layout)
+        let out = self.layout?() ?? UICollectionViewFlowLayout()
+        let col = QYCollectionView(frame: CGRect(x: 0, y: UIDevice.navigationFullHeight(), width: kScreenWidth, height: kScreenHeight - UIDevice.navigationFullHeight()), collectionViewLayout: out)
         col.backgroundColor = UIColor.white
         return col
     }()

@@ -76,6 +76,7 @@ class QYCollectionViewManager: NSObject,UICollectionViewDelegate,UICollectionVie
         
         let cel = cell as! QYCollectionViewCell
         cel.item = item
+        cel.item?.colViewManager = self
         return cel
     }
     //cell选中事件
@@ -164,7 +165,11 @@ class QYCollectionViewManager: NSObject,UICollectionViewDelegate,UICollectionVie
     }
     
     func reloadCollection(_ items:Array<QYCollectionViewSection>) -> Void {
+        self.dataArray?.removeAll()
         self.dataArray = items;
+        for sec in items {
+            sec.colViewManager  = self
+        }
         self.collectionView?.reloadData()
     }
     

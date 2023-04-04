@@ -33,9 +33,11 @@ class HomeViewController: QYBaseViewController {
         secviewItem.secHeight = 100
         section.item = secviewItem
         
+        
         let stack = StackViewItem();
         stack.cellHeight = 100;
         section.addItem(item: stack);
+
         
         let item = testItem.init()
         item.allowSlide = true;

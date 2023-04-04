@@ -16,7 +16,7 @@ class QQTableViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
         get{
             var itemArray  = Array<QQTableViewItem>();
             for items in self.sections {
-                itemArray.append(contentsOf: items.items!);
+                itemArray.append(contentsOf: items.items);
             }
             return itemArray;
         }

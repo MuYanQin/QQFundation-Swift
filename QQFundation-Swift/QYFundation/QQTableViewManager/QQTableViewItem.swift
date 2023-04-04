@@ -8,15 +8,31 @@
 
 import UIKit
 class QQTableViewItem: NSObject {
+    
+    /// 获取到的管理者
     var tableViewManager :QQTableViewManager?
-    var section = QQTableViewSection();
+    
+    /// item 属于哪个section
+    var section : QQTableViewSection?
+    
+    /// 背景颜色
     var bgColor :UIColor?
+    
+    /// cell的高度
     var cellHeight:CGFloat = 0
+    
+    /// 是否允许侧滑 默认false
     var allowSlide = false;
+    
+    /// 设置多个右边侧滑按钮
     var trailingTArray = Array<String>();
+    /// 可选 设置多个右边侧滑按钮颜色 默认红色
     var trailingCArray = Array<UIColor>();
     
+    /// 设置多个右左边侧滑按钮
     var leadingTArray = Array<String>();
+    
+    ///  可选设置多个右左边侧滑按钮颜色
     var leadingCArray = Array<UIColor>();
     
     //闭包 就是oc的Block
@@ -30,35 +46,40 @@ class QQTableViewItem: NSObject {
     /// 向左滑事件头
     var trailingSwipeHandler: ((QQTableViewItem,NSInteger)->())?
     
-    func reloadRowWithAnimation(animation:UITableView.RowAnimation) -> Void {
+    /// 刷新cell
+    /// - Parameter animation: 动画方式
+    /// - Returns: 无
+    func reloadRowWithAnimation(_ animation:UITableView.RowAnimation) -> Void {
+        guard let tm = tableViewManager else { return  }
         if animation == .none {
             UIView.performWithoutAnimation {
-                tableViewManager!.tableView .reloadRows(at: [self.indexPath!], with: animation);
+                tm.tableView .reloadRows(at: [self.indexPath], with: animation);
             };
         }else{
-            tableViewManager!.tableView .reloadRows(at: [self.indexPath!], with: animation);
+            tm.tableView .reloadRows(at: [self.indexPath], with: animation);
         }
         
     }
     
-    func deleteRowWithAnimation(animation:UITableView.RowAnimation) -> Void {
-        let row = self.indexPath?.row;
-        self.section.removeItemAtIndex(index: row!);
+    func deleteRowWithAnimation(_ animation:UITableView.RowAnimation) -> Void {
+        guard let tm = tableViewManager else { return  }
+        guard let sec = section else { return  }
+
+        let row = self.indexPath.row;
+        sec.removeItemAtIndex(row);
         if animation == .none {
             UIView .performWithoutAnimation {
-                tableViewManager!.tableView .deleteRows(at: [IndexPath.init(row: row!, section: self.section.index!)], with: animation);
+                tm.tableView .deleteRows(at: [IndexPath.init(row: row, section: sec.index)], with: animation);
             };
         }else{
-            tableViewManager!.tableView .deleteRows(at: [IndexPath.init(row: row!, section: self.section.index!)], with: animation);
+            tm.tableView .deleteRows(at: [IndexPath.init(row: row, section: sec.index)], with: animation);
         }
         
     }
-    var indexPath :IndexPath?{
+    var indexPath :IndexPath{
          get{
-           let index = self.section.items?.firstIndex(where: { item -> Bool in
-                return item == self;
-            });
-            return IndexPath.init(row:index!, section: self.section.index!);
+             let index = self.section?.items.firstIndex(of: self)
+             return IndexPath.init(row:index!, section: self.section!.index);
          }
      };
 }

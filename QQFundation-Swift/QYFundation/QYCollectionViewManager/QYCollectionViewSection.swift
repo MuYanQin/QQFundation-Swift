@@ -9,7 +9,8 @@
 import UIKit
 
 class QYCollectionViewSection: NSObject {
-    
+    var colViewManager :QYCollectionViewManager?
+
     /// section的item数组
     var items = Array<QYCollectionViewItem>()
     

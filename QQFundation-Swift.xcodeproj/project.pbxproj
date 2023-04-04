@@ -37,6 +37,7 @@
 		42DB5037245134CC0050869B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB5036245134CC0050869B /* HomeViewController.swift */; };
 		42DB5039245134D40050869B /* MineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB5038245134D40050869B /* MineViewController.swift */; };
 		42DB503B245134E50050869B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB503A245134E50050869B /* SearchViewController.swift */; };
+		6E23142629DBF5AB00337427 /* QYTagLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E23142529DBF5AB00337427 /* QYTagLayout.swift */; };
 		6E37989829CD690200D3168D /* QYBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E37989729CD690200D3168D /* QYBaseViewController.swift */; };
 		6E37989A29CD6B3D00D3168D /* BaseDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E37989929CD6B3D00D3168D /* BaseDefine.swift */; };
 		6E37989C29CD7A1300D3168D /* QYBaseNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E37989B29CD7A1300D3168D /* QYBaseNavViewController.swift */; };
@@ -122,6 +123,7 @@
 		42DB5038245134D40050869B /* MineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineViewController.swift; sourceTree = "<group>"; };
 		42DB503A245134E50050869B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		496D9601C4BD8CBA37B79A04 /* Pods_QQFundation_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QQFundation_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E23142529DBF5AB00337427 /* QYTagLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QYTagLayout.swift; sourceTree = "<group>"; };
 		6E37989729CD690200D3168D /* QYBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QYBaseViewController.swift; sourceTree = "<group>"; };
 		6E37989929CD6B3D00D3168D /* BaseDefine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDefine.swift; sourceTree = "<group>"; };
 		6E37989B29CD7A1300D3168D /* QYBaseNavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QYBaseNavViewController.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				6E81F93A29D5357F002C9FB8 /* QYCollectionViewSection.swift */,
 				6E81F93C29D53B72002C9FB8 /* QYCollectionReusableView.swift */,
 				6ECAEB1529D55AC80060AF00 /* QYCollectionReusableItem.swift */,
+				6E23142529DBF5AB00337427 /* QYTagLayout.swift */,
 			);
 			path = QYCollectionViewManager;
 			sourceTree = "<group>";
@@ -670,6 +673,7 @@
 				4256C32A2418BEBB00B08EBF /* testCell.swift in Sources */,
 				6E81F93D29D53B72002C9FB8 /* QYCollectionReusableView.swift in Sources */,
 				6E37989A29CD6B3D00D3168D /* BaseDefine.swift in Sources */,
+				6E23142629DBF5AB00337427 /* QYTagLayout.swift in Sources */,
 				6ECAEB1629D55AC80060AF00 /* QYCollectionReusableItem.swift in Sources */,
 				6E81F93529D51D44002C9FB8 /* QYCollectionViewManager.swift in Sources */,
 				421142B82415E58F00B71E07 /* AppDelegate.swift in Sources */,

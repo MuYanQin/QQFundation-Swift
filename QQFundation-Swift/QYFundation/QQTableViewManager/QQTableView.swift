@@ -15,27 +15,28 @@ import UIKit
     /// - Parameters:
     ///   - tableView: 对象
     ///   - error: 失败原因
+    @objc optional func requestFailed(tableView:QQTableView ,error:NSError)
     
-   @objc optional func requestFailed(tableView:QQTableView ,error:NSError)
-   
-   @objc optional func requestData(tableView:QQTableView ,result : [String : Any])
+    /// 请求数据成功回调
+    /// - Parameters:
+    ///   - tableView: tableView description
+    ///   - downward: 下拉还是上拉
+    ///   - result: 数据
+    @objc optional func requestData(tableView:QQTableView ,downward:Bool,result : [String : Any])
      
 }
 
 class QQTableView: UITableView  {
-    /*
-    static func awake() {
-        swizzlingForClass(QQTableView.self, originalSelector: #selector(reloadData), swizzledSelector: #selector(mc_reloadData));
-
-    }
-     */
     
+    /// tableview滚动回调 在tableViewManager中实现
     var scrollViewDidScroll:((QQTableView) -> ())?
     
+    /// 代理
     weak var qdelegate: QQTableViewDelegate?
-    //懒加载 其实就是闭包
+    
+    /// 无数据空白界面
     lazy var emptyView: EmptyView? = { () -> EmptyView in
-        
+        //懒加载 其实就是闭包
         var subHeight : CGFloat = 0
         if self.tableHeaderView != nil {
             subHeight = (self.tableHeaderView?.frame.size.height)!
@@ -45,6 +46,8 @@ class QQTableView: UITableView  {
         te.hintText = "暂无数据"
         return te
     }()
+    
+    /// 是否有头部刷新
     var hasHeaderRefresh:Bool?{
         willSet{
             self.hasHeaderRefresh = newValue
@@ -53,6 +56,8 @@ class QQTableView: UITableView  {
             }
         }
     };
+    
+    /// 请求url
     var requestURL :String?{
         willSet{
             self.requestURL = newValue
@@ -61,17 +66,25 @@ class QQTableView: UITableView  {
         //set get是计算属性 在里面设置】读取的时候会循环
         //最好willSet didSet 是专门属性监听器。类似oc的setter getter 方法
     }
+    
+    /// 请求参数
     var requestParam : Dictionary<String,Any>? {
         willSet{
             self.requestParam = newValue
         }
     }
+    
+    /// 默认的footerView
     var footView = UIView()
+    
+    /// 请求数据的界面 显示loading用
     var vc:UIViewController?{
         willSet{
             self.vc = newValue
         }
     }
+    
+    /// 分页使用的字段 判断自动设置页数
     let pageIndex = "page"
 
     /*
@@ -90,6 +103,7 @@ class QQTableView: UITableView  {
     }
      **/
     
+    /// 重写reload方法 获取cell、section的个数 判断展示空白界面
     override func reloadData() {
         super.reloadData()
         let total = totalItem()
@@ -115,9 +129,11 @@ class QQTableView: UITableView  {
         // iOS 15 的 UITableView又新增了一个新属性：sectionHeaderTopPadding 会给每一个section header 增加一个默认高度
         if #available(iOS 15.0, *) {
              self.sectionHeaderTopPadding = 0;
-          }
-        self.footView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.q_width ?? 0, height: 0))
-        self.tableHeaderView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.q_width ?? 0, height: 0))
+        }else{
+            //iOS15不能设置次属性。因为视图层次改变。添加以后会立即执行 heightForHeaderInSection 方法导致崩溃
+            self.tableHeaderView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.q_width , height: 0))
+        }
+        self.footView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.q_width , height: 0))
         self.sectionFooterHeight = 0
         self.sectionHeaderHeight = 0
         self.separatorStyle = .none
