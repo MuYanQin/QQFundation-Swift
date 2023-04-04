@@ -20,7 +20,7 @@ import UIKit
     /// 请求数据成功回调
     /// - Parameters:
     ///   - tableView: tableView description
-    ///   - downward: 下拉还是上拉
+    ///   - downward: 是否下拉
     ///   - result: 数据
     @objc optional func requestData(tableView:QQTableView ,downward:Bool,result : [String : Any])
      
@@ -158,17 +158,19 @@ class QQTableView: UITableView  {
     ///   - url: 请求的网址
     ///   - vc: 请求的界面
     ///   - param: 请求的参数
-    func netWorkBegain(vc:UIViewController,param:Dictionary<String, Any>,url:String) -> Void {
+    func netWorkBegain(vc:UIViewController,param:Dictionary<String, Any>?,url:String) -> Void {
         self.requestURL = url
         self.requestParam = param
         self.vc = vc
-        if param.keys.contains(pageIndex) {
+        self.mj_header?.beginRefreshing()
+        
+        guard let brect = param?.keys.contains(pageIndex) else { return  }
+        if brect {
             self.mj_footer = MJRefreshBackStateFooter.init(refreshingTarget: self, refreshingAction: #selector(footerRefresh))
         }
-        self.mj_header?.beginRefreshing()
     }
     
-    private func netWork(param:Dictionary<String, Any>,down:Bool) -> Void {
+    private func netWork(param:Dictionary<String, Any>?,down:Bool) -> Void {
         
     //FIXME:  (数据请求h处)
         
@@ -180,10 +182,14 @@ class QQTableView: UITableView  {
 //            self.mj_header?.endRefreshing()
 //            return
 //        }
-        if requestParam!.keys.contains(pageIndex) {
-            changeIndex(status: 1)
+
+        
+        if let ly = requestParam?.keys.contains(pageIndex) {
+            if ly{
+                changeIndex(status: 1)
+            }
         }
-        netWork(param: requestParam!, down: true)
+        netWork(param: requestParam, down: true)
     }
     
 

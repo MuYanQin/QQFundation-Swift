@@ -33,7 +33,7 @@ class QYBackNavViewController: QYBaseViewController {
         item.leadingSwipeHandler = {(item,index)->() in
             print(item , index);
         }
-        section .addItem(item: item)
+        section.addItem(item)
         
         
         
@@ -41,13 +41,13 @@ class QYBackNavViewController: QYBaseViewController {
         for _ in 1...30{
             let item1 = testItem.init()
             item1.name = "测试3333"
-            section .addItem(item: item1)
+            section.addItem(item1)
         }
         
         for _ in 1...[1,1,1,].count{
             let item1 = testItem.init()
             item1.name = "测试3333"
-            section .addItem(item: item1)
+            section.addItem(item1)
         }
 
         self.baseArray.append(section);

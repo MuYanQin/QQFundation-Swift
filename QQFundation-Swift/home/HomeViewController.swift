@@ -36,7 +36,7 @@ class HomeViewController: QYBaseViewController {
         
         let stack = StackViewItem();
         stack.cellHeight = 100;
-        section.addItem(item: stack);
+        section.addItem(stack)
 
         
         let item = testItem.init()
@@ -53,7 +53,7 @@ class HomeViewController: QYBaseViewController {
         item.leadingSwipeHandler = {(item,index)->() in
             print(item , index);
         }
-        section .addItem(item: item)
+        section.addItem(item)
         
         
         
@@ -65,13 +65,13 @@ class HomeViewController: QYBaseViewController {
                 self.navigationController?.pushViewController(QYTestHeightViewController(), animated: true);
 
             }
-            section .addItem(item: item1)
+            section.addItem(item1)
         }
         
         for _ in 1...[1,1,1,].count{
             let item1 = testItem.init()
             item1.name = "测试3333"
-            section .addItem(item: item1)
+            section.addItem(item1)
         }
 
         self.baseArray.append(section);

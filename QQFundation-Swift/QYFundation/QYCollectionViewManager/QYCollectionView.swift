@@ -17,25 +17,37 @@ import UIKit
     ///   - error: 失败原因
     
    @objc optional func requestFailed(collectionView:QYCollectionView ,error:NSError)
-   
-   @objc optional func requestData(collectionView:QYCollectionView ,result : [String : Any])
+    
+    /// 数据请求成功回调
+    /// - Parameters:
+    ///   - collectionView: collectionView description
+    ///   - downward: 是否下拉
+    ///   - result: 结果
+   @objc optional func requestData(collectionView:QYCollectionView ,downward:Bool,result : [String : Any])
      
 }
 
 
 class QYCollectionView: UICollectionView {
     
+    /// 代理
     weak var qdelegate: QYCollectionViewDelegate?
     
+    
+    /// 视图滚动回调collectionViewManager实现
     var scrollViewDidScroll:((QYCollectionView) -> ())?
     
+    /// 请求界面用于显示loading或者处理别的事物
     var vc:UIViewController?{
         willSet{
             self.vc = newValue
         }
     }
+    
+    /// 分页使用的字段 判断自动设置页数
     let pageIndex = "page"
     
+    /// 请求接口
     var requestURL :String?{
         willSet{
             self.requestURL = newValue
@@ -44,15 +56,17 @@ class QYCollectionView: UICollectionView {
         //set get是计算属性 在里面设置】读取的时候会循环
         //最好willSet didSet 是专门属性监听器。类似oc的setter getter 方法
     }
+    
+    /// 请求参数
     var requestParam : Dictionary<String,Any>? {
         willSet{
             self.requestParam = newValue
         }
     }
     
-    //懒加载 其实就是闭包
+    /// 无数据空白界面 
     lazy var emptyView: EmptyView? = { () -> EmptyView in
-        
+        //懒加载 其实就是闭包
         var subHeight : CGFloat = 0
 
         let te =  EmptyView.init(frame: CGRect.init(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height))
@@ -76,6 +90,7 @@ class QYCollectionView: UICollectionView {
         }
     }
      **/
+    /// 重写reload方法 获取cell、section的个数 判断展示空白界面
     override func reloadData() {
         super.reloadData()
         let total = totalItem()
@@ -101,7 +116,11 @@ class QYCollectionView: UICollectionView {
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
         
-        let ly = layout as! UICollectionViewFlowLayout
+        guard let ly = (layout as? UICollectionViewFlowLayout) else {
+            self.alwaysBounceVertical = true
+            return
+        }
+        
         if ly.scrollDirection == .horizontal{
             self.alwaysBounceHorizontal = true
         }else{
@@ -119,17 +138,19 @@ class QYCollectionView: UICollectionView {
     ///   - url: 请求的网址
     ///   - vc: 请求的界面
     ///   - param: 请求的参数
-    func netWorkBegain(vc:UIViewController,param:Dictionary<String, Any>,url:String) -> Void {
+    func netWorkBegain(vc:UIViewController,param:Dictionary<String, Any>?,url:String) -> Void {
         self.requestURL = url
         self.requestParam = param
         self.vc = vc
-        if param.keys.contains(pageIndex) {
+        self.mj_header?.beginRefreshing()
+        
+        guard let brect = param?.keys.contains(pageIndex) else { return  }
+        if brect {
             self.mj_footer = MJRefreshBackStateFooter.init(refreshingTarget: self, refreshingAction: #selector(footerRefresh))
         }
-        self.mj_header?.beginRefreshing()
     }
     
-    private func netWork(param:Dictionary<String, Any>,down:Bool) -> Void {
+    private func netWork(param:Dictionary<String, Any>?,down:Bool) -> Void {
         
     //FIXME:  (数据请求h处)
         
@@ -141,10 +162,13 @@ class QYCollectionView: UICollectionView {
 //            self.mj_header?.endRefreshing()
 //            return
 //        }
-        if requestParam!.keys.contains(pageIndex) {
-            changeIndex(status: 1)
+
+        if let ly = requestParam?.keys.contains(pageIndex) {
+            if ly{
+                changeIndex(status: 1)
+            }
         }
-        netWork(param: requestParam!, down: true)
+        netWork(param: requestParam, down: true)
     }
     
 

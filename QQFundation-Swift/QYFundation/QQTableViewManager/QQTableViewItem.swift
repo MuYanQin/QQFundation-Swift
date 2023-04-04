@@ -53,10 +53,10 @@ class QQTableViewItem: NSObject {
         guard let tm = tableViewManager else { return  }
         if animation == .none {
             UIView.performWithoutAnimation {
-                tm.tableView .reloadRows(at: [self.indexPath], with: animation);
+                tm.tableView! .reloadRows(at: [self.indexPath], with: animation);
             };
         }else{
-            tm.tableView .reloadRows(at: [self.indexPath], with: animation);
+            tm.tableView! .reloadRows(at: [self.indexPath], with: animation);
         }
         
     }
@@ -69,10 +69,10 @@ class QQTableViewItem: NSObject {
         sec.removeItemAtIndex(row);
         if animation == .none {
             UIView .performWithoutAnimation {
-                tm.tableView .deleteRows(at: [IndexPath.init(row: row, section: sec.index)], with: animation);
+                tm.tableView! .deleteRows(at: [IndexPath.init(row: row, section: sec.index)], with: animation);
             };
         }else{
-            tm.tableView .deleteRows(at: [IndexPath.init(row: row, section: sec.index)], with: animation);
+            tm.tableView! .deleteRows(at: [IndexPath.init(row: row, section: sec.index)], with: animation);
         }
         
     }

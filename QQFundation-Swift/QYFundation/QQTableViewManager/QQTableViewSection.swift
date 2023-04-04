@@ -27,12 +27,11 @@ class QQTableViewSection: NSObject {
         }
     }
     
-    /// sectionHeaderView的数据源
-    var item:QQTableViewSecItem?
-    
-    
     /// 私有 存储全部的Item
     private var mutiItems = Array<QQTableViewItem>();
+    
+    /// sectionHeaderView的数据源
+    var item:QQTableViewSecItem?
     
     /// sectionView的高度
     var sectionHeight :CGFloat?;

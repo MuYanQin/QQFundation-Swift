@@ -38,13 +38,12 @@ class QYTestLazyViewController: QYBaseViewController {
             let item4 = CollectionViewItem();
             
             item4.text = text;
-            item4.label.text = text;
             item4.itemSize = CGSizeMake((kScreenWidth - 43)/2, 80)
             item4.selcetCellHandler = {(item,index) in
                     print(item,index)
                 
             }
-            section.items.append(item4);
+            section.addItem(item4)
         }
         
         self.baseColArray.append(section)
@@ -58,7 +57,7 @@ class QYTestLazyViewController: QYBaseViewController {
         
         for _ in 1...20{
             let item4 = CollectionViewItem();
-            section1.items.append(item4);
+            section.addItem(item4)
         }
         
 //        self.baseColArray.append(section1)
