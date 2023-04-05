@@ -73,7 +73,7 @@ extension UIViewController{
     ///   - imgName: 图片名称
     ///   - self: 方法
     /// - Returns: 无
-    func nav_rightImgItem(imgName:String,sel:Selector) -> Void {
+    func nav_rightImgItem(_ imgName:String,_ sel:Selector) -> Void {
         let rightCustomButton = UIButton.init(frame: CGRect(x: 0, y: 0, width: 30, height: 30));
         rightCustomButton.widthAnchor.constraint(equalToConstant: 20).isActive = true;
         rightCustomButton.heightAnchor.constraint(equalToConstant: 20).isActive = true;
@@ -92,12 +92,12 @@ extension UIViewController{
     ///   - font: 文字大小字体
     ///   - sel: 方法
     /// - Returns: 无
-    func nav_rightStrItem(title:String,color:UIColor?,font:UIFont,sel:Selector) -> Void {
+    func nav_rightStrItem(_ title:String,_ sel:Selector,_ color:UIColor? = UIColor.white,_ font:UIFont? = UIFont.systemFont(ofSize: 14)) -> Void {
 
         let rightItem = UIBarButtonItem(title: title, style:UIBarButtonItem.Style.plain , target: self, action: sel)
         let dic = [NSAttributedString.Key.foregroundColor:UIColor.white,NSAttributedString.Key.font:font];
-        rightItem .setTitleTextAttributes(dic, for: UIControl.State.normal);
-        rightItem .setTitleTextAttributes(dic, for: UIControl.State.highlighted);
+        rightItem .setTitleTextAttributes(dic as [NSAttributedString.Key : Any], for: UIControl.State.normal);
+        rightItem .setTitleTextAttributes(dic as [NSAttributedString.Key : Any], for: UIControl.State.highlighted);
         self.navigationItem.rightBarButtonItem = rightItem;
     }
  

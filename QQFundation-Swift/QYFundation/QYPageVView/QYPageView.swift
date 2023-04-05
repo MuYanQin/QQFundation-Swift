@@ -330,7 +330,7 @@ class QYPageView: UIView , UICollectionViewDelegate, UICollectionViewDataSource,
         fatalError("init(coder:) has not been implemented")
     }
     
-    func buildParamAndUI(count:CGFloat) -> Void {
+   private func buildParamAndUI(count:CGFloat) -> Void {
         self.titleBtnWidth = ((self.frame.width / count) >= 60) ? (self.frame.width / count) : 60
         self.addSubview(self.titleScroll)
         self.addSubview(self.contentCollection)
@@ -370,7 +370,7 @@ class QYPageView: UIView , UICollectionViewDelegate, UICollectionViewDataSource,
     /// 横线滑动到iten下方
     /// - Parameter item: item
     /// - Returns: 无
-    func scrollToItemCenter(item:QYItem?) -> Void {
+    private func scrollToItemCenter(item:QYItem?) -> Void {
         guard let item = item else { return }
         self.isClick = false
         UIView.animate(withDuration: 0.3) {

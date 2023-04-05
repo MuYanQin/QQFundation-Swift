@@ -21,7 +21,7 @@ class HomeViewController: QYBaseViewController {
         print("navigationFullHeight=",UIDevice.navigationFullHeight());
         print("navigationFullHeight=",self.navigationController?.navigationBar.frame.height as Any);
 
-        
+        nav_rightStrItem("ad", #selector(ac))
         self.tableManager.register(cellClass: testCell.self, itemClass: testItem.self);
         self.tableManager.register(cellClass:StackViewCell.self, itemClass: StackViewItem.self);
         self.tableManager.register(cellClass: TestTTView.self, itemClass: TestTTItem.self);
@@ -92,7 +92,9 @@ class HomeViewController: QYBaseViewController {
         super.viewWillAppear(animated)
     }
     
-
+    @objc func ac() -> () {
+        
+    }
     /*
     // MARK: - Navigation
 
