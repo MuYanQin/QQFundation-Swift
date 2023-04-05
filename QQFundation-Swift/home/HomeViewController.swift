@@ -39,6 +39,16 @@ class HomeViewController: QYBaseViewController {
         section.addItem(stack)
 
         
+        
+        
+        let page = testItem.init()
+        page.name = "分页视图"
+        page.selcetCellHandler = {(item) ->() in
+            self.navigationController?.pushViewController(PageViewController(), animated: true);
+        }
+        section.addItem(page)
+        
+        
         let item = testItem.init()
         item.allowSlide = true;
         item.trailingTArray = ["收藏","喜欢"]
@@ -77,6 +87,9 @@ class HomeViewController: QYBaseViewController {
         self.baseArray.append(section);
         self.tableManager .reloadDataFromArray(sections: self.baseArray);
         
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
 
