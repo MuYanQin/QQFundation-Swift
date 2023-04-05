@@ -20,11 +20,15 @@ class PageViewController: UIViewController {
         pageView.selectTitleC = UIColor.red
         pageView.marginToLeft = 20
         pageView.marginToRight = 20
-        pageView.fontScale = 0.5
-        pageView.titleBtnWidth = 150
-        pageView.titleViewHeight = 100
+        pageView.fontScale = 0.0
+        pageView.titleBtnWidth = 80
+        pageView.selectTitleF = UIFont.systemFont(ofSize: 20)
 
         pageView.selectIndex(3)
+        pageView.itemBadge(3, 4)
+        pageView.itemBadge(0, 98)
+        pageView.itemBadge(1, 99)
+        pageView.itemBadge(2, 100)
         self.view.addSubview(pageView)
         
         print(pageView.titleBtnWidth)
