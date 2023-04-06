@@ -92,6 +92,17 @@ class QYCollectionViewManager: NSObject,UICollectionViewDelegate,UICollectionVie
 
         if item.itemSize?.width == 0 {
             item.itemSize = cel.autoCellWidth()
+            /**
+             
+             在集合视图的生命周期中，sizeForItemAt 方法只有在以下情况下被调用：
+
+             初始化时；
+             调用 invalidateLayout() 方法后；
+             插入、删除或移动单元格时。
+             因此，如果 sizeForItemAt 方法在初始化集合视图时被调用了一次之后，就不再被调用了，那么可能是由于后面没有再调用上述任意一个条件所致。这时，我们可以根据需要手动调用 invalidateLayout() 方法来强制重新计算单元格大小。
+             */
+            // 手动触发布局更新
+            collectionView.collectionViewLayout.invalidateLayout()
         }
         return cel
     }
