@@ -68,10 +68,34 @@ class QQTableViewSection: NSObject {
         self.mutiItems.remove(at: index);
     }
     
+    /// 移除一个item 并刷新
+    /// - Parameter index: 下标
+    /// - Returns: 无
+    func removeItemWithReload(_ index :Int,_ animation:UITableView.RowAnimation? = UITableView.RowAnimation.none) -> Void {
+        self.mutiItems.remove(at: index);
+        self.tableViewManager?.tableView?.performBatchUpdates({
+            self.tableViewManager?.tableView?.deleteRows(at: [IndexPath(row: index, section: self.index)], with: animation!)
+        })
+    }
+    
+    
     /// 移除全部的item
     /// - Returns: 无
     func removeAllItem() -> Void {
         self.mutiItems.removeAll();
+    }
+    
+    /// 移除全部的item 并刷新
+    /// - Returns: 无
+    func removeAllItemWithReload(_ animation:UITableView.RowAnimation? = UITableView.RowAnimation.none) -> Void {
+        var array = Array<IndexPath>()
+        for (index,_) in self.mutiItems.enumerated() {
+            array.append(IndexPath(row: index, section: self.index))
+        }
+        self.mutiItems.removeAll();
+        self.tableViewManager?.tableView?.performBatchUpdates({
+            self.tableViewManager?.tableView?.deleteRows(at: array, with: animation!)
+        })
     }
     
     /// 插入一个item
@@ -79,14 +103,27 @@ class QQTableViewSection: NSObject {
     ///   - item: item
     ///   - index: 插入的位置
     /// - Returns: 无
-    func insertItem(_ item:QQTableViewItem,_ index:Int) -> Void {
+    func insertItemWithReload(_ item:QQTableViewItem,_ index:Int,_ animation:UITableView.RowAnimation? = UITableView.RowAnimation.none) -> Void {
         self.mutiItems.insert(item, at: index);
+        self.tableViewManager?.tableView?.performBatchUpdates({
+            self.tableViewManager?.tableView?.insertRows(at: [IndexPath.init(row: index, section: self.index)], with: animation!)
+        })
     }
     
     /// 刷新整个sectoin
     /// - Parameter animation: 动画
     /// - Returns: 无
-    func reload(_ animation:UITableView.RowAnimation) -> Void {
-        self.tableViewManager!.tableView! .reloadSections(IndexSet.init(integer: self.index), with: animation)
+    func reloadSection(_ animation:UITableView.RowAnimation? = UITableView.RowAnimation.none) -> Void {
+        self.tableViewManager?.tableView?.performBatchUpdates({
+            self.tableViewManager?.tableView?.reloadSections(IndexSet.init(integer: self.index), with: animation!)
+        })
+    }
+    
+    /// 删除当前的section 并刷新
+    /// - Returns:
+    func deleteSectionWithReload(_ animation:UITableView.RowAnimation? = UITableView.RowAnimation.none) -> Void {
+        self.tableViewManager?.tableView?.performBatchUpdates({
+            self.tableViewManager?.tableView?.deleteSections(IndexSet.init(integer: self.index), with: animation!)
+        })
     }
 }

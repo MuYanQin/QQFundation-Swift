@@ -49,30 +49,30 @@ class QQTableViewItem: NSObject {
     /// 刷新cell
     /// - Parameter animation: 动画方式
     /// - Returns: 无
-    func reloadRowWithAnimation(_ animation:UITableView.RowAnimation) -> Void {
+    func reloadRowWithAnimation(_ animation:UITableView.RowAnimation? = UITableView.RowAnimation.none) -> Void {
         guard let tm = tableViewManager else { return  }
-        if animation == .none {
+        if animation == UITableView.RowAnimation.none {
             UIView.performWithoutAnimation {
-                tm.tableView! .reloadRows(at: [self.indexPath], with: animation);
+                tm.tableView! .reloadRows(at: [self.indexPath], with: animation!);
             };
         }else{
-            tm.tableView! .reloadRows(at: [self.indexPath], with: animation);
+            tm.tableView! .reloadRows(at: [self.indexPath], with: animation!);
         }
         
     }
     
-    func deleteRowWithAnimation(_ animation:UITableView.RowAnimation) -> Void {
+    func deleteRowWithAnimation(_ animation:UITableView.RowAnimation? = UITableView.RowAnimation.none)  -> Void {
         guard let tm = tableViewManager else { return  }
         guard let sec = section else { return  }
 
         let row = self.indexPath.row;
         sec.removeItemAtIndex(row);
-        if animation == .none {
+        if animation == UITableView.RowAnimation.none {
             UIView .performWithoutAnimation {
-                tm.tableView! .deleteRows(at: [IndexPath.init(row: row, section: sec.index)], with: animation);
+                tm.tableView! .deleteRows(at: [IndexPath.init(row: row, section: sec.index)], with: animation!);
             };
         }else{
-            tm.tableView! .deleteRows(at: [IndexPath.init(row: row, section: sec.index)], with: animation);
+            tm.tableView! .deleteRows(at: [IndexPath.init(row: row, section: sec.index)], with: animation!);
         }
         
     }

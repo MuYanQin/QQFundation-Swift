@@ -49,6 +49,13 @@ class QYCollectionViewSection: NSObject {
         item.section = self;
         self.mutiItems.append(item)
     }
+    
+    /// 移除全部的item
+    /// - Returns: 无
+    func removeAllItem() -> Void {
+        self.mutiItems.removeAll();
+    }
+    
 
     /// 添加一个Item数组
     /// - Parameter items: 数组
@@ -60,33 +67,66 @@ class QYCollectionViewSection: NSObject {
         self.mutiItems.append(contentsOf:items);
     }
     
+    
     /// 移除一个item
     /// - Parameter index: 下标
     /// - Returns: 无
-    func removeItemAtIndex(_ index :Int) -> Void {
+    func removeItemAtIndex(_ index:Int) -> Void {
         self.mutiItems.remove(at: index);
     }
-    
-    /// 移除全部的item
+    /// 移除一个item 并刷新
+    /// - Parameter index: 下标
     /// - Returns: 无
-    func removeAllItem() -> Void {
-        self.mutiItems.removeAll();
+    func removeItemWithReload(_ index :Int) -> Void {
+        self.mutiItems.remove(at: index);
+        self.colViewManager?.collectionView?.performBatchUpdates({
+            self.colViewManager?.collectionView?.deleteItems(at: [IndexPath(row: index, section: self.index)])
+        })
     }
     
-    /// 插入一个item
+    /// 删除section下所有的item 并刷新
+    /// - Returns:无
+    func removeAllItemWithReload() -> Void {
+        var array = Array<IndexPath>()
+        for (index,_) in self.mutiItems.enumerated() {
+            array.append(IndexPath(row: index, section: self.index))
+        }
+        self.mutiItems.removeAll()
+        self.colViewManager?.collectionView?.performBatchUpdates({
+            self.colViewManager?.collectionView?.deleteItems(at: array)
+        })
+
+    }
+    
+    
+
+    
+    /// 插入一个item 并刷新
     /// - Parameters:
     ///   - item: item
     ///   - index: 插入的位置
     /// - Returns: 无
-    func insertItem(_ item:QYCollectionViewItem,_ index:Int) -> Void {
+    func insertItemWithReload(_ item:QYCollectionViewItem,_ index:Int) -> Void {
         self.mutiItems.insert(item, at: index);
+        self.colViewManager?.collectionView?.performBatchUpdates({
+            self.colViewManager?.collectionView?.insertItems(at: [IndexPath(row: index, section: self.index)])
+        })
     }
     
     /// 刷新整个sectoin
     /// - Parameter animation: 动画
     /// - Returns: 无
-    func reload(_ animation:UITableView.RowAnimation) -> Void {
-        self.colViewManager?.collectionView?.reloadSections(IndexSet.init(integer: self.index))
+    func reloadSection(_ animation:UITableView.RowAnimation) -> Void {
+        self.colViewManager?.collectionView?.performBatchUpdates({
+            self.colViewManager?.collectionView?.reloadSections(IndexSet.init(integer: self.index))
+        })
     }
     
+    /// 删除当前的section 并刷新
+    /// - Returns:
+    func deleteSectionWithReload() -> Void {
+        self.colViewManager?.collectionView?.performBatchUpdates({
+            self.colViewManager?.collectionView?.deleteSections(IndexSet(integer: self.index))
+        })
+    }
 }

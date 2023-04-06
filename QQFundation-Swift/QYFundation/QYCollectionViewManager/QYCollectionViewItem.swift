@@ -26,10 +26,9 @@ class QYCollectionViewItem: NSObject {
     /// 刷新某个cell
     /// - Returns: 无
     func reloadCell() -> Void {
-        UIView.performWithoutAnimation {
-            colViewManager!.collectionView?.reloadItems(at: [self.indexPath])
-        };
-        
+        colViewManager?.collectionView?.performBatchUpdates({
+            colViewManager?.collectionView?.reloadItems(at: [self.indexPath])
+        })
     }
     
     /// 移除某个cell
@@ -40,7 +39,9 @@ class QYCollectionViewItem: NSObject {
 
         let row = self.indexPath.row;
         sec.removeItemAtIndex(row);
-        tm.collectionView?.deleteItems(at: [IndexPath.init(row:row, section: self.section!.index)])
+        tm.collectionView?.performBatchUpdates({
+            tm.collectionView?.deleteItems(at: [IndexPath.init(row:row, section: self.section!.index)])
+        })
     }
 
     var indexPath :IndexPath{
