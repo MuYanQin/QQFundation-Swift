@@ -83,11 +83,16 @@ class QYCollectionViewManager: NSObject,UICollectionViewDelegate,UICollectionVie
     //注册cell
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = self.sections[indexPath.section].items[indexPath.row] as QYCollectionViewItem
+        item.colViewManager = self
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: type(of: item)), for: indexPath)
         
         let cel = cell as! QYCollectionViewCell
         cel.item = item
-        cel.item?.colViewManager = self
+        cel.cellWillAppear();
+
+        if item.itemSize?.width == 0 {
+            item.itemSize = cel.autoCellWidth()
+        }
         return cel
     }
     //cell选中事件
@@ -115,7 +120,6 @@ class QYCollectionViewManager: NSObject,UICollectionViewDelegate,UICollectionVie
     //cell将要显示
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let cell = cell as! QYCollectionViewCell
-        cell.cellWillAppear();
     }
     //cell显示结束
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

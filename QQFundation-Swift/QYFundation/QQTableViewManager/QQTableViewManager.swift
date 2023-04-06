@@ -86,7 +86,7 @@ class QQTableViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
         cell?.cellWillAppear();
         cell?.detailTextLabel?.text = nil;
         if item.cellHeight == 0  {
-            item.cellHeight =  (cell?.autoCellHeight())!;
+            item.cellHeight =  cell?.autoCellHeight() ?? 0
         }
         return cell!;
     }

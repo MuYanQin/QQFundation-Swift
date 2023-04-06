@@ -29,6 +29,13 @@ class QYCollectionViewCell: UICollectionViewCell {
 
     }
     
+    
+    /// 返回自适应宽度
+    /// - Returns: size
+    func autoCellWidth() -> CGSize {
+        return self.item?.itemSize ?? CGSizeMake(0, 0)
+    }
+    
     /// item将要消失
     /// - Returns: 空
     func cellDidDisappear() -> Void {

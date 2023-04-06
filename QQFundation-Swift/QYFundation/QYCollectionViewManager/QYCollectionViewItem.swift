@@ -19,7 +19,7 @@ class QYCollectionViewItem: NSObject {
     /// 获取item的点击回调闭包
     var selcetCellHandler:((QYCollectionViewItem,NSInteger) -> ())?
     
-    /// 每个item的大小
+    /// 每个item的大小 当宽度不定时  宽度设置为0 cell中重写autoCellWidth 返回 width即可 多做流式标签布局使用
     var itemSize:CGSize?
     
     
