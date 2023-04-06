@@ -55,6 +55,10 @@ class QYBaseNavViewController: UINavigationController,UIGestureRecognizerDelegat
             barApp.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white,NSAttributedString.Key.font:UIFont.systemFont(ofSize: 18)];
             barApp.backgroundColor = RGB(r: 0, g: 122, b: 255);
             
+            barApp.setBackIndicatorImage(UIImage(named: "arrow_right"), transitionMaskImage: UIImage(named: "arrow_right"))
+//            UINavigationBar.appearance().scrollEdgeAppearance = barApp
+//            UINavigationBar.appearance().standardAppearance = barApp
+            
             self.navigationBar.standardAppearance = barApp
             self.navigationBar.scrollEdgeAppearance = barApp
 
@@ -66,8 +70,14 @@ class QYBaseNavViewController: UINavigationController,UIGestureRecognizerDelegat
             
             //nav下面的横线消失
             self.navigationBar.shadowImage = UIImage();
-
+            
+            // 修改导航栏返回按钮图片
+             let backButtonImage = UIImage(named: "arrow_right")?.withRenderingMode(.alwaysOriginal)
+             navigationBar.backIndicatorImage = backButtonImage
+             navigationBar.backIndicatorTransitionMaskImage = backButtonImage
         }
+        
+        
     }
     
 //MARK: - UINavigationControllerDelegate
@@ -156,11 +166,10 @@ class QYBaseNavViewController: UINavigationController,UIGestureRecognizerDelegat
         }
         
         let backItem = UIBarButtonItem.init(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil);
-        var textAttrs = Dictionary<String, Any>();
-        textAttrs[NSAttributedString.Key.foregroundColor.rawValue] = UIColor.white;
-        textAttrs[NSAttributedString.Key.font.rawValue] = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.regular);
-        backItem.tintColor = UIColor.white;//返回的颜色
+        backItem.tintColor = UIColor.black;//返回的颜色
         viewController.navigationItem.backBarButtonItem = backItem;
+        
+        
         super.pushViewController(viewController, animated: animated);
     }
     
@@ -179,3 +188,54 @@ class QYBaseNavViewController: UINavigationController,UIGestureRecognizerDelegat
     }
     
 }
+
+extension UIScrollView {
+    open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.next?.touchesBegan(touches, with: event)
+        super.touchesBegan(touches, with: event)
+    }
+    
+    open override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.next?.touchesMoved(touches, with: event)
+        super.touchesMoved(touches, with: event)
+    }
+    
+    open override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.next?.touchesEnded(touches, with: event)
+        super.touchesEnded(touches, with: event)
+    }
+    
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        if self.panBack(gestureRecognizer) {
+            return true
+        }
+        return false
+    }
+    
+    public func panBack(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        let location_X: Int = 40
+        if gestureRecognizer == self.panGestureRecognizer {
+            let pan = gestureRecognizer as! UIPanGestureRecognizer
+            let point = pan.translation(in:self)
+            let state: UIGestureRecognizer.State = gestureRecognizer.state
+            if state == .began || state == .possible {
+                let location = gestureRecognizer.location(in: self)
+                let temp1 = Int(location.x)
+                let temp2 = Int(kwidth)
+                let XX = temp1 % temp2
+                if point.x > 0 && XX < location_X {
+                    return true
+                }
+            }
+        }
+        return false
+    }
+    
+    open override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if self.panBack(gestureRecognizer) {
+            return false
+        }
+        return true
+    }
+}
+
