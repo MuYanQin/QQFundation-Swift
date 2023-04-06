@@ -53,11 +53,8 @@ class QYBaseNavViewController: UINavigationController,UIGestureRecognizerDelegat
             let barApp = UINavigationBarAppearance();
             barApp.configureWithOpaqueBackground()
             barApp.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white,NSAttributedString.Key.font:UIFont.systemFont(ofSize: 18)];
-            barApp.backgroundColor = RGB(r: 0, g: 122, b: 255);
-            
-            barApp.setBackIndicatorImage(UIImage(named: "arrow_right"), transitionMaskImage: UIImage(named: "arrow_right"))
-//            UINavigationBar.appearance().scrollEdgeAppearance = barApp
-//            UINavigationBar.appearance().standardAppearance = barApp
+            barApp.backgroundColor = RGB(r: 0, g: 122, b: 255)
+            barApp.setBackIndicatorImage(UIImage(named: "arrow_right")?.withRenderingMode(.alwaysOriginal), transitionMaskImage: UIImage(named: "arrow_right")?.withRenderingMode(.alwaysOriginal))
             
             self.navigationBar.standardAppearance = barApp
             self.navigationBar.scrollEdgeAppearance = barApp
