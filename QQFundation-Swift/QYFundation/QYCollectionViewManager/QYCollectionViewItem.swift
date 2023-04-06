@@ -40,7 +40,7 @@ class QYCollectionViewItem: NSObject {
 
         let row = self.indexPath.row;
         sec.removeItemAtIndex(row);
-        tm.collectionView?.deleteItems(at: [self.indexPath])
+        tm.collectionView?.deleteItems(at: [IndexPath.init(row:row, section: self.section!.index)])
     }
 
     var indexPath :IndexPath{

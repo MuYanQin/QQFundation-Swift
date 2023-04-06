@@ -13,15 +13,6 @@ class QYCollectionViewCell: UICollectionViewCell {
    public var item: QYCollectionViewItem?
     
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     /// item将要显示 在这里设置数据
     /// - Returns: 空
     func cellWillAppear() -> Void {
