@@ -11,4 +11,6 @@ import UIKit
 class QQTableViewSecItem: NSObject {
     
     var secHeight :CGFloat?
+    
+    weak var section :QQTableViewSection?
 }

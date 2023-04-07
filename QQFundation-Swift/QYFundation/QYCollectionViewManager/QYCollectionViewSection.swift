@@ -31,7 +31,12 @@ class QYCollectionViewSection: NSObject {
     
     
     /// 设置 sectionHeader、sectionFooter 的数据item  设置数据即可显示view  同时需要设置item中宽高
-    var item:QYCollectionReusableItem?
+    var item:QYCollectionReusableItem? {
+        willSet{
+            self.item = newValue
+            newValue?.section = self
+        }
+    }
     
     
     /// section内容的padding
@@ -128,5 +133,8 @@ class QYCollectionViewSection: NSObject {
         self.colViewManager?.collectionView?.performBatchUpdates({
             self.colViewManager?.collectionView?.deleteSections(IndexSet(integer: self.index))
         })
+    }
+    deinit {
+        print(self,"dealloc")
     }
 }

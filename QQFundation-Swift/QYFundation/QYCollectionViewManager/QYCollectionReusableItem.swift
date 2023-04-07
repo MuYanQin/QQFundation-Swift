@@ -29,4 +29,6 @@ class QYCollectionReusableItem: NSObject {
     //sectionFooter宽度设置
     var secFootWidth :CGFloat?
     
+    weak var section :QYCollectionViewSection?
+    
 }

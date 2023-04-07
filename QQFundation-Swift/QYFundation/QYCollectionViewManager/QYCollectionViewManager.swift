@@ -130,7 +130,6 @@ class QYCollectionViewManager: NSObject,UICollectionViewDelegate,UICollectionVie
     
     //cell将要显示
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        let cell = cell as! QYCollectionViewCell
     }
     //cell显示结束
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

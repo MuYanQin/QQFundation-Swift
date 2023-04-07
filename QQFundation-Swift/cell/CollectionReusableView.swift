@@ -9,7 +9,9 @@
 import UIKit
 
 class CollectionReusableItem: QYCollectionReusableItem {
-        
+    deinit {
+        print(self,"dealloc")
+    }
 }
 
 class CollectionReusableView: QYCollectionReusableView {
@@ -21,4 +23,5 @@ class CollectionReusableView: QYCollectionReusableView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
 }

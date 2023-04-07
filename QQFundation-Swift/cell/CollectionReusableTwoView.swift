@@ -9,7 +9,9 @@
 import UIKit
 
 class CollectionReusableTwoItem: QYCollectionReusableItem{
-        
+    deinit {
+        print(self,"dealloc")
+    }
 }
 
 class CollectionReusableTwoView: QYCollectionReusableView {

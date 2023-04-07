@@ -29,6 +29,8 @@ class QYTestLazyViewController: QYBaseViewController {
         secItem.secHeadHeight = 100;
         section.item = secItem
         
+        print("secItem.section?.item===",secItem.section?.item as Any,"===",secItem)
+        
         let array = ["标准准元","资准料员她","资准料员","县城施准工仍远","资料员她疯狂加班时间","县城施工仍远","标似的准元","玩儿发顺丰标准元","标疯狂加班时间分别是办准元",
             "标准元","资料员","县城施工仍远","标似的准元","玩儿发顺丰标准元","标疯狂加班时间分别是办准元",
             "标准元","资料员","县城施工仍远","标似的准元","玩儿发顺丰标准元","标疯狂加班时间分别是办准元",

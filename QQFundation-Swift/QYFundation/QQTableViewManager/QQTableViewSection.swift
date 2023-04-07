@@ -31,7 +31,12 @@ class QQTableViewSection: NSObject {
     private var mutiItems = Array<QQTableViewItem>();
     
     /// sectionHeaderView的数据源
-    var item:QQTableViewSecItem?
+    var item:QQTableViewSecItem? {
+        willSet{
+            self.item = newValue
+            newValue?.section = self
+        }
+    }
     
     /// sectionView的高度
     var sectionHeight :CGFloat?;
