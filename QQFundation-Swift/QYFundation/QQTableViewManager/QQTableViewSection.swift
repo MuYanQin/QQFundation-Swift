@@ -126,7 +126,7 @@ class QQTableViewSection: NSObject {
     
     /// 删除当前的section 并刷新
     /// - Returns:
-    func deleteSectionWithReload(_ animation:UITableView.RowAnimation? = UITableView.RowAnimation.none) -> Void {
+    func deleteSection(_ animation:UITableView.RowAnimation? = UITableView.RowAnimation.none) -> Void {
         self.tableViewManager?.tableView?.performBatchUpdates({
             self.tableViewManager?.tableView?.deleteSections(IndexSet.init(integer: self.index), with: animation!)
         })

@@ -121,7 +121,7 @@ class QYCollectionViewSection: NSObject {
     /// 刷新整个sectoin
     /// - Parameter animation: 动画
     /// - Returns: 无
-    func reloadSection(_ animation:UITableView.RowAnimation) -> Void {
+    func reloadSection() -> Void {
         self.colViewManager?.collectionView?.performBatchUpdates({
             self.colViewManager?.collectionView?.reloadSections(IndexSet.init(integer: self.index))
         })
@@ -129,11 +129,30 @@ class QYCollectionViewSection: NSObject {
     
     /// 删除当前的section 并刷新
     /// - Returns:
-    func deleteSectionWithReload() -> Void {
+    func deleteSection() -> Void {
         self.colViewManager?.collectionView?.performBatchUpdates({
             self.colViewManager?.collectionView?.deleteSections(IndexSet(integer: self.index))
         })
     }
+    
+    
+    /// 隐藏header
+    /// - Returns: 无
+    func hiddenHeaderView() -> Void {
+        self.item?.secHeadHeight = 0
+        self.item?.secHeadWidth = 0
+        reloadSection()
+    }
+    
+    /// 隐藏Footer
+    /// - Returns: 无
+    func hiddenFooterView() -> Void {
+        self.item?.secFootHeight = 0
+        self.item?.secFootWidth = 0
+        reloadSection()
+    }
+    
+    
     deinit {
         print(self,"dealloc")
     }

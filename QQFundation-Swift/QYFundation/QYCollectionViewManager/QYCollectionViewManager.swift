@@ -37,6 +37,27 @@ class QYCollectionViewManager: NSObject,UICollectionViewDelegate,UICollectionVie
         self.collectionView?.dataSource = self;
     }
     
+    /// 插入sectoin并刷新
+    /// - Parameters:
+    ///   - section: section
+    ///   - index: 下标
+    /// - Returns: 无
+    func insertSection(_ section:QYCollectionViewSection, _ index:Int) -> Void {
+        self.sections.insert(section, at: index)
+        self.collectionView?.performBatchUpdates({
+            self.collectionView?.insertSections(IndexSet(integer: index))
+        })
+    }
+    
+    /// 移除一个section
+    /// - Parameter index: 下标
+    /// - Returns: 无
+    func removeSection( _ index:Int) -> Void {
+        self.sections.remove(at: index)
+        self.collectionView?.performBatchUpdates({
+            self.collectionView?.deleteSections(IndexSet(integer: index))
+        })
+    }
 
     
     /// 注册方法
