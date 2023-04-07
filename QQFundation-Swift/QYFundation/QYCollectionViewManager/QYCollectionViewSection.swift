@@ -48,6 +48,7 @@ class QYCollectionViewSection: NSObject {
     /// 侧轴间距 默认10
     var interitemSpacing :CGFloat?
     
+    private var  secHH :CGFloat = 0.00,secHW:CGFloat = 0.0,secFH:CGFloat = 0.0, secFW:CGFloat = 0.0;
     
     /// section添加Item方法
     func addItem(_ item:QYCollectionViewItem) -> Void {
@@ -139,19 +140,41 @@ class QYCollectionViewSection: NSObject {
     /// 隐藏header
     /// - Returns: 无
     func hiddenHeaderView() -> Void {
+        self.secHH = self.item?.secHeadHeight ?? 0
+        self.secHW = self.item?.secHeadWidth ?? 0
         self.item?.secHeadHeight = 0
         self.item?.secHeadWidth = 0
         reloadSection()
     }
     
+    /// 显示view
+    /// - Returns: 无
+    func showHeaderView() -> Void {
+        self.item?.secHeadHeight = self.secHH
+        self.item?.secHeadWidth = self.secHW
+        reloadSection()
+    }
+    
+
+    
     /// 隐藏Footer
     /// - Returns: 无
     func hiddenFooterView() -> Void {
+        self.secFH =  self.item?.secFootHeight ?? 0
+        self.secFW =  self.item?.secFootWidth ?? 0
         self.item?.secFootHeight = 0
         self.item?.secFootWidth = 0
         reloadSection()
     }
     
+    /// 显示FooterView
+    /// - Returns: 
+    func showFooterView() -> Void {
+
+        self.item?.secFootHeight = self.secFH
+        self.item?.secFootWidth = self.secFW
+        reloadSection()
+    }
     
     deinit {
         print(self,"dealloc")
