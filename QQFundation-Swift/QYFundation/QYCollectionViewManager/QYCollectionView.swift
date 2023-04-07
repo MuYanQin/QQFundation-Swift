@@ -101,6 +101,16 @@ class QYCollectionView: UICollectionView {
         }
     }
     
+    func showEmptyView() -> Void {
+        self.backgroundView = self.emptyView
+
+    }
+    
+    func hiddenEmptyView() -> Void {
+        self.backgroundView = nil
+
+    }
+    
     private func totalItem() -> Int {
         let sectionNum = self.numberOfSections;
         var itemNum :Int = 0
