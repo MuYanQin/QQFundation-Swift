@@ -27,7 +27,7 @@ class QYCollectionViewManager: NSObject,UICollectionViewDelegate,UICollectionVie
             return itemArray;
         }
     }
-    
+    //MARK: - 初始化方法
     /// 初始化方法
     /// - Parameter collectionView: collectionView
     init(collectionView:QYCollectionView){
@@ -36,6 +36,7 @@ class QYCollectionViewManager: NSObject,UICollectionViewDelegate,UICollectionVie
         self.collectionView?.delegate = self;
         self.collectionView?.dataSource = self;
     }
+    //MARK: - 操作cell的视图
     
     /// 插入sectoin并刷新
     /// - Parameters:
@@ -58,8 +59,20 @@ class QYCollectionViewManager: NSObject,UICollectionViewDelegate,UICollectionVie
             self.collectionView?.deleteSections(IndexSet(integer: index))
         })
     }
-
     
+    /// 刷新collectionView的视图
+    /// - Parameter items: section的数组
+    /// - Returns: 无
+    func reloadCollection(_ sections:Array<QYCollectionViewSection>) -> Void {
+        self.sections.removeAll()
+        self.sections = sections;
+        for sec in sections {
+            sec.colViewManager  = self
+        }
+        self.collectionView?.reloadData()
+    }
+
+    //MARK: - collectionView代理
     /// 注册方法
     /// - Parameters:
     ///   - cellClass: cell的class
@@ -208,19 +221,11 @@ class QYCollectionViewManager: NSObject,UICollectionViewDelegate,UICollectionVie
         vw.viewWillAppear()
     }
     
+    //MARK: - 获取collectionView的滑动距离
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if self.collectionView!.scrollViewDidScroll != nil{
             self.collectionView!.scrollViewDidScroll!(self.collectionView!)
         }
-    }
-    
-    func reloadCollection(_ items:Array<QYCollectionViewSection>) -> Void {
-        self.sections.removeAll()
-        self.sections = items;
-        for sec in items {
-            sec.colViewManager  = self
-        }
-        self.collectionView?.reloadData()
     }
     
 }

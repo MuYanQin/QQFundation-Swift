@@ -38,7 +38,6 @@ class QYCollectionViewSection: NSObject {
         }
     }
     
-    
     /// section内容的padding
     var sectionInset:UIEdgeInsets?
     
@@ -50,6 +49,8 @@ class QYCollectionViewSection: NSObject {
     
     private var  secHH :CGFloat = 0.00,secHW:CGFloat = 0.0,secFH:CGFloat = 0.0, secFW:CGFloat = 0.0;
     
+    
+    //MARK: - 操作Item数据源
     /// section添加Item方法
     func addItem(_ item:QYCollectionViewItem) -> Void {
         item.section = self;
@@ -80,6 +81,30 @@ class QYCollectionViewSection: NSObject {
     func removeItemAtIndex(_ index:Int) -> Void {
         self.mutiItems.remove(at: index);
     }
+    
+    
+    /// 移动到哪里去
+    /// - Parameters:
+    ///   - at: 从哪里的下标
+    ///   - to: 到哪里的下标
+    /// - Returns: 无
+    func moveTo(_ at:Int,_ to:Int) -> Void {
+        self.mutiItems.insert(self.mutiItems.remove(at: at), at: to)
+
+    }
+    
+    
+    /// 交换位置
+    /// - Parameters:
+    ///   - at: 需要交换的下标
+    ///   - to: 到哪里的下标
+    /// - Returns: 无
+    func swapAt(_ at:Int,_ to:Int) -> Void {
+        self.mutiItems.swapAt(at, to)
+    }
+    
+    //MARK: - 操作cell视图
+    
     /// 移除一个item 并刷新
     /// - Parameter index: 下标
     /// - Returns: 无
@@ -104,8 +129,6 @@ class QYCollectionViewSection: NSObject {
 
     }
     
-    
-
     
     /// 插入一个item 并刷新
     /// - Parameters:

@@ -115,6 +115,21 @@ class QQTableViewSection: NSObject {
         })
     }
     
+    
+    /// 刷新多个Items
+    /// - Parameter items: [QQTableViewItem]
+    /// - Returns: 无
+    func reloadItems(_ items:[QQTableViewItem]) -> Void {
+        guard let tm = tableViewManager else { return  }
+        var array:[IndexPath] = Array()
+        for item in items {
+            array.append(IndexPath(row: item.indexPath.row, section: self.index))
+        }
+        UIView.performWithoutAnimation {
+            tm.tableView! .reloadRows(at: array, with: .none);
+        };
+    }
+    
     /// 刷新整个sectoin
     /// - Parameter animation: 动画
     /// - Returns: 无

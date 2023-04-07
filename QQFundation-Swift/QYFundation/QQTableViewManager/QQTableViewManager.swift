@@ -41,6 +41,32 @@ class QQTableViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
         }
     }*/
     
+    //MARK: - 操作cell的视图
+    
+    /// 插入sectoin并刷新
+    /// - Parameters:
+    ///   - section: section
+    ///   - index: 下标
+    /// - Returns: 无
+    func insertSection(_ section:QQTableViewSection, _ index:Int) -> Void {
+        self.sections.insert(section, at: index)
+        self.tableView?.performBatchUpdates({
+            self.tableView?.insertSections(IndexSet(integer: index), with: .none)
+        })
+    }
+    
+    /// 移除一个section
+    /// - Parameter index: 下标
+    /// - Returns: 无
+    func removeSection( _ index:Int) -> Void {
+        self.sections.remove(at: index)
+        self.tableView?.performBatchUpdates({
+            self.tableView?.deleteSections(IndexSet(integer: index), with: .none)
+        })
+    }
+    
+    //MARK: - cell相关
+    
     //注册 cell
     func register(cellClass :AnyClass ,itemClass: AnyClass) -> Void {
         
@@ -67,7 +93,6 @@ class QQTableViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
         }
     }
 
-    //MARK: - cell相关
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.sections.count;
     }
