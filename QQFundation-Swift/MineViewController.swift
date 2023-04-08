@@ -12,12 +12,13 @@ class MineViewController: UIViewController ,QQTableViewDelegate{
     let tb = QQTableView(frame: CGRect(x: 0, y: 0, width: 300, height: 300));
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor.white
-        let dic = Dictionary<String, Any>(minimumCapacity: 3);
-        tb.netWorkBegain(vc: self, param: dic, url: "dff");
-        self.view.addSubview(tb);
+        // Do any additional setup after loading the view.
+        let tf = QYTextField(frame: CGRectMake(100, 100, 200, 40))
+        tf.backgroundColor = UIColor.red
+        tf.maxLength = 20;
+        tf.openPriceCheck = true
+        self.view.addSubview(tf)
     }
     
 
