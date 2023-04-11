@@ -13,12 +13,46 @@ class MineViewController: UIViewController ,QQTableViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
-        // Do any additional setup after loading the view.
-        let tf = QYTextField(frame: CGRectMake(100, 100, 200, 40))
-        tf.backgroundColor = UIColor.red
-        tf.maxLength = 20;
-        tf.openPriceCheck = true
-        self.view.addSubview(tf)
+        let view = UIView(frame: CGRectMake(100, 100, 100, 100))
+        view.backgroundColor = UIColor.purple
+        view.layer.shadowColor  =  UIColor.red.cgColor
+        view.layer.shadowRadius = 5
+        view.layer.shadowOpacity = 0.8
+        view.layer.shadowOffset = CGSize(width: 2, height: 0)
+        view.layer.shadowPath = UIBezierPath(rect: view.bounds).cgPath
+        self.view.addSubview(view)
+        
+        // 同时添加右侧阴影
+        let rightShadowLayer = CALayer()
+        rightShadowLayer.frame = view.bounds
+        rightShadowLayer.backgroundColor = UIColor.purple.cgColor
+        rightShadowLayer.shadowColor = UIColor.black.cgColor
+        rightShadowLayer.shadowOffset = CGSize(width: -2, height: 0)
+        rightShadowLayer.shadowRadius = 4
+        rightShadowLayer.shadowOpacity = 0.8
+        view.layer.addSublayer(rightShadowLayer)
+        
+        
+        
+        
+        
+        let view1 = UIView(frame: CGRectMake(100, 250, 100, 100))
+        view1.backgroundColor = UIColor.gray
+        let shapLayer = CAShapeLayer()
+        let path = UIBezierPath()
+        path.move(to: CGPointMake(0, 0))
+        path.addLine(to: CGPointMake(0, 100))
+        shapLayer.path = path.cgPath
+        shapLayer.shadowColor = UIColor.red.cgColor
+        shapLayer.shadowRadius = 5
+        shapLayer.shadowOpacity = 0.8
+        shapLayer.shadowOffset = CGSize(width: 0, height: 0)
+        shapLayer.lineWidth = 0
+        shapLayer.strokeColor = UIColor.purple.cgColor;
+
+        view1.layer.addSublayer(shapLayer)
+        self.view.addSubview(view1)
+        
     }
     
 
