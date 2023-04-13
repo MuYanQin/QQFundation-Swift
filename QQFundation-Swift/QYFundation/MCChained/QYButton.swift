@@ -62,6 +62,8 @@ class QYButton: UIButton {
         if self.imageSize != nil {
             imageWith = self.imageSize!.width
             imageHeight = self.imageSize!.height
+            self.imageView?.frame.size = self.imageSize!
+
         }else{
             imageWith = self.q_width/3;
             imageHeight = self.q_height/3;

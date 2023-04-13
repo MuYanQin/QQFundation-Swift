@@ -106,7 +106,13 @@ class QQTableView: UITableView  {
     /// 重写reload方法 获取cell、section的个数 判断展示空白界面
     override func reloadData() {
         super.reloadData()
-        let total = totalItem()
+        //不管是本地画界面  还是返回数据构建的界面 使用Manager的话 sectoin都是1 添加到view自动执行的section是0
+        let sectionNum = self.numberOfSections;
+        if sectionNum == 0{
+            return
+        }
+        let total = totalItem(sectionNum)
+    
         if total == 0 {
             self.tableFooterView = self.emptyView
         }else{
@@ -141,8 +147,7 @@ class QQTableView: UITableView  {
         self.estimatedSectionFooterHeight = 0
         self.estimatedSectionHeaderHeight = 0
     }
-    private func totalItem() -> Int {
-        let sectionNum = self.numberOfSections;
+    private func totalItem(_ sectionNum:Int) -> Int {
         var itemNum :Int = 0
         for idx in 0..<sectionNum {
             itemNum = itemNum + self.numberOfRows(inSection: idx)
