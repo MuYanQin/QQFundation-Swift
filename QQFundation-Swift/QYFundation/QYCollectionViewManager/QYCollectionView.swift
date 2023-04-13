@@ -38,9 +38,8 @@ class QYCollectionView: UICollectionView {
     var scrollViewDidScroll:((QYCollectionView) -> ())?
     
     /// 请求界面用于显示loading或者处理别的事物
-    var vc:UIViewController?{
-        willSet{
-            self.vc = newValue
+    weak var vc:UIViewController?{
+        didSet{
         }
     }
     
@@ -49,18 +48,16 @@ class QYCollectionView: UICollectionView {
     
     /// 请求接口
     var requestURL :String?{
-        willSet{
-            self.requestURL = newValue
+        didSet{
             self.mj_header = MJRefreshNormalHeader.init(refreshingTarget: self, refreshingAction: #selector(requestData));
         }
         //set get是计算属性 在里面设置】读取的时候会循环
-        //最好willSet didSet 是专门属性监听器。类似oc的setter getter 方法
+        //最好didSet didSet 是专门属性监听器。类似oc的setter getter 方法
     }
     
     /// 请求参数
     var requestParam : Dictionary<String,Any>? {
-        willSet{
-            self.requestParam = newValue
+        didSet{
         }
     }
     

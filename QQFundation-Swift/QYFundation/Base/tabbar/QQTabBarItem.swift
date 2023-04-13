@@ -45,15 +45,13 @@ class QQTabBarItem: UIButton {
     
     /// 角标背景色
     var badgeBackColor :UIColor?{
-        willSet{
-            badgeLabel.backgroundColor = newValue
+        didSet{
         }
     }
     
     /// 角标颜色
     var badgeTextColor :UIColor?{
-        willSet{
-            badgeLabel.textColor = newValue
+        didSet{
         }
     }
     

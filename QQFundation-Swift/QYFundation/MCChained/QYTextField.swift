@@ -15,8 +15,8 @@ class QYTextField: UITextField ,UITextFieldDelegate{
     var maxLength:Int = Int.max
     
     var openPriceCheck:Bool = false {
-        willSet{
-            if newValue{
+        didSet{
+            if openPriceCheck{
                 self.keyboardType = .decimalPad
             }
         }

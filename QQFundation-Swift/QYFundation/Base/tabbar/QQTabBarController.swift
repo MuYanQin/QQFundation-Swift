@@ -24,23 +24,23 @@ let kwidth = UIScreen.main.bounds.size.width
 class QQTabBarController: UITabBarController {
     weak var customDelegate : QQTabBarControllerDelegate?
     var font : UIFont = UIFont.systemFont(ofSize: 10){
-        willSet{
+        didSet{
             for item in itemsArray {
-                item.titleLabel?.font = newValue
+                item.titleLabel?.font = font
             }
         }
     }
     var defaultColor : UIColor = UIColor.black{
-        willSet{
+        didSet{
             for item in itemsArray {
-                item.setTitleColor(newValue, for: .normal)
+                item.setTitleColor(defaultColor, for: .normal)
             }
         }
     }
     var selectedColor : UIColor = UIColor.black{
-        willSet{
+        didSet{
             for item in itemsArray {
-                item.setTitleColor(newValue, for: .selected)
+                item.setTitleColor(selectedColor, for: .selected)
             }
         }
     }

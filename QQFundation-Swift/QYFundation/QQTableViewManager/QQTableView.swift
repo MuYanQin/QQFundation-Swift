@@ -49,9 +49,8 @@ class QQTableView: UITableView  {
     
     /// 是否有头部刷新
     var hasHeaderRefresh:Bool?{
-        willSet{
-            self.hasHeaderRefresh = newValue
-            if !newValue! {
+        didSet{
+            if !hasHeaderRefresh! {
                 self.mj_header = nil
             }
         }
@@ -59,18 +58,16 @@ class QQTableView: UITableView  {
     
     /// 请求url
     var requestURL :String?{
-        willSet{
-            self.requestURL = newValue
+        didSet{
             self.mj_header = MJRefreshNormalHeader.init(refreshingTarget: self, refreshingAction: #selector(requestData));
         }
         //set get是计算属性 在里面设置】读取的时候会循环
-        //最好willSet didSet 是专门属性监听器。类似oc的setter getter 方法
+        //最好didSet didSet 是专门属性监听器。类似oc的setter getter 方法
     }
     
     /// 请求参数
     var requestParam : Dictionary<String,Any>? {
-        willSet{
-            self.requestParam = newValue
+        didSet{
         }
     }
     
@@ -78,9 +75,8 @@ class QQTableView: UITableView  {
     var footView = UIView()
     
     /// 请求数据的界面 显示loading用
-    var vc:UIViewController?{
-        willSet{
-            self.vc = newValue
+    weak var vc:UIViewController?{
+        didSet{
         }
     }
     
@@ -225,41 +221,37 @@ class QQTableView: UITableView  {
 class EmptyView: UIView {
     /// 图片名称
     var imageName:String?{
-        willSet{
-            self.imageView.image = UIImage.init(named: newValue!)
+        didSet{
+            self.imageView.image = UIImage.init(named: imageName!)
         }
     }
     /// 图片大小
     var imageSize:CGSize?{
-        willSet{
-            self.addConstraint(NSLayoutConstraint.init(item: self.imageView!, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 0, constant: newValue!.width))
-            self.addConstraint(NSLayoutConstraint.init(item: self.imageView!, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: newValue!.height))
+        didSet{
+            self.addConstraint(NSLayoutConstraint.init(item: self.imageView!, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 0, constant: imageSize!.width))
+            self.addConstraint(NSLayoutConstraint.init(item: self.imageView!, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: imageSize!.height))
         }
     }
     /// 提示文字
     var hintText:String?{
-        willSet{
-            self.hintLb.text = newValue
+        didSet{
         }
     }
     /**提示文字字体*/
     var hintTextFont:UIFont?{
-        willSet{
-            self.hintLb.font = newValue
+        didSet{
         }
     }
 
     /**提示文字颜色*/
     var hintTextColor:UIColor?{
-        willSet{
-            self.hintLb.textColor = newValue
+        didSet{
         }
     }
 
     /**提示文字富文本*/
     var hintAttributedText:NSAttributedString?{
-        willSet{
-            self.hintLb.attributedText = newValue
+        didSet{
         }
     }
     

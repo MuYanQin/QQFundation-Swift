@@ -32,9 +32,8 @@ class QQTableViewSection: NSObject {
     
     /// sectionHeaderView的数据源
     var item:QQTableViewSecItem? {
-        willSet{
-            self.item = newValue
-            newValue?.section = self
+        didSet{
+            item?.section = self
         }
     }
     

@@ -32,9 +32,8 @@ class QYCollectionViewSection: NSObject {
     
     /// 设置 sectionHeader、sectionFooter 的数据item  设置数据即可显示view  同时需要设置item中宽高
     var item:QYCollectionReusableItem? {
-        willSet{
-            self.item = newValue
-            newValue?.section = self
+        didSet{
+            item?.section = self
         }
     }
     

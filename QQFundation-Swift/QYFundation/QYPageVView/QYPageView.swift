@@ -31,28 +31,25 @@ class QYPageView: UIView , UICollectionViewDelegate, UICollectionViewDataSource,
     
     /// 右侧距离 默认0
     var marginToRight = 0.0 {
-        willSet{
-            self.marginToRight = newValue
-            self.titleScroll.frame.size.width = self.frame.width - newValue - self.marginToLeft
+        didSet{
+            self.titleScroll.frame.size.width = self.frame.width - marginToRight - self.marginToLeft
         }
     }
     
     /// 左侧距离 默认0
     var marginToLeft = 0.0 {
-        willSet{
-            self.marginToLeft = newValue
-            self.titleScroll.frame.origin.x = newValue
-            self.titleScroll.frame.size.width = self.frame.width - newValue - self.marginToRight
+        didSet{
+            self.titleScroll.frame.origin.x = marginToLeft
+            self.titleScroll.frame.size.width = self.frame.width - marginToLeft - self.marginToRight
         }
     }
     
     /// 默认标题字体 默认14
     var defaultTitleF = UIFont.systemFont(ofSize: 14) {
-        willSet{
-            self.defaultTitleF = newValue
+        didSet{
             for item in itemArray {
                 if item != lastItem{
-                    item.titleLabel?.font = newValue
+                    item.titleLabel?.font = defaultTitleF
                 }
             }
         }
@@ -60,19 +57,17 @@ class QYPageView: UIView , UICollectionViewDelegate, UICollectionViewDataSource,
     
     /// 选中标题字体 默认14
     var selectTitleF = UIFont.systemFont(ofSize: 14) {
-        willSet{
-            self.selectTitleF = newValue
-            self.lastItem!.titleLabel?.font = newValue
+        didSet{
+            self.lastItem!.titleLabel?.font = selectTitleF
         }
     }
     
     /// 默认标字体颜色 默认灰色
     var defaultTitleC = UIColor.lightGray {
-        willSet{
-            self.defaultTitleC = newValue
+        didSet{
             for item in itemArray {
                 if item != lastItem{
-                    item.setTitleColor(newValue, for: .normal)
+                    item.setTitleColor(defaultTitleC, for: .normal)
                 }
             }
         }
@@ -80,20 +75,18 @@ class QYPageView: UIView , UICollectionViewDelegate, UICollectionViewDataSource,
     
     /// 选中字体颜色 默认黑色
     var selectTitleC = UIColor.black {
-        willSet{
-            self.selectTitleC = newValue
-            self.lastItem!.setTitleColor(newValue, for: .normal)
-            self.lineColor = newValue
-            self.lineView.backgroundColor = newValue
+        didSet{
+            self.lastItem!.setTitleColor(selectTitleC, for: .normal)
+            self.lineColor = selectTitleC
+            self.lineView.backgroundColor = selectTitleC
         }
     }
     
     /// 标题按钮的宽度 默认平分
     var titleBtnWidth :CGFloat = 60 {
-        willSet{
-            self.titleBtnWidth = newValue
-            if (CGFloat(contentTitles.count) * newValue) > frame.width {
-                self.titleScroll.contentSize = CGSizeMake(CGFloat(contentTitles.count) * newValue ,titleViewHeight)
+        didSet{
+            if (CGFloat(contentTitles.count) * titleBtnWidth) > frame.width {
+                self.titleScroll.contentSize = CGSizeMake(CGFloat(contentTitles.count) * titleBtnWidth ,titleViewHeight)
                 
             }else{
                 self.titleScroll.contentSize = CGSizeMake(frame.width, titleViewHeight)
@@ -109,68 +102,62 @@ class QYPageView: UIView , UICollectionViewDelegate, UICollectionViewDataSource,
                         obj.isActive = false
                     }
                 }
-                item.addConstraint(NSLayoutConstraint(item: item, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: newValue))
+                item.addConstraint(NSLayoutConstraint(item: item, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: titleBtnWidth))
                 
-                titleScroll.addConstraint(NSLayoutConstraint(item: item, attribute: .left, relatedBy: .equal, toItem: titleScroll, attribute: .left, multiplier: 1, constant: (CGFloat(index) * newValue)))
+                titleScroll.addConstraint(NSLayoutConstraint(item: item, attribute: .left, relatedBy: .equal, toItem: titleScroll, attribute: .left, multiplier: 1, constant: (CGFloat(index) * titleBtnWidth)))
             }
             titleScroll.layoutIfNeeded()
 
-            lineView.frame.size.width =  newValue * lineWitdhScale
+            lineView.frame.size.width =  titleBtnWidth * lineWitdhScale
             scrollToItemCenter(item: lastItem)
         }
     }
     
     /// 横线的颜色 默认与选中标题颜色（selectTitleC）一致
     var lineColor = UIColor.black {
-        willSet{
-            self.lineColor = newValue
-            self.lineView.backgroundColor = newValue
+        didSet{
+            self.lineView.backgroundColor = lineColor
         }
     }
     
     /// 横线的高度
     var lineHeight = 1.0 {
-        willSet{
-            self.lineHeight  = newValue
-            self.lineView.frame.origin.y = self.titleViewHeight - newValue
-            self.lineView.frame.size.height = newValue
+        didSet{
+            self.lineView.frame.origin.y = self.titleViewHeight - lineHeight
+            self.lineView.frame.size.height = lineHeight
         }
     }
     
     /// 横线的宽度 是 titleBtnWidth 的多少倍 0～1 取值
     var lineWitdhScale = 0.5 {
-        willSet{
-            self.lineWitdhScale = newValue
+        didSet{
             self.lineView.frame.origin.x = self.lineView.frame.origin.x + ( self.lineView.frame.size.width  - self.titleBtnWidth * lineWitdhScale)/2;
 
-            self.lineView.frame.size.width =  self.titleBtnWidth * newValue
+            self.lineView.frame.size.width =  self.titleBtnWidth * lineWitdhScale
         }
     }
     
     /// 是否可以滑动 默认true 可滑动
     var canSlide = true {
-        willSet{
-            self.canSlide = newValue
-            self.contentCollection.isScrollEnabled = newValue
+        didSet{
+            self.contentCollection.isScrollEnabled = canSlide
         }
     }
     
     /// 可选 设置头部滑动部分的高度 由于修改 UICollectionView 的frame会重置 contenOffset值 就会引起scrollViewDidScroll代理执行 会造成 设置初始下表不正确故 需要在调用 selectIndex 方法前设置此属性
     var titleViewHeight  = 50.0 {
-        willSet{
-            self.titleViewHeight = newValue
-            titleScroll.frame.size.height = newValue
-            contentCollection.frame.origin.y = newValue
-            contentCollection.frame.size.height = self.frame.height - newValue
-            lineView.frame.origin.y = newValue - lineHeight
+        didSet{
+            titleScroll.frame.size.height = titleViewHeight
+            contentCollection.frame.origin.y = titleViewHeight
+            contentCollection.frame.size.height = self.frame.height - titleViewHeight
+            lineView.frame.origin.y = titleViewHeight - lineHeight
         }
     }
     
     /// 设置选中时候字体当大的倍数 0～1 默认0.2
     var fontScale = 0.2 {
-        willSet{
-            self.fontScale = newValue
-            self.lastItem!.transform = CGAffineTransformMakeScale(1 + newValue, 1 + newValue)
+        didSet{
+            self.lastItem!.transform = CGAffineTransformMakeScale(1 + fontScale, 1 + fontScale)
 
         }
     }
