@@ -66,19 +66,13 @@ class QQTableView: UITableView  {
     }
     
     /// 请求参数
-    var requestParam : Dictionary<String,Any>? {
-        didSet{
-        }
-    }
+    var requestParam : Dictionary<String,Any>? 
     
     /// 默认的footerView
     var footView = UIView()
     
     /// 请求数据的界面 显示loading用
-    weak var vc:UIViewController?{
-        didSet{
-        }
-    }
+    weak var vc:UIViewController?
     
     /// 分页使用的字段 判断自动设置页数
     let pageIndex = "page"
@@ -233,27 +227,15 @@ class EmptyView: UIView {
         }
     }
     /// 提示文字
-    var hintText:String?{
-        didSet{
-        }
-    }
+    var hintText:String?
     /**提示文字字体*/
-    var hintTextFont:UIFont?{
-        didSet{
-        }
-    }
+    var hintTextFont:UIFont?
 
     /**提示文字颜色*/
-    var hintTextColor:UIColor?{
-        didSet{
-        }
-    }
+    var hintTextColor:UIColor?
 
     /**提示文字富文本*/
-    var hintAttributedText:NSAttributedString?{
-        didSet{
-        }
-    }
+    var hintAttributedText:NSAttributedString?
     
     private var hintLb:UILabel!
     

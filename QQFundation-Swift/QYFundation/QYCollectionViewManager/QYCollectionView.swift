@@ -38,10 +38,7 @@ class QYCollectionView: UICollectionView {
     var scrollViewDidScroll:((QYCollectionView) -> ())?
     
     /// 请求界面用于显示loading或者处理别的事物
-    weak var vc:UIViewController?{
-        didSet{
-        }
-    }
+    weak var vc:UIViewController?
     
     /// 分页使用的字段 判断自动设置页数
     let pageIndex = "page"
@@ -56,10 +53,7 @@ class QYCollectionView: UICollectionView {
     }
     
     /// 请求参数
-    var requestParam : Dictionary<String,Any>? {
-        didSet{
-        }
-    }
+    var requestParam : Dictionary<String,Any>? 
     
     /// 无数据空白界面 
     lazy var emptyView: EmptyView? = { () -> EmptyView in
