@@ -143,8 +143,8 @@ class QYCollectionViewManager: NSObject,UICollectionViewDelegate,UICollectionVie
     //cell选中事件
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let item = self.sections[indexPath.section].items[indexPath.row] as QYCollectionViewItem
-        if item.selcetCellHandler != nil {
-            item.selcetCellHandler!(item,indexPath.row)
+        if item.selectCellHandler != nil {
+            item.selectCellHandler!(item,indexPath.row)
         }
     }
     

@@ -38,7 +38,7 @@ class QQTableViewItem: NSObject {
     //闭包 就是oc的Block
     
     /// cell选中方法
-    var selcetCellHandler: ((_ item :QQTableViewItem)->())?
+    var selectCellHandler: ((_ item :QQTableViewItem)->())?
     
     /// 向右滑事件
     var leadingSwipeHandler: ((QQTableViewItem,NSInteger)->())?

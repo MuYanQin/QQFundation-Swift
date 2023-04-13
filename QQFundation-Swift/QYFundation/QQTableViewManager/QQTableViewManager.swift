@@ -131,8 +131,8 @@ class QQTableViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true);
         let item = self.sections[indexPath.section].items[indexPath.row]
-        if (item.selcetCellHandler != nil) {
-            item.selcetCellHandler!(item)
+        if (item.selectCellHandler != nil) {
+            item.selectCellHandler!(item)
         }
 
     }

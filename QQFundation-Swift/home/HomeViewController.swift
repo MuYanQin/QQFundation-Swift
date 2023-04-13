@@ -43,7 +43,7 @@ class HomeViewController: QYBaseViewController {
         
         let page = testItem.init()
         page.name = "分页视图"
-        page.selcetCellHandler = {(item) ->() in
+        page.selectCellHandler = {(item) ->() in
             self.navigationController?.pushViewController(PageViewController(), animated: true);
         }
         section.addItem(page)
@@ -54,7 +54,7 @@ class HomeViewController: QYBaseViewController {
         item.trailingTArray = ["收藏","喜欢"]
         item.leadingTArray = ["删除","卸载"]
         item.name = "测试"
-        item.selcetCellHandler = {(item) ->() in
+        item.selectCellHandler = {(item) ->() in
             self.navigationController?.pushViewController(QYBackNavViewController(), animated: true);
         }
         item.trailingSwipeHandler = {(item,index)->() in
@@ -71,7 +71,7 @@ class HomeViewController: QYBaseViewController {
         for _ in 1...3{
             let item1 = testItem.init()
             item1.name = "测试3333"
-            item1.selcetCellHandler = { (item) in
+            item1.selectCellHandler = { (item) in
                 self.navigationController?.pushViewController(QYTestHeightViewController(), animated: true);
 
             }

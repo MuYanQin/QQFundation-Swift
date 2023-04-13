@@ -41,7 +41,7 @@ class QYTestLazyViewController: QYBaseViewController {
             
             item4.text = text;
             item4.itemSize = CGSizeMake((kScreenWidth - 43)/2, 80)
-            item4.selcetCellHandler = {(item,index) in
+            item4.selectCellHandler = {(item,index) in
                     print(item,index)
                 
             }

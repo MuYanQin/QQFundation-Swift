@@ -24,7 +24,7 @@ class QYBackNavViewController: QYBaseViewController {
         item.trailingTArray = ["收藏","喜欢"]
         item.leadingTArray = ["删除","卸载"]
         item.name = "测试"
-        item.selcetCellHandler = {(item) ->() in
+        item.selectCellHandler = {(item) ->() in
             self.navigationController?.pushViewController(QYBackNavViewController(), animated: true);
         }
         item.trailingSwipeHandler = {(item,index)->() in
