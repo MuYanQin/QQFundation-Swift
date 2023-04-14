@@ -227,12 +227,24 @@ class EmptyView: UIView {
         }
     }
     /// 提示文字
-    var hintText:String?
+    var hintText:String? {
+        didSet{
+            self.hintLb.text = hintText
+        }
+    }
     /**提示文字字体*/
-    var hintTextFont:UIFont?
+    var hintTextFont:UIFont? {
+        didSet{
+            self.hintLb.font = hintTextFont
+        }
+    }
 
     /**提示文字颜色*/
-    var hintTextColor:UIColor?
+    var hintTextColor:UIColor? {
+        didSet{
+            self.hintLb.textColor = hintTextColor
+        }
+    }
 
     /**提示文字富文本*/
     var hintAttributedText:NSAttributedString?
