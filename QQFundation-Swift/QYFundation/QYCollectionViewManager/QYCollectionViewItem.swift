@@ -42,6 +42,9 @@ class QYCollectionViewItem: NSObject {
 
     }
     
+    /// 刷新多个cell
+    /// - Parameter items: item数组
+    /// - Returns: 无
     func reloadCell(_ items:[QYCollectionViewItem]) -> Void {
         var array = Array<IndexPath>()
         for item in items {
@@ -55,7 +58,7 @@ class QYCollectionViewItem: NSObject {
         }
     }
     
-    /// 移除某个cell
+    /// 移除当前cell
     /// - Returns: 无
     func deleteCell() -> Void {
         guard let tm = colViewManager else { return  }

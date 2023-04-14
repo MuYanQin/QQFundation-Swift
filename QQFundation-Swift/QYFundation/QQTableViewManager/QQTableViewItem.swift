@@ -61,6 +61,29 @@ class QQTableViewItem: NSObject {
         
     }
     
+    
+    
+    /// 刷新多个cell
+    /// - Parameters:
+    ///   - items: item数组
+    ///   - animation: 动画
+    /// - Returns: 无
+    func reloadRowWithAnimation(_ items:Array<QQTableViewItem>,_ animation:UITableView.RowAnimation? = UITableView.RowAnimation.none) -> Void {
+        guard let tm = tableViewManager else { return  }
+        var itemArray = Array<>(QQTableViewItem)
+        for item in items {
+            itemArray.append(item.indexPath)
+        }
+        if animation == UITableView.RowAnimation.none {
+            UIView.performWithoutAnimation {
+                tm.tableView! .reloadRows(at: itemArray, with: animation!);
+            };
+        }else{
+            tm.tableView! .reloadRows(at: itemArray, with: animation!);
+        }
+        
+    }
+    
     func deleteRowWithAnimation(_ animation:UITableView.RowAnimation? = UITableView.RowAnimation.none)  -> Void {
         guard let tm = tableViewManager else { return  }
         guard let sec = section else { return  }
