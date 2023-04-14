@@ -16,7 +16,9 @@ class QYCollectionViewSection: NSObject {
     /// readOnly -> section index in  CollectionView
     var index :Int{
         get{
-            return self.colViewManager!.sections.firstIndex(of: self)!;
+            guard let sec = self.colViewManager?.sections else { return  0}
+            guard let ind = sec.firstIndex(of: self) else { return 0 }
+            return ind;
         }
     }
     

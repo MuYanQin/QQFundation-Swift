@@ -16,7 +16,9 @@ class QQTableViewSection: NSObject {
     /// readOnly -> section index in  UITableView
     var index :Int{
         get{
-            return self.tableViewManager!.sections.firstIndex(of: self)!;
+            guard let sec = self.tableViewManager?.sections else { return  0}
+            guard let ind = sec.firstIndex(of: self) else { return 0 }
+            return ind;
         }
     }
     
