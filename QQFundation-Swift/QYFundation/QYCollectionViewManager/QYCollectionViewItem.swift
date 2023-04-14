@@ -33,9 +33,26 @@ class QYCollectionViewItem: NSObject {
     /// 刷新某个cell
     /// - Returns: 无
     func reloadCell() -> Void {
-        colViewManager?.collectionView?.performBatchUpdates({
-            colViewManager?.collectionView?.reloadItems(at: [self.indexPath])
-        })
+
+        UIView.performWithoutAnimation {
+            colViewManager?.collectionView?.performBatchUpdates({
+                colViewManager?.collectionView?.reloadItems(at: [self.indexPath])
+            })
+        }
+
+    }
+    
+    func reloadCell(_ items:[QYCollectionViewItem]) -> Void {
+        var array = Array<IndexPath>()
+        for item in items {
+            array.append(item.indexPath)
+        }
+
+        UIView.performWithoutAnimation {
+            colViewManager?.collectionView?.performBatchUpdates({
+                colViewManager?.collectionView?.reloadItems(at: array)
+            })
+        }
     }
     
     /// 移除某个cell
