@@ -70,7 +70,7 @@ class QQTableViewItem: NSObject {
     /// - Returns: 无
     func reloadRowWithAnimation(_ items:Array<QQTableViewItem>,_ animation:UITableView.RowAnimation? = UITableView.RowAnimation.none) -> Void {
         guard let tm = tableViewManager else { return  }
-        var itemArray = Array<>(QQTableViewItem)
+        var itemArray = Array<IndexPath>()
         for item in items {
             itemArray.append(item.indexPath)
         }

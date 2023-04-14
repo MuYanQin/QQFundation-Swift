@@ -70,4 +70,42 @@ extension UIView{
             return self.frame.origin.x
         }
     }
+    
+    /// 添加底部圆角
+    /// - Parameter radius: 圆角大小
+    /// - Returns: 无
+    func configRadiusBottom(_ radius:CGFloat) -> Void {
+        self.layer.cornerRadius = radius
+        self.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        self.layer.masksToBounds = true
+    }
+    
+    /// 添加顶部圆角
+    /// - Parameter radius: 圆角大小
+    /// - Returns: 无
+    func configRadiusTop(_ radius:CGFloat) -> Void {
+        self.layer.cornerRadius = radius
+        self.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        self.layer.masksToBounds = true
+    }
+    
+    /// 全部添加圆角
+    /// - Parameter radius: 圆角大小
+    /// - Returns: 无
+    func configRadiusAll(_ radius:CGFloat) -> Void {
+        self.layer.cornerRadius = radius
+        self.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner,.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        self.layer.masksToBounds = true
+    }
+    
+    /// 添加阴影
+    /// - Parameter color: 阴影颜色
+    func configShadow(_ color:UIColor? = UIColor.black ){
+        self.layer.shadowColor = color?.cgColor
+        self.layer.shadowRadius = 4
+        self.layer.shadowOpacity = 0.5
+        self.layer.shadowOffset = CGSize(width: 0, height: 0)
+        self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+    }
+    
 }
