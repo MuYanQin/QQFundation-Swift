@@ -313,6 +313,20 @@ class QYPageView: UIView , UICollectionViewDelegate, UICollectionViewDataSource,
         buildParamAndUI(count: CGFloat(titles.count))
     }
     
+    /// 使用View、VC混合实例化对象
+    /// 由于混合无法限制类型需要注意使用
+    /// - Parameters:
+    ///   - fram: frame
+    ///   - titles: 标题数组
+    ///   - views: view数组
+    init(_ fram:CGRect,_ titles:[String],_ containers:[Any]){
+        super.init(frame: fram)
+        self.backgroundColor = UIColor.white
+        self.contentViews = containers
+        self.contentTitles = titles
+        buildParamAndUI(count: CGFloat(titles.count))
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -398,7 +412,7 @@ class QYPageView: UIView , UICollectionViewDelegate, UICollectionViewDataSource,
             v.frame = cell.contentView.bounds
             cell.contentView.addSubview(v)
             
-        }else{
+        }else if(item is UIViewController){
             let v = item as! UIViewController
             v.view.frame = cell.contentView.bounds
             cell.contentView.addSubview(v.view)

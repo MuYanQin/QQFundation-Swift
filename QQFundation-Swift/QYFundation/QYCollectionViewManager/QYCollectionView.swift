@@ -28,7 +28,7 @@ import UIKit
 }
 
 
-class QYCollectionView: UICollectionView {
+class QYCollectionView: UICollectionView,UIGestureRecognizerDelegate {
     
     /// 代理
     weak var qdelegate: QYCollectionViewDelegate?
@@ -65,7 +65,8 @@ class QYCollectionView: UICollectionView {
         te.hintText = "暂无数据"
         return te
     }()
-    
+    var canResponseMutiGesture : Bool = false
+
     /*
      在swift中实现方法交换必须满足以下条件：
      1，类class必须继承于NSObject
@@ -121,7 +122,9 @@ class QYCollectionView: UICollectionView {
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
-        
+        if #available(iOS 11.0, *) {
+            self.contentInsetAdjustmentBehavior = .never
+        }
         guard let ly = (layout as? UICollectionViewFlowLayout) else {
             self.alwaysBounceVertical = true
             return
@@ -199,4 +202,9 @@ class QYCollectionView: UICollectionView {
         self.mj_header?.endRefreshing()
         self.mj_footer?.endRefreshing()
     }
+    override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return canResponseMutiGesture
+    }
+
+
 }

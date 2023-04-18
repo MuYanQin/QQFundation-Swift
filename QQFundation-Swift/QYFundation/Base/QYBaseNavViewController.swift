@@ -186,6 +186,14 @@ class QYBaseNavViewController: UINavigationController,UIGestureRecognizerDelegat
     
 }
 
+//关于代理的问题 参考https://www.jianshu.com/p/3d1ebfc6761c
+//uitableView UIcollectionView的代理都是继承自 UIScrollView
+/**
+ 打印uiscrollview发现初始化的时候已经设置代理了
+ self = <GestureScrollView: 0x145854800; baseClass = UIScrollView; frame = (0 34.5; 375 568); clipsToBounds = YES; gestureRecognizers = <NSArray: 0x1455d8520>; layer = <CALayer: 0x14551ee40>; contentOffset: {0, 0}; contentSize: {0, 0}>
+ panGestureRecognizer.delegate = <GestureScrollView: 0x145854800; baseClass = UIScrollView; frame = (0 34.5; 375 568); clipsToBounds = YES; gestureRecognizers = <NSArray: 0x1455d8520>; layer = <CALayer: 0x14551ee40>; contentOffset: {0, 0}; contentSize: {0, 0}>
+
+ */
 extension UIScrollView {
     open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.next?.touchesBegan(touches, with: event)
@@ -202,7 +210,8 @@ extension UIScrollView {
         super.touchesEnded(touches, with: event)
     }
     
-    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    @objc(gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:)
+    public  func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         if self.panBack(gestureRecognizer) {
             return true
         }
@@ -234,5 +243,6 @@ extension UIScrollView {
         }
         return true
     }
+
 }
 

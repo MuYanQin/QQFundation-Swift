@@ -76,7 +76,8 @@ class QQTableView: UITableView  {
     
     /// 分页使用的字段 判断自动设置页数
     let pageIndex = "page"
-
+    
+    var canResponseMutiGesture : Bool = false 
     /*
      在swift中实现方法交换必须满足以下条件：
      1，类class必须继承于NSObject
@@ -209,7 +210,10 @@ class QQTableView: UITableView  {
         self.mj_header?.endRefreshing()
         self.mj_footer?.endRefreshing()
     }
+    override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool{
+        return canResponseMutiGesture
 
+    }
 }
 
 class EmptyView: UIView {
