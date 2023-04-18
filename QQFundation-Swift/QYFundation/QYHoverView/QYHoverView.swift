@@ -38,7 +38,7 @@ import UIKit
     
 }
 
-class QYHoverView: UIView, UIScrollViewDelegate {
+class QYHoverView: UIView, UIScrollViewDelegate,QYPageViewDelagate {
 
     weak var delegate:QYHoverViewDelegate?
     
@@ -84,13 +84,14 @@ class QYHoverView: UIView, UIScrollViewDelegate {
             print("pageListView,pageListController,pageListContainer 必须实现其中一个")
             return
         }
+        pageView?.delagate = self
         scrollView.addSubview(pageView!)
         
         visibleView = delegate.visibleListView()[0]
-        visibleViewChangeMutiGesture()
+        visibleViewChangeMutiGestureAndDidScroll()
     }
     
-    private func visibleViewChangeMutiGesture(){
+    private func visibleViewChangeMutiGestureAndDidScroll(){
         if visibleView is QQTableView {
             guard let visibleView = visibleView as? QQTableView else { return  }
             visibleView.canResponseMutiGesture = true
@@ -107,10 +108,51 @@ class QYHoverView: UIView, UIScrollViewDelegate {
             }
         }
     }
+    func didSelectedIndex(pageView: QYPageView, index: Int) {
+        self.delegate?.QYHoverView?(houver: self, didSelectIndex: index)
+    }
+    func startGestureRecognizer() {
+        changeGesture(false)
+    }
+    func endGestureRecognizer() {
+        changeGesture(true)
+    }
+    func changeGesture(_ can :Bool) -> Void {
+        if visibleView is QQTableView {
+            guard let visibleView = visibleView as? QQTableView else { return  }
+            visibleView.canResponseMutiGesture = can
+
+        }else if visibleView is QYCollectionView{
+            guard let visibleView = visibleView as? QYCollectionView else { return  }
+            visibleView.canResponseMutiGesture = can
+        }
+    }
     
     func visibleViewDidScroll(_ scrollView:UIScrollView) -> Void {
         if isMidRefresh {
-            
+            // 中部有刷新
+            if scrollView.contentOffset.y < 0 && !isHover && scrollView.contentOffset.y <= 0 {
+                scrollView.contentOffset = CGPointZero
+                if scrollView.contentOffset.y < -2 {
+                    isDragNoRelease = true;
+                }
+            } else {
+                if scrollView.contentOffset.y >= 0 {
+                    isDragNoRelease = false;
+                }
+                if !isHover && !isDragNoRelease {
+                    guard let visibleView = visibleView as? UIScrollView else { return  }
+                    visibleView.contentOffset = CGPointZero;
+                }
+                if scrollView.contentOffset.y <= 0 {
+                    isHover = false;
+                } else {
+                    if !isDragNoRelease {
+                        isHover = true;
+                    }
+                }
+            }
+
         }else{
             //顶部刷新
             if !isHover{
@@ -125,6 +167,55 @@ class QYHoverView: UIView, UIScrollViewDelegate {
         }
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == self.scrollView{
+            // 设置 headView 的位置
+            // 向上滑动偏移量大于等于某个值悬停
+            if !((visibleView is QQTableView) || (visibleView is QYCollectionView)) {
+                if scrollView.contentOffset.y >= headHeight {
+                    scrollView.contentOffset = CGPoint(x: 0, y: headHeight)
+                    isHover = true
+                }
+            } else {
+                if scrollView.contentOffset.y >= headHeight || isHover {
+                    scrollView.contentOffset = CGPoint(x: 0, y: headHeight)
+                    isHover = true
+                }
+            }
+
+            if isMidRefresh {
+            
+                if visibleView is UIScrollView && (visibleView as! UIScrollView).contentOffset.y <= 0 && scrollView.contentOffset.y <= 0 {
+                    scrollView.contentOffset = .zero
+                } else {
+                    changeTabContentOffsetToZero(true)
+                }
+            } else {
+                changeTabContentOffsetToZero(false)
+            }
+
+        }
+    }
+    
+    func changeTabContentOffsetToZero(_ midRefresh: Bool) -> Void {
+        if isDragNoRelease && midRefresh {
+            scrollView.contentOffset = .zero
+        }
+        // 设置下面列表的位置
+        if scrollView.contentOffset.y < headHeight {
+            if !isHover {
+                // 列表的偏移度都设置为零
+                let tem = delegate?.visibleListView() ?? []
+                for subS in tem {
+                    guard let subS = subS as? UIScrollView else { return  }
+                    if !self.isDragNoRelease &&  midRefresh{
+                        subS.contentOffset = .zero
+                    }
+                }
+            }
+        }
+
+    }
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
