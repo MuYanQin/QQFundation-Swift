@@ -132,7 +132,71 @@ extension UIDevice {
     }
 }
 
+enum QYCalendarType {
+    case year,month,day,hour,min,second
+}
 extension Date{
+    
+    
+    /// 获取一个月多少天
+    /// - Parameters:
+    ///   - year: 那一年
+    ///   - month: 哪一月
+    /// - Returns: 天数
+    static func numberOfDaysInYear(_ year: Int , month: Int) -> Int {
+        if [1, 3, 5, 7, 8, 10, 12].contains(month) {
+            return 31
+        } else if [4, 6, 9, 11].contains(month) {
+            return 30
+        } else if (year % 4 == 1) || (year % 4 == 2) || (year % 4 == 3) {
+            return 28
+        } else if year % 400 == 0 {
+            return 29
+        } else if year % 100 == 0 {
+            return 28
+        } else {
+            return 29
+        }
+    }
+    
+    static func numberOfDaysInCurrentMonth() -> Int {
+        let currentDate = Date()
+        let calendar = Calendar.current
+        return calendar.range(of: .day, in: .month, for: currentDate)!.count
+    }
+
+    /// 获取距离某个时间 多久之前 多久之后的时间
+    /// - Parameters:
+    ///   - space: 多久 正是未来 负是过去
+    ///   - from: 距离哪个时间
+    ///   - formatter: 返回的时间格式
+    ///   - calendarType: 按天、月、年计算
+    /// - Returns: 时间
+    static func timeInterval(_ space: Int,_ from : Date,_ formatter: String,_ calendarType: QYCalendarType) -> String {
+        var comps = DateComponents()
+        switch calendarType {
+        case .day:
+            comps.day = space
+        case .month:
+            comps.month = space
+        case .year:
+            comps.year = space
+        case .hour:
+            comps.hour = space
+
+        case .min:
+            comps.minute = space
+
+        case .second:
+            comps.second = space
+
+        }
+        let calendar = Calendar(identifier: .gregorian)
+        let mDate = calendar.date(byAdding: comps, to: from)!
+        let dateFormatter = QYFormatter.sharedInstance.getDateFormatter(formatter)
+        return dateFormatter.string(from: mDate)
+    }
+
     
     /// 时间字符串转成需要的格式时间字符串
     /// - Parameters:
