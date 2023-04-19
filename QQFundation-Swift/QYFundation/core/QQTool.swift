@@ -12,7 +12,7 @@ extension NSObject {
     
     /// 转换为字符串
     /// - Parameter str: 需要转换的值
-    func relay(_ str:Any) -> String {
+    static func relay(_ str:Any) -> String {
         if let a = str as? NSNumber {
             return a.stringValue
         }else if  ((str as? NSNull) != nil){
@@ -132,5 +132,72 @@ extension UIDevice {
     }
 }
 
+extension Date{
+    
+    /// 时间字符串转成需要的格式时间字符串
+    /// - Parameters:
+    ///   - dateStr: 需要格式化的时间字符串
+    ///   - formatter: 格式化格式
+    /// - Returns: 时间
+    static func relayStrToFormatter(_ dateStr:String,_ formatter:String) ->String{
+        let dateFormatter = QYFormatter.sharedInstance.getDateFormatter(formatter)
+        let dateFormatter1 = QYFormatter.sharedInstance.getDateFormatter("yyyy-MM-dd HH:mm:ss")
+        let date = dateFormatter1.date(from: dateStr)
+        return dateFormatter.string(from: date ?? Date())
+    }
+    
+    /// 时间转成字符串
+    /// - Parameters:
+    ///   - date: 时间
+    ///   - formatter: 格式化格式
+    /// - Returns: 时间
+    static func relayDateToStr(_ date:Date,_ formatter:String) ->String{
+        let dateFormatter = QYFormatter.sharedInstance.getDateFormatter(formatter)
+        return dateFormatter.string(from: date)
+    }
+    
+    /// 获取现在格式化时间
+    /// - Parameter formatter: 格式化格式
+    /// - Returns: 时间
+    static func noeDate(_ formatter:String) ->String{
+        let dateFormatter = QYFormatter.sharedInstance.getDateFormatter(formatter)
+        let date = Date()
+        return dateFormatter.string(from: date)
+
+    }
+    
+    /// 转换毫秒时间戳
+    /// - Parameters:
+    ///   - timestamp: 时间戳
+    ///   - formatter: 格式化格式
+    /// - Returns: 时间
+    static func relayStamp(_ timestamp:String,_ formatter:String) -> String{
+         let interval = (Double(NSObject.relay(timestamp))! / 1000.0)
+         let date = Date(timeIntervalSince1970: interval)
+         let dateFormatter = QYFormatter.sharedInstance.getDateFormatter(formatter)
+         return dateFormatter.string(from: date)
+    }
+}
+
+class QYFormatter: NSObject,NSCacheDelegate {
+    static let sharedInstance = QYFormatter()
+    lazy var dateCahe: NSCache = {
+        let _dateCahe = NSCache<NSString, DateFormatter>()
+        _dateCahe.countLimit = 5
+        return _dateCahe
+    }()
+    private override init() {
+        
+    }
+    func getDateFormatter(_ formatter:String) -> DateFormatter {
+        guard let dateFormatter = dateCahe.object(forKey: (formatter as NSString)) else {
+            let dateformatter = DateFormatter()
+            dateformatter.dateFormat = formatter
+            dateCahe.setObject(dateformatter, forKey: (formatter as NSString))
+            return dateformatter
+        }
+        return dateFormatter
+    }
+}
 
 
