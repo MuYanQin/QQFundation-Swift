@@ -13,6 +13,7 @@ class PageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
+        self.title = "分页"
         let first = FirstViewController()
         let second = SecondViewController()
         let three = ThreeViewController()

@@ -50,12 +50,17 @@ class QYBaseNavViewController: UINavigationController,UIGestureRecognizerDelegat
         
         //ios13 之后开始添加
         if #available(iOS 13.0, *){
+            
             let barApp = UINavigationBarAppearance();
             barApp.configureWithOpaqueBackground()
             barApp.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white,NSAttributedString.Key.font:UIFont.systemFont(ofSize: 18)];
             barApp.backgroundColor = RGB(r: 0, g: 122, b: 255)
             barApp.setBackIndicatorImage(UIImage(named: "arrow_right")?.withRenderingMode(.alwaysOriginal), transitionMaskImage: UIImage(named: "arrow_right")?.withRenderingMode(.alwaysOriginal))
-            
+            //可以修改图片的上下位置
+            barApp.backButtonAppearance.normal.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 4)
+//           可设置为透明隐藏返回
+//            barApp.backButtonAppearance.normal.titleTextAttributes
+
             self.navigationBar.standardAppearance = barApp
             self.navigationBar.scrollEdgeAppearance = barApp
 
@@ -67,7 +72,10 @@ class QYBaseNavViewController: UINavigationController,UIGestureRecognizerDelegat
             
             //nav下面的横线消失
             self.navigationBar.shadowImage = UIImage();
-            
+            //可以修改图片的上下位置
+            UIBarButtonItem .appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: 0, vertical: 3), for: UIBarMetrics.default)
+            //           可设置为透明隐藏返回
+//            UIBarButtonItem .appearance().setTitleTextAttributes(<#T##attributes: [NSAttributedString.Key : Any]?##[NSAttributedString.Key : Any]?#>, for: <#T##UIControl.State#>)
             // 修改导航栏返回按钮图片
              let backButtonImage = UIImage(named: "arrow_right")?.withRenderingMode(.alwaysOriginal)
              navigationBar.backIndicatorImage = backButtonImage

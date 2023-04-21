@@ -51,6 +51,11 @@ class QQTabBarController: UITabBarController {
     
     init(items:Array<QQTabBarItem>,navClass:AnyClass) {
         super.init(nibName:nil, bundle:nil)
+        let tab = QYTabBar();
+        tab.frame = self.tabBar.bounds;
+        // UITabBarController子类
+        self.setValue(tab, forKey: "tabBar")
+        
         itemsArray = items
         initVc(items: items, navClass: navClass)
         creatTabItem(items: items)
@@ -155,14 +160,18 @@ class QQTabBarController: UITabBarController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+}
+//重写setsetItems 方法 使tabbar无法写入 自身的item
+class QYTabBar: UITabBar {
+    // 重写 items 属性，返回一个空数组
+    override var items: [UITabBarItem]? {
+        get {
+            return []
+        }
+        set {}
     }
-    */
+    
+    // 重写 setItems(_:animated:) 方法，使其不做任何事情
+    override func setItems(_ items: [UITabBarItem]?, animated: Bool) {}
 
 }
