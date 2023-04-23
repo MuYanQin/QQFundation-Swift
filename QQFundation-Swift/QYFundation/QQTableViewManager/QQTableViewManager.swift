@@ -98,7 +98,13 @@ class QQTableViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.sections[section].items.count;
+        var  count = 0
+        if (self.sections.count > 0) {
+           let tsection = self.sections[section]
+            count = tsection.items.count
+        }
+        return count;
+        
     }
 
     
@@ -138,6 +144,10 @@ class QQTableViewManager: NSObject,UITableViewDelegate,UITableViewDataSource {
     }
     //MARk -- headView相关
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if (self.sections.count <= section) {
+            return 0;
+        }
+        
         let sec = self.sections[section];
         if sec.item?.secHeight != nil {
             return sec.item!.secHeight!;
