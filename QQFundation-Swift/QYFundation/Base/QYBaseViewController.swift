@@ -63,6 +63,25 @@ class QYBaseViewController: UIViewController ,QQTableViewDelegate{
         print("dealloc" + "\(self)");
     }
     
+    func modifyNaviColorOpacity(_ alpha:CGFloat) -> Void {
+        if #available(iOS 13 , *){
+            guard let appearance = self.navigationController?.navigationBar.standardAppearance else { return  }
+            guard let color = appearance.backgroundColor else { return  }
+            appearance.backgroundColor = color.withAlphaComponent((alpha > 1 ? 1 :alpha))
+            navigationController?.navigationBar.standardAppearance = appearance
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+            guard let titlecColor = appearance.titleTextAttributes[NSAttributedString.Key.foregroundColor] as? UIColor else { return  }
+            appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: titlecColor.withAlphaComponent(alpha)]
+        }else{
+            guard let color = navigationController?.navigationBar.barTintColor else { return  }
+            navigationController?.navigationBar.shadowImage = UIImage.imageWithColor(color.withAlphaComponent(alpha > 1 ? 1 :alpha))
+            navigationController?.navigationBar.setBackgroundImage(UIImage.imageWithColor(color.withAlphaComponent(alpha > 1 ? 1 :alpha)), for: .default)
+            
+            guard let attributes = navigationController?.navigationBar.titleTextAttributes else { return  }
+            guard let titlecColor = attributes[NSAttributedString.Key.foregroundColor] as? UIColor else { return  }
+            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:titlecColor.withAlphaComponent(alpha > 1 ? 1 :alpha)];
+        }
+    }
 
 }
 
@@ -92,10 +111,10 @@ extension UIViewController{
     ///   - font: 文字大小字体
     ///   - sel: 方法
     /// - Returns: 无
-    func nav_rightStrItem(_ title:String,_ sel:Selector,_ color:UIColor? = UIColor.white,_ font:UIFont? = UIFont.systemFont(ofSize: 14)) -> Void {
+    func nav_rightStrItem(_ title:String,_ sel:Selector,_ color:UIColor? = UIColor.black,_ font:UIFont? = UIFont.systemFont(ofSize: 14)) -> Void {
 
         let rightItem = UIBarButtonItem(title: title, style:UIBarButtonItem.Style.plain , target: self, action: sel)
-        let dic = [NSAttributedString.Key.foregroundColor:UIColor.white,NSAttributedString.Key.font:font];
+        let dic = [NSAttributedString.Key.foregroundColor:color,NSAttributedString.Key.font:font];
         rightItem .setTitleTextAttributes(dic as [NSAttributedString.Key : Any], for: UIControl.State.normal);
         rightItem .setTitleTextAttributes(dic as [NSAttributedString.Key : Any], for: UIControl.State.highlighted);
         self.navigationItem.rightBarButtonItem = rightItem;
