@@ -8,16 +8,36 @@
 
 import UIKit
 
-class QYBackNavViewController: QYBaseViewController {
+class QYBackNavViewController: QYBaseViewController,QYBaseNavHiddenDelegate {
+    func needHiddenNav() -> UIViewController {
+        return self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard let nv = self.navigationController as? QYBaseNavViewController else { return  }
+        nv.navHiddenDelegate = self
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        guard let nv = self.navigationController as? QYBaseNavViewController else { return  }
+        nv.navHiddenDelegate = nil
+
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title =  "渐变"
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor.white;
         nav_rightStrItem("跳转", #selector(click))
         self.tableManager.register(cellClass: testCell.self, itemClass: testItem.self);
-        let section = QQTableViewSection()
+        self.view.addSubview(self.navBar)
+        self.baseTableView.scrollViewDidScroll = {[weak self] scrollView in
+            guard let self = self else { return  }
+            self.navAlpha(scrollView.contentOffset.y / 300)
+        }
         
+        let section = QQTableViewSection()
         
         let item = testItem.init()
         item.allowSlide = true;

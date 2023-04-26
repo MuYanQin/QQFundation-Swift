@@ -15,24 +15,13 @@ class HomeViewController: QYBaseViewController {
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor.white
 
-        
-        print("safeDistanceTop=",UIDevice.safeDistanceTop());
-        print("safeDistanceBottom=",UIDevice.safeDistanceBottom());
-        print("statusBarHeight=",UIDevice.statusBarHeight());
-        print("tabBarFullHeight=",UIDevice.tabBarFullHeight());
-        print("navigationFullHeight=",UIDevice.navigationFullHeight());
-        print("navigationFullHeight=",self.navigationController?.navigationBar.frame.height as Any);
+        self.title = "首页"
 
         nav_rightStrItem("ad", #selector(ac))
         self.tableManager.register(cellClass: testCell.self, itemClass: testItem.self);
         self.tableManager.register(cellClass:StackViewCell.self, itemClass: StackViewItem.self);
         self.tableManager.register(cellClass: TestTTView.self, itemClass: TestTTItem.self);
         
-        self.baseTableView.scrollViewDidScroll = {[weak self] scrollView in
-            guard let self = self else { return  }
-            self.modifyNaviColorOpacity((scrollView.contentOffset.y / 300))
-
-        }
         let section = QQTableViewSection();
         
         let secviewItem = TestTTItem.init()

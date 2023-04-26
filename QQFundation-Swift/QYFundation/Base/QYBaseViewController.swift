@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 class QYBaseViewController: UIViewController ,QQTableViewDelegate{
     
     var layout : (() -> (UICollectionViewLayout))?
@@ -44,7 +45,58 @@ class QYBaseViewController: UIViewController ,QQTableViewDelegate{
     lazy var baseArray = Array<QQTableViewSection>();
     
     lazy var baseColArray = Array<QYCollectionViewSection>();
-    
+    var backButton :QYButton?
+    var titleLb:UILabel?
+    lazy var navBar: UIView = {
+        let bar = UIView()
+        bar.frame = CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: QYNavHeight)
+        bar.backgroundColor = UIColor.clear
+        
+        backButton = QYButton(type: .custom)
+        backButton?.backgroundColor = UIColor.white
+        backButton?.layer.cornerRadius = 18
+        backButton?.addTarget(self, action: #selector(backClick), for: .touchUpInside)
+        bar.addSubview(backButton!)
+
+        let img = UIImageView(image: UIImage(named: "arrow_right"))
+        backButton?.addSubview(img)
+        
+        backButton?.snp.makeConstraints({ make in
+            make.left.equalTo(bar).offset(8)
+            make.centerY.equalTo(bar).offset(11)
+            make.size.equalTo(CGSize(width: 36, height: 36))
+        })
+        
+        img.snp.makeConstraints({ make in
+            make.centerX.centerY.equalTo(backButton!)
+            make.size.equalTo(CGSize(width: 20, height: 20))
+        })
+        
+        titleLb = UILabel.getLabel().qfont(18).qtext(self.title ?? "").qtextColor(UIColor.clear)
+        bar.addSubview(titleLb!)
+        
+        titleLb?.snp.makeConstraints({ make in
+            make.centerY.equalTo(backButton!)
+            make.centerX.equalTo(bar)
+        })
+        
+        return bar
+    }()
+    func navAlpha(_ alpha: CGFloat) {
+        guard let color = navigationController?.navigationBar.barTintColor else { return  }
+        navBar.backgroundColor = color.withAlphaComponent(alpha)
+
+        backButton?.backgroundColor = UIColor.white.withAlphaComponent(1 - alpha)
+
+        guard let attributes = navigationController?.navigationBar.titleTextAttributes else { return  }
+        guard let titlecColor = attributes[NSAttributedString.Key.foregroundColor] as? UIColor else { return  }
+        titleLb?.textColor = titlecColor.withAlphaComponent(alpha)
+        
+    }
+
+    @objc func backClick(){
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white;
@@ -62,7 +114,7 @@ class QYBaseViewController: UIViewController ,QQTableViewDelegate{
     deinit {
         print("dealloc" + "\(self)");
     }
-    
+    /// 直接修改系统naviBar的话 在手势返回的时候有些情况不好处理 直接隐藏自定义最好
     func modifyNaviColorOpacity(_ alpha:CGFloat) -> Void {
         if #available(iOS 13 , *){
             guard let appearance = self.navigationController?.navigationBar.standardAppearance else { return  }
@@ -84,6 +136,7 @@ class QYBaseViewController: UIViewController ,QQTableViewDelegate{
     }
 
 }
+
 
 extension UIViewController{
     
