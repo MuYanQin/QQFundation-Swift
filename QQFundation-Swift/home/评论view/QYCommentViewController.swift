@@ -1,21 +1,21 @@
 //
-//  QYTestHeightViewController.swift
+//  QYCommentViewController.swift
 //  QQFundation-Swift
 //
-//  Created by peanut on 2023/3/29.
+//  Created by songping on 2023/4/27.
 //  Copyright © 2023 leaduadmin. All rights reserved.
 //
 
 import UIKit
 
-class QYTestHeightViewController: UIViewController {
+class QYCommentViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-
+    
 
     /*
     // MARK: - Navigation

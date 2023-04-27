@@ -25,7 +25,7 @@ class HomeViewController: QYBaseViewController {
         let section = QQTableViewSection();
         
         let secviewItem = TestTTItem.init()
-        secviewItem.name = "测试View"
+        secviewItem.name = "测试TabviewSectionView"
         secviewItem.secHeight = 100
         section.item = secviewItem
         
@@ -49,7 +49,7 @@ class HomeViewController: QYBaseViewController {
         item.allowSlide = true;
         item.trailingTArray = ["收藏","喜欢"]
         item.leadingTArray = ["删除","卸载"]
-        item.name = "测试"
+        item.name = "导航栏渐变的效果"
         item.selectCellHandler = {(item) ->() in
             self.navigationController?.pushViewController(QYBackNavViewController(), animated: true);
         }
@@ -63,22 +63,21 @@ class HomeViewController: QYBaseViewController {
         
         
         
-        
-        for _ in 1...3{
-            let item1 = testItem.init()
-            item1.name = "测试3333"
-            item1.selectCellHandler = { (item) in
-                self.navigationController?.pushViewController(QYTestHeightViewController(), animated: true);
-
-            }
-            section.addItem(item1)
+        let item1 = testItem.init()
+        item1.name = "collectionView的视图管理"
+        item1.selectCellHandler = {(item) ->() in
+            self.navigationController?.pushViewController(QYTestLazyViewController(), animated: true);
         }
+        section.addItem(item1)
         
-        for _ in 1...[1,1,1,].count{
-            let item1 = testItem.init()
-            item1.name = "测试3333"
-            section.addItem(item1)
+        
+        let commentItem = testItem.init()
+        commentItem.name = "评论使用textView"
+        commentItem.selectCellHandler = {(item) ->() in
+            self.navigationController?.pushViewController(QYCommentViewController(), animated: true);
         }
+        section.addItem(commentItem)
+        
 
         self.baseArray.append(section);
         self.tableManager .reloadDataFromArray(sections: self.baseArray);

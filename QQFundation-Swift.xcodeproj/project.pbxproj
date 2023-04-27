@@ -21,7 +21,6 @@
 		427A3B2D2419CFED00FE162B /* QQTableViewSecItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B2C2419CFED00FE162B /* QQTableViewSecItem.swift */; };
 		427A3B2F2419D01200FE162B /* QQTableViewSecView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B2E2419D01200FE162B /* QQTableViewSecView.swift */; };
 		427A3B312419DAC000FE162B /* TestTTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B302419DAC000FE162B /* TestTTView.swift */; };
-		427A3B332419EB9200FE162B /* oneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B322419EB9200FE162B /* oneCell.swift */; };
 		427A3B36241A2EB600FE162B /* QQTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A3B35241A2EB600FE162B /* QQTableView.swift */; };
 		427A3B39241A361200FE162B /* icon_em_al.png in Resources */ = {isa = PBXBuildFile; fileRef = 427A3B37241A361200FE162B /* icon_em_al.png */; };
 		427A3B3A241A361200FE162B /* multi_network_error_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 427A3B38241A361200FE162B /* multi_network_error_icon@2x.png */; };
@@ -37,6 +36,7 @@
 		42DB5037245134CC0050869B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB5036245134CC0050869B /* HomeViewController.swift */; };
 		42DB5039245134D40050869B /* MineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB5038245134D40050869B /* MineViewController.swift */; };
 		42DB503B245134E50050869B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB503A245134E50050869B /* SearchViewController.swift */; };
+		4D2E860229FA0C9600B9F97C /* QYCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2E860129FA0C9600B9F97C /* QYCommentViewController.swift */; };
 		4D34A0D629ED2A3700BD324D /* QYHoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D34A0D529ED2A3700BD324D /* QYHoverView.swift */; };
 		6E1E662A29E18FC50033A61E /* QYTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1E662929E18FC50033A61E /* QYTextField.swift */; };
 		6E23142629DBF5AB00337427 /* QYTagLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E23142529DBF5AB00337427 /* QYTagLayout.swift */; };
@@ -49,8 +49,6 @@
 		6E37989A29CD6B3D00D3168D /* BaseDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E37989929CD6B3D00D3168D /* BaseDefine.swift */; };
 		6E37989C29CD7A1300D3168D /* QYBaseNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E37989B29CD7A1300D3168D /* QYBaseNavViewController.swift */; };
 		6E37989F29CD8F7800D3168D /* QYBackNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E37989E29CD8F7800D3168D /* QYBackNavViewController.swift */; };
-		6E81F8EE29D3D8A5002C9FB8 /* QYTestHeightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E81F8EC29D3D8A5002C9FB8 /* QYTestHeightViewController.swift */; };
-		6E81F8EF29D3D8A5002C9FB8 /* QYTestHeightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E81F8ED29D3D8A5002C9FB8 /* QYTestHeightViewController.xib */; };
 		6E81F92E29D44E12002C9FB8 /* StackViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E81F92C29D44E12002C9FB8 /* StackViewCell.swift */; };
 		6E81F92F29D44E12002C9FB8 /* StackViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E81F92D29D44E12002C9FB8 /* StackViewCell.xib */; };
 		6E81F93229D51CEB002C9FB8 /* QYCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E81F93129D51CEB002C9FB8 /* QYCollectionView.swift */; };
@@ -113,7 +111,6 @@
 		427A3B2C2419CFED00FE162B /* QQTableViewSecItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QQTableViewSecItem.swift; sourceTree = "<group>"; };
 		427A3B2E2419D01200FE162B /* QQTableViewSecView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QQTableViewSecView.swift; sourceTree = "<group>"; };
 		427A3B302419DAC000FE162B /* TestTTView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTTView.swift; sourceTree = "<group>"; };
-		427A3B322419EB9200FE162B /* oneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = oneCell.swift; sourceTree = "<group>"; };
 		427A3B35241A2EB600FE162B /* QQTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QQTableView.swift; sourceTree = "<group>"; };
 		427A3B37241A361200FE162B /* icon_em_al.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_em_al.png; sourceTree = "<group>"; };
 		427A3B38241A361200FE162B /* multi_network_error_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "multi_network_error_icon@2x.png"; sourceTree = "<group>"; };
@@ -131,6 +128,7 @@
 		42DB5038245134D40050869B /* MineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineViewController.swift; sourceTree = "<group>"; };
 		42DB503A245134E50050869B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		496D9601C4BD8CBA37B79A04 /* Pods_QQFundation_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QQFundation_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D2E860129FA0C9600B9F97C /* QYCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QYCommentViewController.swift; sourceTree = "<group>"; };
 		4D34A0D529ED2A3700BD324D /* QYHoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QYHoverView.swift; sourceTree = "<group>"; };
 		6E1E662929E18FC50033A61E /* QYTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QYTextField.swift; sourceTree = "<group>"; };
 		6E23142529DBF5AB00337427 /* QYTagLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QYTagLayout.swift; sourceTree = "<group>"; };
@@ -143,8 +141,6 @@
 		6E37989929CD6B3D00D3168D /* BaseDefine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDefine.swift; sourceTree = "<group>"; };
 		6E37989B29CD7A1300D3168D /* QYBaseNavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QYBaseNavViewController.swift; sourceTree = "<group>"; };
 		6E37989E29CD8F7800D3168D /* QYBackNavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QYBackNavViewController.swift; sourceTree = "<group>"; };
-		6E81F8EC29D3D8A5002C9FB8 /* QYTestHeightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QYTestHeightViewController.swift; sourceTree = "<group>"; };
-		6E81F8ED29D3D8A5002C9FB8 /* QYTestHeightViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QYTestHeightViewController.xib; sourceTree = "<group>"; };
 		6E81F92C29D44E12002C9FB8 /* StackViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewCell.swift; sourceTree = "<group>"; };
 		6E81F92D29D44E12002C9FB8 /* StackViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StackViewCell.xib; sourceTree = "<group>"; };
 		6E81F93129D51CEB002C9FB8 /* QYCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QYCollectionView.swift; sourceTree = "<group>"; };
@@ -222,7 +218,6 @@
 			isa = PBXGroup;
 			children = (
 				6ECAEB1B29D576720060AF00 /* QYFundation */,
-				4256C32B2418CEF900B08EBF /* cell */,
 				421142B72415E58F00B71E07 /* AppDelegate.swift */,
 				428CC87124446440007F42B1 /* QQFundation-Swift-Bridging-Header.h */,
 				6E37989D29CD8F5100D3168D /* home */,
@@ -260,7 +255,6 @@
 				4256C3292418BEBB00B08EBF /* testCell.swift */,
 				6E81F92C29D44E12002C9FB8 /* StackViewCell.swift */,
 				6E81F92D29D44E12002C9FB8 /* StackViewCell.xib */,
-				427A3B322419EB9200FE162B /* oneCell.swift */,
 				427A3B302419DAC000FE162B /* TestTTView.swift */,
 				6E81F93E29D54FF7002C9FB8 /* CollectionViewCell.swift */,
 				6ECAEB1729D5608F0060AF00 /* CollectionReusableView.swift */,
@@ -316,6 +310,30 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		4D2E85FE29FA0C4100B9F97C /* 导航渐变 */ = {
+			isa = PBXGroup;
+			children = (
+				6E37989E29CD8F7800D3168D /* QYBackNavViewController.swift */,
+			);
+			path = "导航渐变";
+			sourceTree = "<group>";
+		};
+		4D2E85FF29FA0C4A00B9F97C /* collectionView视图管理 */ = {
+			isa = PBXGroup;
+			children = (
+				6EE7DE4B29D12EAE00AA5FE5 /* QYTestLazyViewController.swift */,
+			);
+			path = "collectionView视图管理";
+			sourceTree = "<group>";
+		};
+		4D2E860029FA0C6F00B9F97C /* 评论view */ = {
+			isa = PBXGroup;
+			children = (
+				4D2E860129FA0C9600B9F97C /* QYCommentViewController.swift */,
+			);
+			path = "评论view";
+			sourceTree = "<group>";
+		};
 		4D34A0D429ED2A1E00BD324D /* QYHoverView */ = {
 			isa = PBXGroup;
 			children = (
@@ -332,7 +350,7 @@
 			path = QYPageVView;
 			sourceTree = "<group>";
 		};
-		6E25229629DD40CA00854729 /* pageViewVC */ = {
+		6E25229629DD40CA00854729 /* 分页 */ = {
 			isa = PBXGroup;
 			children = (
 				6E25229429DD40C300854729 /* PageViewController.swift */,
@@ -340,18 +358,18 @@
 				6E25229929DD40F600854729 /* SecondViewController.swift */,
 				6E25229B29DD40FD00854729 /* ThreeViewController.swift */,
 			);
-			path = pageViewVC;
+			path = "分页";
 			sourceTree = "<group>";
 		};
 		6E37989D29CD8F5100D3168D /* home */ = {
 			isa = PBXGroup;
 			children = (
-				6E25229629DD40CA00854729 /* pageViewVC */,
+				4D2E860029FA0C6F00B9F97C /* 评论view */,
+				4D2E85FF29FA0C4A00B9F97C /* collectionView视图管理 */,
+				4D2E85FE29FA0C4100B9F97C /* 导航渐变 */,
+				4256C32B2418CEF900B08EBF /* cell */,
+				6E25229629DD40CA00854729 /* 分页 */,
 				42DB5036245134CC0050869B /* HomeViewController.swift */,
-				6E37989E29CD8F7800D3168D /* QYBackNavViewController.swift */,
-				6EE7DE4B29D12EAE00AA5FE5 /* QYTestLazyViewController.swift */,
-				6E81F8EC29D3D8A5002C9FB8 /* QYTestHeightViewController.swift */,
-				6E81F8ED29D3D8A5002C9FB8 /* QYTestHeightViewController.xib */,
 			);
 			path = home;
 			sourceTree = "<group>";
@@ -557,7 +575,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				427A3B3A241A361200FE162B /* multi_network_error_icon@2x.png in Resources */,
-				6E81F8EF29D3D8A5002C9FB8 /* QYTestHeightViewController.xib in Resources */,
 				42C40D232451388300359796 /* tab_launch@2x.png in Resources */,
 				421142C42415E59100B71E07 /* LaunchScreen.storyboard in Resources */,
 				421142C12415E59100B71E07 /* Assets.xcassets in Resources */,
@@ -696,6 +713,7 @@
 				427A3B282419CA9B00FE162B /* QQTableViewManager.swift in Sources */,
 				6E81F93229D51CEB002C9FB8 /* QYCollectionView.swift in Sources */,
 				6E25229A29DD40F600854729 /* SecondViewController.swift in Sources */,
+				4D2E860229FA0C9600B9F97C /* QYCommentViewController.swift in Sources */,
 				6E37989829CD690200D3168D /* QYBaseViewController.swift in Sources */,
 				427A3B36241A2EB600FE162B /* QQTableView.swift in Sources */,
 				6E1E662A29E18FC50033A61E /* QYTextField.swift in Sources */,
@@ -703,7 +721,6 @@
 				6E25229C29DD40FD00854729 /* ThreeViewController.swift in Sources */,
 				427A3B2F2419D01200FE162B /* QQTableViewSecView.swift in Sources */,
 				427A3B43241B613700FE162B /* UIButton+Chained.swift in Sources */,
-				427A3B332419EB9200FE162B /* oneCell.swift in Sources */,
 				4D34A0D629ED2A3700BD324D /* QYHoverView.swift in Sources */,
 				6E81F93929D51EB9002C9FB8 /* QYCollectionViewCell.swift in Sources */,
 				6E81F93F29D54FF7002C9FB8 /* CollectionViewCell.swift in Sources */,
@@ -725,7 +742,6 @@
 				6E25229529DD40C300854729 /* PageViewController.swift in Sources */,
 				427A3B47241B7E7000FE162B /* UILabel+Chained.swift in Sources */,
 				6E81F93B29D5357F002C9FB8 /* QYCollectionViewSection.swift in Sources */,
-				6E81F8EE29D3D8A5002C9FB8 /* QYTestHeightViewController.swift in Sources */,
 				42C40D1F2451387100359796 /* UITabBar+MCBigItem.swift in Sources */,
 				42C40D222451388300359796 /* QQTabBarItem.swift in Sources */,
 				427A3B312419DAC000FE162B /* TestTTView.swift in Sources */,

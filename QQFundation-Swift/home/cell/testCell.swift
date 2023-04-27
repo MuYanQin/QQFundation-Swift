@@ -23,8 +23,7 @@ class testCell: QQTableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        label = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: 100, height: 40))
-        label!.backgroundColor = UIColor.purple
+        label = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: self.q_width, height: self.q_height))
         self.addSubview(label!)
     }
     

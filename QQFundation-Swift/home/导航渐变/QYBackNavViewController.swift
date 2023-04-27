@@ -43,9 +43,9 @@ class QYBackNavViewController: QYBaseViewController,QYBaseNavHiddenDelegate {
         item.allowSlide = true;
         item.trailingTArray = ["收藏","喜欢"]
         item.leadingTArray = ["删除","卸载"]
-        item.name = "测试"
+        item.name = "渐变"
         item.selectCellHandler = {(item) ->() in
-            self.navigationController?.pushViewController(QYBackNavViewController(), animated: true);
+//            self.navigationController?.pushViewController(QYBackNavViewController(), animated: true);
         }
         item.trailingSwipeHandler = {(item,index)->() in
             print(item , index);
@@ -56,19 +56,16 @@ class QYBackNavViewController: QYBaseViewController,QYBaseNavHiddenDelegate {
         section.addItem(item)
         
         
-        
-        
-        for _ in 1...30{
+        for _ in 1...10 {
             let item1 = testItem.init()
-            item1.name = "测试3333"
+            item1.name = "渐变"
+            item1.selectCellHandler = {(item) ->() in
+    //            self.navigationController?.pushViewController(QYTestLazyViewController(), animated: true);
+            }
             section.addItem(item1)
         }
-        
-        for _ in 1...[1,1,1,].count{
-            let item1 = testItem.init()
-            item1.name = "测试3333"
-            section.addItem(item1)
-        }
+
+
 
         self.baseArray.append(section);
         self.tableManager .reloadDataFromArray(sections: self.baseArray);
