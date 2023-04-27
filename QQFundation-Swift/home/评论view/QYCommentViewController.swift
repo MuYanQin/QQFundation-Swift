@@ -19,11 +19,19 @@ class QYCommentViewController: QYBaseViewController {
         btn.frame = CGRectMake(100, 100, 100, 100)
         self.view.addSubview(btn)
         
+        let btnTimer = QYButton(type: .custom)
+        btnTimer.backgroundColor = UIColor.purple
+        btnTimer.addTarget(self, action: #selector(btnCLick1(_:)), for: .touchUpInside)
+        btnTimer.frame = CGRectMake(100, 205, 100, 100)
+        self.view.addSubview(btnTimer)
         
     }
 
     @objc func btnCLick() -> Void {
         let commentView = QYCommentView(frame: CGRectMake(0, 0, kScreenWidth, kScreenHeight))
         commentView.show()
+    }
+    @objc func btnCLick1(_ btn:QYButton) -> Void {
+        btn.startCountdown()
     }
 }

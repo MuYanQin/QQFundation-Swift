@@ -20,6 +20,7 @@ class QYButton: UIButton {
     
     var position :Position = .none
     
+    private var timer:DispatchSourceTimer?
     
     static func getButton() -> QYButton {
         return QYButton.init(type: .custom)
@@ -104,4 +105,41 @@ class QYButton: UIButton {
 
         }
     }
+    
+    func startCountdown() {
+        var timeOut = 60
+        let queue = DispatchQueue.global(qos: .default)
+        self.timer = DispatchSource.makeTimerSource(queue: queue)
+        // 每秒执行一次
+        self.timer?.schedule(deadline: DispatchTime.now(), repeating: 1.0, leeway: .milliseconds(10))
+        self.timer?.setEventHandler(handler: {
+            // 倒计时结束，关闭
+            if timeOut <= 0 {
+                self.timer?.cancel()
+                DispatchQueue.main.async {
+                    self.setTitle("点击重新获取验证码", for: .normal)
+                    self.isUserInteractionEnabled = true
+                }
+            } else {
+                let seconds = timeOut % 61
+                let timeStr = String(format: "%02d", seconds)
+                DispatchQueue.main.async {
+                    self.setTitle(timeStr + "S", for: .normal)
+                    self.isUserInteractionEnabled = false
+                }
+                timeOut -= 1
+            }
+        })
+        self.timer?.resume()
+    }
+    
+    func resetCountdown() {
+        self.timer?.cancel()
+        DispatchQueue.main.async {
+            self.setTitle("点击重新获取", for: .normal)
+            self.isUserInteractionEnabled = true
+        }
+    }
+
+
 }
