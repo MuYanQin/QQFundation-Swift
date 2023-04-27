@@ -8,23 +8,22 @@
 
 import UIKit
 
-class QYCommentViewController: UIViewController {
+class QYCommentViewController: QYBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let btn = UIButton(type: .custom)
+        btn.backgroundColor = UIColor.purple
+        btn.addTarget(self, action: #selector(btnCLick), for: .touchUpInside)
+        btn.frame = CGRectMake(100, 100, 100, 100)
+        self.view.addSubview(btn)
+        
+        
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc func btnCLick() -> Void {
+        let commentView = QYCommentView(frame: CGRectMake(0, 0, kScreenWidth, kScreenHeight))
+        commentView.show()
     }
-    */
-
 }
