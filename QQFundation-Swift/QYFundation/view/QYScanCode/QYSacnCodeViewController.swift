@@ -168,21 +168,29 @@ class QYSacnCodeViewController: QYBaseViewController, AVCaptureMetadataOutputObj
         if metadataObjects.isEmpty {
             return
         }
-
+        if metadataObjects.count > 1{
+            let view = UIView()
+            view.frame = self.view.bounds
+            view.backgroundColor = UIColor.black
+            view.alpha = 0.5
+            self.view.addSubview(view)
+            qrCodeFrameViews.append(view)
+            self.view.bringSubviewToFront(self.backBtn)
+        }
+        
         // 获取元数据对象
         for metadataObj in metadataObjects {
             guard let readableObject = metadataObj as? AVMetadataMachineReadableCodeObject else { continue }
 
             // 获取二维码或条码的边界
             let barcodeObject = previewLayer.transformedMetadataObject(for: readableObject)
-
+            
             if let qrCodeString = readableObject.stringValue {
                 
                 if metadataObjects.count == 1{
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-//                        self.navigationController?.popViewController(animated: true)
+                        self.navigationController?.popViewController(animated: true)
                         self.delegate?.scanCodeResult(qrCodeString)
-                        
                     }
                 }
                 
