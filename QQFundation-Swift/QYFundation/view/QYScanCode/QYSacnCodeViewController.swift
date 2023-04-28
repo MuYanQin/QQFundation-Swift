@@ -8,12 +8,24 @@
 
 import UIKit
 import AVFoundation
-class QYSacnCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate  {
+enum ScanArea {
+    case full,part
+}
+
+class QYSacnCodeViewController: QYBaseViewController, AVCaptureMetadataOutputObjectsDelegate,QYBaseNavHiddenDelegate  {
+    func needHiddenNav() -> UIViewController {
+        return self
+    }
+    
     
     private var captureSession: AVCaptureSession!
     private var previewLayer: AVCaptureVideoPreviewLayer!
     private var qrCodeFrameViews: [UIView] = []
-    
+    private let backBtn = QYButton(type: .custom)
+
+    var scanArea :ScanArea = .full
+    /// 扫描区域大小
+    var scanSize:CGSize = CGSizeMake(200, 200)
     lazy var scanLineView: UIImageView = {
         let _imgView  = UIImageView(image: UIImage(named: "scan_line"))
        _imgView.frame = CGRect(x: 0, y: -80, width: self.scanAreaView.frame.width, height: 80)
@@ -21,7 +33,7 @@ class QYSacnCodeViewController: UIViewController, AVCaptureMetadataOutputObjects
     }()
     
     lazy var scanAreaView: UIView = {
-        let _view = UIView(frame: CGRect(x: (kScreenWidth - 200) / 2 , y: (kScreenHeight - 200) / 2, width: 200, height: 200))
+        let _view = UIView(frame: CGRect(x: (kScreenWidth - scanSize.width) / 2 , y: (kScreenHeight - scanSize.height) / 2, width: scanSize.width, height: scanSize.height))
         _view.clipsToBounds = true
         return _view
     }()
@@ -29,20 +41,28 @@ class QYSacnCodeViewController: UIViewController, AVCaptureMetadataOutputObjects
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.backgroundColor = UIColor.black
-        //添加蒙层
-        self.drawTransparentSquare()
-        
-        initSacn()
-
-
+        guard let nav = self.navigationController as? QYBaseNavViewController else { return  }
+        nav.navHiddenDelegate = self
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        guard let nav = self.navigationController as? QYBaseNavViewController else { return  }
+        nav.navHiddenDelegate = nil
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.backgroundColor = UIColor.black
+        
+        if scanArea == .part{
+            //添加蒙层
+            self.drawTransparentSquare()
+        }
+        initSacn()
+        
+
+    }
+
 
     func initSacn() -> Void {
         
@@ -88,30 +108,49 @@ class QYSacnCodeViewController: UIViewController, AVCaptureMetadataOutputObjects
             // 创建视频预览层，并将其添加到视图中
             self.previewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession)
             self.previewLayer.videoGravity = .resizeAspectFill
+            
             // 更新 UI，并在主线程中执行
             DispatchQueue.main.async {
                 self.previewLayer.frame = self.view.layer.bounds
                 self.view.layer.addSublayer(self.previewLayer)
-                // 添加扫描框视图
-                self.view.addSubview(self.scanAreaView)
-
-                // 创建扫描动画视图
-                self.scanAreaView.addSubview(self.scanLineView)
-                /**
-                 在这行代码前面【 let rect = capturePreView!.metadataOutputRectConverted(fromLayerRect: self.interestRect)】
-                 一定要先执行【captureSession?.startRunning()】
-                 否则【metadataOutputRectConverted返回的rect是{0,0,0,0}】,这样就没办法捕捉到二维码信息了
-                 */
-                // 启动会话
-                self.captureSession.startRunning()
+                if self.scanArea == .part{
+                    // 添加扫描框视图
+                    self.view.addSubview(self.scanAreaView)
+                    // 创建扫描动画视图
+                    self.scanAreaView.addSubview(self.scanLineView)
+                    /**
+                     在这行代码前面【 let rect = capturePreView!.metadataOutputRectConverted(fromLayerRect: self.interestRect)】
+                     一定要先执行【captureSession?.startRunning()】
+                     否则【metadataOutputRectConverted返回的rect是{0,0,0,0}】,这样就没办法捕捉到二维码信息了
+                     */
+                    // 启动会话
+                    self.captureSession.startRunning()
+                    
+                    // 设置扫描区域（注：此处需要将rectOfInterest设置为摄像头采集到的图像中的相对位置，即x、y、width、height都在0到1之间）
+                    let rectOfInterest = self.previewLayer.metadataOutputRectConverted(fromLayerRect: self.scanAreaView.frame)
+                    metadataOutput.rectOfInterest = rectOfInterest
+                    
+                    // 创建扫描动画
+                    self.startAnimate()
+                    self.view.bringSubviewToFront(self.maskView)
+                }else{
+                    // 启动会话
+                    self.captureSession.startRunning()
+                }
                 
-                // 设置扫描区域（注：此处需要将rectOfInterest设置为摄像头采集到的图像中的相对位置，即x、y、width、height都在0到1之间）
-                let rectOfInterest = self.previewLayer.metadataOutputRectConverted(fromLayerRect: self.scanAreaView.frame)
-                metadataOutput.rectOfInterest = rectOfInterest
+                //返回按钮
+                self.backBtn.frame = CGRectMake(20, QYStatusBarHeight + 7 , 40, 40)
+                _ = self.backBtn.qimageState("back", .normal).qimageSize(CGSizeMake(30, 30))
+                self.backBtn.addTarget(self, action: #selector(self.backClick3), for: .touchUpInside)
+                self.view.addSubview(self.backBtn)
                 
-                // 创建扫描动画
-                self.startAnimate()
-                self.view.bringSubviewToFront(self.maskView)
+                //相册按钮
+                let btn = UIButton(type: .custom)
+                btn.frame = CGRectMake(kScreenWidth  - 80, kScreenHeight - 100, 60, 60)
+                btn.layer.cornerRadius = 30
+                btn.backgroundColor = UIColor.purple
+                btn.addTarget(self, action: #selector(self.selectImag), for: .touchUpInside)
+                self.view.addSubview(btn)
             }
         }
   
@@ -145,17 +184,22 @@ class QYSacnCodeViewController: UIViewController, AVCaptureMetadataOutputObjects
                 qrCodeFrameViews.append(qrCodeFrameView)
             }
         }
-        
+        if scanArea == .full{
+            _ = backBtn.qtext("取消").qimageState("", .normal).isSelected = true
+        }
         captureSession.stopRunning()
         endAnimate()
     }
 
     func scanningNotPossible() {
-        let alert = UIAlertController(title: "Scanning not possible", message: "Your device does not support scanning a code from an item. Please use a device with a camera.", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert.addAction(okAction)
-        present(alert, animated: true, completion: nil)
-        captureSession.commitConfiguration()
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Scanning not possible", message: "Your device does not support scanning a code from an item. Please use a device with a camera.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(okAction)
+            self.present(alert, animated: true, completion: nil)
+            self.captureSession.commitConfiguration()
+        }
+
     }
     func startAnimate() -> Void {
         UIView.animate(withDuration: 2.0, delay: 0.0, options: [ .repeat, .curveEaseInOut], animations: {
@@ -168,6 +212,21 @@ class QYSacnCodeViewController: UIViewController, AVCaptureMetadataOutputObjects
             self.scanLineView.transform = CGAffineTransform.identity
             self.scanLineView.isHidden = true
         }, completion: nil)
+    }
+    @objc func selectImag() -> Void {
+        
+    }
+    @objc func backClick3() -> Void {
+        if !backBtn.isSelected {
+            self.navigationController?.popViewController(animated: true)
+        }else{
+            _ = backBtn.qtext("").qimageState("back", .normal).isSelected = false
+            qrCodeFrameViews.forEach { $0.removeFromSuperview() }
+            qrCodeFrameViews.removeAll()
+            captureSession.startRunning()
+            startAnimate()
+        }
+        
     }
     /// 绘制蒙层
     /// - Parameters:
@@ -183,10 +242,10 @@ class QYSacnCodeViewController: UIViewController, AVCaptureMetadataOutputObjects
         let path = UIBezierPath(rect: CGRect(x: 0, y: 0, width: view.q_width, height: view.q_height))
         
         let layerBounds = view.layer.bounds
-        let transparentRect = CGRect(x: layerBounds.midX - 200 / 2,
-                                     y: layerBounds.midY - 200 / 2,
-                                     width: 200,
-                                     height: 200)
+        let transparentRect = CGRect(x: layerBounds.midX - (scanSize.width / 2),
+                                     y: layerBounds.midY - (scanSize.height / 2),
+                                     width: scanSize.width,
+                                     height: scanSize.height)
 
         let transparentPath = UIBezierPath(rect: transparentRect)
         path.append(transparentPath)
@@ -200,4 +259,9 @@ class QYSacnCodeViewController: UIViewController, AVCaptureMetadataOutputObjects
         maskView.layer.addSublayer(layer)
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        
+        return UIStatusBarStyle.lightContent;
+
+    }
 }

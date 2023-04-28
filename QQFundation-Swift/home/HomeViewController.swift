@@ -81,7 +81,10 @@ class HomeViewController: QYBaseViewController {
         let scanItem = testItem.init()
         scanItem.name = "扫描二维码"
         scanItem.selectCellHandler = {(item) ->() in
-            self.navigationController?.pushViewController(QYSacnCodeViewController(), animated: true);
+            let vc = QYSacnCodeViewController()
+            vc.scanArea = .full
+            vc.scanSize = CGSizeMake(300, 120)
+            self.navigationController?.pushViewController(vc, animated: true);
         }
         section.addItem(scanItem)
         
