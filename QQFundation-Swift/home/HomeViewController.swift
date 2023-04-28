@@ -21,7 +21,7 @@ class HomeViewController: QYBaseViewController {
         self.tableManager.register(cellClass: testCell.self, itemClass: testItem.self);
         self.tableManager.register(cellClass:StackViewCell.self, itemClass: StackViewItem.self);
         self.tableManager.register(cellClass: TestTTView.self, itemClass: TestTTItem.self);
-        
+        self.baseTableView.q_height -= QYTabBarFulHeight
         let section = QQTableViewSection();
         
         let secviewItem = TestTTItem.init()
@@ -78,7 +78,13 @@ class HomeViewController: QYBaseViewController {
         }
         section.addItem(commentItem)
         
-
+        let scanItem = testItem.init()
+        scanItem.name = "扫描二维码"
+        scanItem.selectCellHandler = {(item) ->() in
+            self.navigationController?.pushViewController(QYSacnCodeViewController(), animated: true);
+        }
+        section.addItem(scanItem)
+        
         self.baseArray.append(section);
         self.tableManager .reloadDataFromArray(sections: self.baseArray);
         
