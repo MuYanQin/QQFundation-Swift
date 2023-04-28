@@ -64,21 +64,17 @@ class QYButton: UIButton {
             imageWith = self.imageSize!.width
             imageHeight = self.imageSize!.height
             self.imageView?.frame.size = self.imageSize!
+            
+            self.imageView?.frame.origin = CGPointMake((self.q_width - imageWith) / 2, (self.q_height - imageHeight)/2)
         }else{
             imageWith = self.q_width/3;
             imageHeight = self.q_height/3;
         }
-        var total :CGFloat = 0
-        if positoin == .none{
-            total =  imageWith + lwidth
-        }else{
-            total =  imageWith + lwidth + self.gapBetweenTI
-        }
+        var  total =  imageWith + lwidth + self.gapBetweenTI
         
         var imagex = (self.q_width - total)/2
         var imagey = (self.q_height - imageHeight)/2
         
-        self.imageView?.frame.origin = CGPointMake(imagex, imagey)
 
         //MARK:文字在右
         if positoin == .right{

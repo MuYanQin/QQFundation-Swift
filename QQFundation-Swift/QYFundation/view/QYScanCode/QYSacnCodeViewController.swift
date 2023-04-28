@@ -12,12 +12,17 @@ enum ScanArea {
     case full,part
 }
 
+protocol QYSacnCodeDelegate:NSObjectProtocol {
+    func scanCodeResult(_ text:String)
+}
+ 
+
 class QYSacnCodeViewController: QYBaseViewController, AVCaptureMetadataOutputObjectsDelegate,QYBaseNavHiddenDelegate  {
     func needHiddenNav() -> UIViewController {
         return self
     }
     
-    
+    weak var delegate:QYSacnCodeDelegate?
     private var captureSession: AVCaptureSession!
     private var previewLayer: AVCaptureVideoPreviewLayer!
     private var qrCodeFrameViews: [UIView] = []
@@ -172,15 +177,29 @@ class QYSacnCodeViewController: QYBaseViewController, AVCaptureMetadataOutputObj
             let barcodeObject = previewLayer.transformedMetadataObject(for: readableObject)
 
             if let qrCodeString = readableObject.stringValue {
-                print("QR Code / Barcode String Value: \(qrCodeString)")
+                
+                if metadataObjects.count == 1{
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+//                        self.navigationController?.popViewController(animated: true)
+                        self.delegate?.scanCodeResult(qrCodeString)
+                        
+                    }
+                }
+                
                 // 给每个二维码或条码打上标记
-                let qrCodeFrameView = UIButton(type: .custom)
-                qrCodeFrameView.backgroundColor = UIColor.green
+                let qrCodeFrameView = ScaledButton(type: .custom)
+                qrCodeFrameView.backgroundColor = RGB(r: 86, g: 176, b: 100)
                 qrCodeFrameView.layer.cornerRadius = 18
+                qrCodeFrameView.layer.borderColor = UIColor.white.cgColor
+                qrCodeFrameView.layer.borderWidth = 3
+                _ = qrCodeFrameView.qinfo(qrCodeString)
+                qrCodeFrameView.setImage(UIImage(named: "sacnCode_right"), for: .normal)
+                qrCodeFrameView.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom:10, right: 10)
                 qrCodeFrameView.frame.origin.x = barcodeObject!.bounds.origin.x + ( barcodeObject!.bounds.size.width / 4)
                 qrCodeFrameView.frame.origin.y = barcodeObject!.bounds.origin.y + ( barcodeObject!.bounds.size.height / 4)
                 qrCodeFrameView.frame.size = CGSizeMake(36, 36)
-                previewLayer.addSublayer(qrCodeFrameView.layer)
+                qrCodeFrameView.addTarget(self, action: #selector(selectedDot(_ :)), for: .touchUpInside)
+                self.view.addSubview(qrCodeFrameView)
                 qrCodeFrameViews.append(qrCodeFrameView)
             }
         }
@@ -189,6 +208,7 @@ class QYSacnCodeViewController: QYBaseViewController, AVCaptureMetadataOutputObj
         }
         captureSession.stopRunning()
         endAnimate()
+        dotStartAnimate()
     }
 
     func scanningNotPossible() {
@@ -200,6 +220,18 @@ class QYSacnCodeViewController: QYBaseViewController, AVCaptureMetadataOutputObj
             self.captureSession.commitConfiguration()
         }
 
+    }
+    @objc func selectedDot(_ btn :UIButton) -> Void {
+        self.navigationController?.popViewController(animated: true)
+        guard let btn = btn as? QYButton else { return  }
+        self.delegate?.scanCodeResult(btn.info as? String ?? "")
+    }
+    func dotStartAnimate() -> Void {
+        UIView.animate(withDuration: 1, delay: 1.0, options: [ .repeat, .curveLinear], animations: {
+            for (_,view) in self.qrCodeFrameViews.enumerated() {
+                view.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+            }
+        }, completion: nil)
     }
     func startAnimate() -> Void {
         UIView.animate(withDuration: 2.0, delay: 0.0, options: [ .repeat, .curveEaseInOut], animations: {
@@ -263,5 +295,17 @@ class QYSacnCodeViewController: QYBaseViewController, AVCaptureMetadataOutputObj
         
         return UIStatusBarStyle.lightContent;
 
+    }
+}
+
+class ScaledButton: QYButton {
+    
+    // 重写 hitTest 方法，手动计算响应区域
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        let hitFrame = bounds.insetBy(dx: -20, dy: -20) // 调整响应区域
+        if hitFrame.contains(point) {
+            return self
+        }
+        return super.hitTest(point, with: event)
     }
 }

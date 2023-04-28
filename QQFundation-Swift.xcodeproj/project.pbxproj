@@ -41,6 +41,7 @@
 		4D2E860929FA7A2700B9F97C /* QYSacnCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2E860829FA7A2700B9F97C /* QYSacnCodeViewController.swift */; };
 		4D2E860D29FB675F00B9F97C /* scan_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D2E860C29FB675F00B9F97C /* scan_line@2x.png */; };
 		4D2E860F29FB91DA00B9F97C /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D2E860E29FB91DA00B9F97C /* back@2x.png */; };
+		4D2E861329FBA20B00B9F97C /* sacnCode_right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D2E861229FBA20B00B9F97C /* sacnCode_right@2x.png */; };
 		4D34A0D629ED2A3700BD324D /* QYHoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D34A0D529ED2A3700BD324D /* QYHoverView.swift */; };
 		6E1E662A29E18FC50033A61E /* QYTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1E662929E18FC50033A61E /* QYTextField.swift */; };
 		6E23142629DBF5AB00337427 /* QYTagLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E23142529DBF5AB00337427 /* QYTagLayout.swift */; };
@@ -137,6 +138,7 @@
 		4D2E860829FA7A2700B9F97C /* QYSacnCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QYSacnCodeViewController.swift; sourceTree = "<group>"; };
 		4D2E860C29FB675F00B9F97C /* scan_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scan_line@2x.png"; sourceTree = "<group>"; };
 		4D2E860E29FB91DA00B9F97C /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
+		4D2E861229FBA20B00B9F97C /* sacnCode_right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sacnCode_right@2x.png"; sourceTree = "<group>"; };
 		4D34A0D529ED2A3700BD324D /* QYHoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QYHoverView.swift; sourceTree = "<group>"; };
 		6E1E662929E18FC50033A61E /* QYTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QYTextField.swift; sourceTree = "<group>"; };
 		6E23142529DBF5AB00337427 /* QYTagLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QYTagLayout.swift; sourceTree = "<group>"; };
@@ -369,6 +371,7 @@
 			isa = PBXGroup;
 			children = (
 				4D2E860829FA7A2700B9F97C /* QYSacnCodeViewController.swift */,
+				4D2E861229FBA20B00B9F97C /* sacnCode_right@2x.png */,
 				4D2E860E29FB91DA00B9F97C /* back@2x.png */,
 				4D2E860C29FB675F00B9F97C /* scan_line@2x.png */,
 			);
@@ -614,6 +617,7 @@
 				42C40D232451388300359796 /* tab_launch@2x.png in Resources */,
 				421142C42415E59100B71E07 /* LaunchScreen.storyboard in Resources */,
 				421142C12415E59100B71E07 /* Assets.xcassets in Resources */,
+				4D2E861329FBA20B00B9F97C /* sacnCode_right@2x.png in Resources */,
 				6EE7DE5829D2CC1C00AA5FE5 /* yuanerM.jpeg in Resources */,
 				421142BF2415E58F00B71E07 /* Main.storyboard in Resources */,
 				6E81F92F29D44E12002C9FB8 /* StackViewCell.xib in Resources */,

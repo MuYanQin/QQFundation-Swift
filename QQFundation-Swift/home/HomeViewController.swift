@@ -8,7 +8,12 @@
 
 import UIKit
 
-class HomeViewController: QYBaseViewController {
+class HomeViewController: QYBaseViewController ,QYSacnCodeDelegate{
+    func scanCodeResult(_ text: String) {
+        
+        print(text)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -83,6 +88,7 @@ class HomeViewController: QYBaseViewController {
         scanItem.selectCellHandler = {(item) ->() in
             let vc = QYSacnCodeViewController()
             vc.scanArea = .full
+            vc.delegate = self
             vc.scanSize = CGSizeMake(300, 120)
             self.navigationController?.pushViewController(vc, animated: true);
         }
