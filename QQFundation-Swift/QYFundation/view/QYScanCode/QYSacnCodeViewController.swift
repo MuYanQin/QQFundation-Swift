@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import Photos
 enum ScanArea {
     case full,part
 }
@@ -58,16 +59,34 @@ class QYSacnCodeViewController: QYBaseViewController, AVCaptureMetadataOutputObj
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.black
-        
-        if scanArea == .part{
-            //添加蒙层
-            self.drawTransparentSquare()
-        }
-        initSacn()
-        
-
+        authenticationCamera();
     }
 
+    func authenticationCamera() -> Void {
+        let authorStatu = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
+        switch authorStatu {
+
+        case .authorized://授权
+            if self.scanArea == .part{
+                //添加蒙层
+                self.drawTransparentSquare()
+            }
+            self.initSacn()
+            break
+        case .notDetermined://未知
+            AVCaptureDevice.requestAccess(for: AVMediaType.video) { statu in
+                if statu{
+                    self.authenticationCamera();
+                }
+            }
+            break
+        case .denied,.restricted://拒绝
+            self.showPromptText(false)
+            break
+        default:
+            break
+        }
+    }
 
     func initSacn() -> Void {
         
@@ -254,7 +273,33 @@ class QYSacnCodeViewController: QYBaseViewController, AVCaptureMetadataOutputObj
         }, completion: nil)
     }
     @objc func selectImag() -> Void {
-        
+        self.authenticationPhoto()
+    }
+    func authenticationPhoto() -> Void {
+        let statu = PHPhotoLibrary.authorizationStatus()
+        switch statu {
+        case .restricted,.denied:
+            self.showPromptText(true)
+            break
+        case .authorized:
+            break
+        case .notDetermined:
+            if #available(iOS 14, *) {
+                PHPhotoLibrary.requestAuthorization(for: PHAccessLevel.readWrite) { statu in
+                    self.authenticationPhoto()
+                }
+            } else {
+                // Fallback on earlier versions
+                PHPhotoLibrary.requestAuthorization { statu in
+                    self.authenticationPhoto()
+                }
+            }
+            break
+        case .limited:
+            break
+        default:
+            break
+        }
     }
     @objc func backClick3() -> Void {
         if !backBtn.isSelected {
@@ -303,6 +348,20 @@ class QYSacnCodeViewController: QYBaseViewController, AVCaptureMetadataOutputObj
         
         return UIStatusBarStyle.lightContent;
 
+    }
+    func showPromptText(_ photo : Bool) -> Void {
+        let alertController : UIAlertController!
+        if photo{
+            alertController = UIAlertController(title: "无法使用相册", message: "请在iPhone的\"设置-隐私-相册\"中允许访问相册", preferredStyle: .alert)
+        }else{
+            alertController = UIAlertController(title: "无法使用相机", message: "请在iPhone的\"设置-隐私-相机\"中允许访问相机", preferredStyle: .alert)
+        }
+        
+        alertController.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "设置", style: .default, handler: { action in
+            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
+        }))
+        present(alertController, animated: true, completion: nil)
     }
 }
 
