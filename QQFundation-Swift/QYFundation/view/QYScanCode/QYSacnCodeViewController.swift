@@ -32,26 +32,23 @@ class QYSacnCodeViewController: QYBaseViewController, AVCaptureMetadataOutputObj
         let _imagePicker = RXImagePickerController()
 
 
-        if #available(iOS 13, *){
+        if #available(iOS 13.0, *) {
             let navBarAppearance = UINavigationBarAppearance()
-               navBarAppearance.configureWithOpaqueBackground()
-               navBarAppearance.backgroundColor = UIColor.blue // 设置背景色
-               navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 22, weight: .bold)] // 设置标题文本颜色和字体
-
-               let barButtonItemAppearance = UIBarButtonItemAppearance()
-               barButtonItemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 18)] // 设置默认状态下 UIBarButtonItem 的文本颜色和字体
-
-               let doneButtonAppearance = UIBarButtonItemAppearance()
-               doneButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.red, .font: UIFont.systemFont(ofSize: 18)] // 设置 Done 按钮的文本颜色和字体
-               
-               navBarAppearance.doneButtonAppearance = doneButtonAppearance // 设置 Done 按钮的外观
-               
-            _imagePicker.navigationBar.standardAppearance = navBarAppearance
-            _imagePicker.navigationBar.scrollEdgeAppearance = navBarAppearance
-            _imagePicker.navigationBar.tintColor = UIColor.white // 设置导航栏按钮颜色
-            _imagePicker.nav_rightStrItem("qu", #selector(selectImag))
-
-        }else{
+            navBarAppearance.configureWithOpaqueBackground()
+            navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.red]
+            navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.red]
+            navBarAppearance.backgroundColor = UIColor.blue
+  
+            UINavigationBar.appearance().tintColor = .cyan
+            UINavigationBar.appearance().barTintColor = .red
+            UINavigationBar.appearance().backgroundColor = .red
+            UINavigationBar.appearance().isTranslucent = false
+            UINavigationBar.appearance().standardAppearance = navBarAppearance
+            UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
+            //ios 13以后 无法更改样式 只能自定义 https://www.likecs.com/ask-1014525.html
+            // 接下来设置其他属性并打开图片选择器界面
+        }
+        else{
             _imagePicker.navigationBar.barTintColor = self.navigationController?.navigationBar.barTintColor
             _imagePicker.navigationBar.tintColor = self.navigationController?.navigationBar.tintColor
             _imagePicker.navigationBar.titleTextAttributes = self.navigationController?.navigationBar.titleTextAttributes
@@ -357,6 +354,7 @@ class QYSacnCodeViewController: QYBaseViewController, AVCaptureMetadataOutputObj
             self.showPromptText(true)
             break
         case .authorized:
+
             DispatchQueue.main.async {
                 self.present(self.imagePicker, animated: true)
             }
