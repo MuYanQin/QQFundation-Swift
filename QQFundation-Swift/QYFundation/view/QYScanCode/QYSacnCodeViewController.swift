@@ -18,7 +18,7 @@ protocol QYSacnCodeDelegate:NSObjectProtocol {
 }
  
 
-class QYSacnCodeViewController: QYBaseViewController, AVCaptureMetadataOutputObjectsDelegate,QYBaseNavHiddenDelegate  {
+class QYSacnCodeViewController: QYBaseViewController, AVCaptureMetadataOutputObjectsDelegate,QYBaseNavHiddenDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func needHiddenNav() -> UIViewController {
         return self
     }
@@ -28,6 +28,45 @@ class QYSacnCodeViewController: QYBaseViewController, AVCaptureMetadataOutputObj
     private var previewLayer: AVCaptureVideoPreviewLayer!
     private var qrCodeFrameViews: [UIView] = []
     private let backBtn = QYButton(type: .custom)
+    lazy var imagePicker: RXImagePickerController = {
+        let _imagePicker = RXImagePickerController()
+
+
+        if #available(iOS 13, *){
+            let navBarAppearance = UINavigationBarAppearance()
+               navBarAppearance.configureWithOpaqueBackground()
+               navBarAppearance.backgroundColor = UIColor.blue // 设置背景色
+               navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 22, weight: .bold)] // 设置标题文本颜色和字体
+
+               let barButtonItemAppearance = UIBarButtonItemAppearance()
+               barButtonItemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 18)] // 设置默认状态下 UIBarButtonItem 的文本颜色和字体
+
+               let doneButtonAppearance = UIBarButtonItemAppearance()
+               doneButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.red, .font: UIFont.systemFont(ofSize: 18)] // 设置 Done 按钮的文本颜色和字体
+               
+               navBarAppearance.doneButtonAppearance = doneButtonAppearance // 设置 Done 按钮的外观
+               
+            _imagePicker.navigationBar.standardAppearance = navBarAppearance
+            _imagePicker.navigationBar.scrollEdgeAppearance = navBarAppearance
+            _imagePicker.navigationBar.tintColor = UIColor.white // 设置导航栏按钮颜色
+            _imagePicker.nav_rightStrItem("qu", #selector(selectImag))
+
+        }else{
+            _imagePicker.navigationBar.barTintColor = self.navigationController?.navigationBar.barTintColor
+            _imagePicker.navigationBar.tintColor = self.navigationController?.navigationBar.tintColor
+            _imagePicker.navigationBar.titleTextAttributes = self.navigationController?.navigationBar.titleTextAttributes
+            _imagePicker.navigationBar.backIndicatorImage = self.navigationController?.navigationBar.backIndicatorImage
+            _imagePicker.navigationBar.backIndicatorTransitionMaskImage = self.navigationController?.navigationBar.backIndicatorImage
+            let item  = UIBarButtonItem.appearance(whenContainedInInstancesOf: [UIImagePickerController.self])
+            item.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.black,NSAttributedString.Key.font:UIFont.systemFont(ofSize: 14)], for: .normal)
+            item.setBackButtonTitlePositionAdjustment(UIOffset(horizontal: 0, vertical:1), for: .default)
+        }
+        _imagePicker.delegate = self
+        _imagePicker.allowsEditing = false
+        _imagePicker.modalPresentationStyle =  .fullScreen
+        _imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+        return _imagePicker
+    }()
 
     var scanArea :ScanArea = .full
     /// 扫描区域大小
@@ -59,7 +98,8 @@ class QYSacnCodeViewController: QYBaseViewController, AVCaptureMetadataOutputObj
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.black
-        authenticationCamera();
+//        authenticationCamera();
+        authenticationPhoto()
     }
 
     func authenticationCamera() -> Void {
@@ -159,7 +199,9 @@ class QYSacnCodeViewController: QYBaseViewController, AVCaptureMetadataOutputObj
                     self.view.bringSubviewToFront(self.maskView)
                 }else{
                     // 启动会话
-                    self.captureSession.startRunning()
+                    DispatchQueue.global(qos: .background).async {
+                        self.captureSession.startRunning()
+                    }
                 }
                 
                 //返回按钮
@@ -248,6 +290,38 @@ class QYSacnCodeViewController: QYBaseViewController, AVCaptureMetadataOutputObj
         }
 
     }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.originalImage] as? UIImage else {
+            self.navigationController?.popViewController(animated: true)
+             return
+         }
+        scanQRCode(from: image)
+
+    }
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        
+    }
+    func scanQRCode(from image: UIImage) {
+        
+        guard let imageData = image.pngData() else {
+            return
+        }
+        guard let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh]) else {
+            return
+        }
+        guard let ciImage = CIImage(data: imageData) else {
+            return
+        }
+        let features = detector.features(in: ciImage)
+        if let feature = features.first as? CIQRCodeFeature, let stringValue = feature.messageString {
+            print("识别到的二维码内容为：",stringValue )
+            self.delegate?.scanCodeResult(stringValue)
+
+        } else {
+        }
+        imagePicker.dismiss(animated: true)
+    }
+
     @objc func selectedDot(_ btn :UIButton) -> Void {
         self.navigationController?.popViewController(animated: true)
         guard let btn = btn as? QYButton else { return  }
@@ -273,6 +347,7 @@ class QYSacnCodeViewController: QYBaseViewController, AVCaptureMetadataOutputObj
         }, completion: nil)
     }
     @objc func selectImag() -> Void {
+        
         self.authenticationPhoto()
     }
     func authenticationPhoto() -> Void {
@@ -282,6 +357,9 @@ class QYSacnCodeViewController: QYBaseViewController, AVCaptureMetadataOutputObj
             self.showPromptText(true)
             break
         case .authorized:
+            DispatchQueue.main.async {
+                self.present(self.imagePicker, animated: true)
+            }
             break
         case .notDetermined:
             if #available(iOS 14, *) {
@@ -375,4 +453,43 @@ class ScaledButton: QYButton {
         }
         return super.hitTest(point, with: event)
     }
+}
+class RXImagePickerController: UIImagePickerController {
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return UIStatusBarStyle.default
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if #available(iOS 13.0, *) {
+            let barApp = UINavigationBarAppearance()
+            barApp.configureWithOpaqueBackground()
+            barApp.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white,NSAttributedString.Key.font:UIFont.systemFont(ofSize: 18)];
+            barApp.backgroundColor = RGB(r: 0, g: 122, b: 255)
+            barApp.setBackIndicatorImage(UIImage(named: "arrow_right")?.withRenderingMode(.alwaysOriginal), transitionMaskImage: UIImage(named: "arrow_right")?.withRenderingMode(.alwaysOriginal))
+            //可以修改图片的上下位置
+            barApp.backButtonAppearance.normal.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 4)
+    //           可设置为透明隐藏返回
+    //            barApp.backButtonAppearance.normal.titleTextAttributes
+
+            self.navigationBar.standardAppearance = barApp
+            self.navigationBar.scrollEdgeAppearance = barApp
+        } else {
+            // Fallback on earlier versions
+        };
+
+    }
+    @objc func ttt (){
+        
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        if #available(iOS 13.0, *) {
+
+        }
+    
+    }
+
 }

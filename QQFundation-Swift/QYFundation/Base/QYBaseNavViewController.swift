@@ -68,7 +68,7 @@ class QYBaseNavViewController: UINavigationController,UIGestureRecognizerDelegat
             //导航条的颜色
             self.navigationBar.barTintColor = RGB(r: 0, g: 122, b: 255);
             //导航条title的颜色
-            self.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black,NSAttributedString.Key.font:UIFont.systemFont(ofSize: 18)];
+            self.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black,NSAttributedString.Key.font:UIFont.systemFont(ofSize: 18)]
             
             //nav下面的横线消失
             self.navigationBar.shadowImage = UIImage();
@@ -171,7 +171,7 @@ class QYBaseNavViewController: UINavigationController,UIGestureRecognizerDelegat
         }
         
         let backItem = UIBarButtonItem.init(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil);
-        backItem.tintColor = UIColor.black;//返回的颜色
+        backItem.tintColor = UIColor.cyan;//返回的颜色
         viewController.navigationItem.backBarButtonItem = backItem;
         
         

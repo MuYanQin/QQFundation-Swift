@@ -133,6 +133,8 @@
 		42DB5038245134D40050869B /* MineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineViewController.swift; sourceTree = "<group>"; };
 		42DB503A245134E50050869B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		496D9601C4BD8CBA37B79A04 /* Pods_QQFundation_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QQFundation_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D2AD4C92A0350BD00A321E4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		4D2AD4CA2A0350BD00A321E4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		4D2E860129FA0C9600B9F97C /* QYCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QYCommentViewController.swift; sourceTree = "<group>"; };
 		4D2E860529FA0DD400B9F97C /* QYCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QYCommentView.swift; sourceTree = "<group>"; };
 		4D2E860829FA7A2700B9F97C /* QYSacnCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QYSacnCodeViewController.swift; sourceTree = "<group>"; };
@@ -595,6 +597,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 421142AB2415E58F00B71E07;
 			productRefGroup = 421142B52415E58F00B71E07 /* Products */;
@@ -840,6 +843,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				421142BE2415E58F00B71E07 /* Base */,
+				4D2AD4C92A0350BD00A321E4 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -848,6 +852,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				421142C32415E59100B71E07 /* Base */,
+				4D2AD4CA2A0350BD00A321E4 /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -859,6 +864,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -919,6 +925,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
