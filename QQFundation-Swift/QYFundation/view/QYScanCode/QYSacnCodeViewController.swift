@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import Photos
+import PhotosUI
 enum ScanArea {
     case full,part
 }
@@ -18,7 +19,7 @@ protocol QYSacnCodeDelegate:NSObjectProtocol {
 }
  
 
-class QYSacnCodeViewController: QYBaseViewController, AVCaptureMetadataOutputObjectsDelegate,QYBaseNavHiddenDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class QYSacnCodeViewController: QYBaseViewController, AVCaptureMetadataOutputObjectsDelegate,QYBaseNavHiddenDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate ,PHPickerViewControllerDelegate{
     func needHiddenNav() -> UIViewController {
         return self
     }
@@ -28,23 +29,19 @@ class QYSacnCodeViewController: QYBaseViewController, AVCaptureMetadataOutputObj
     private var previewLayer: AVCaptureVideoPreviewLayer!
     private var qrCodeFrameViews: [UIView] = []
     private let backBtn = QYButton(type: .custom)
+
     lazy var imagePicker: RXImagePickerController = {
         let _imagePicker = RXImagePickerController()
 
-
         if #available(iOS 13.0, *) {
-            let navBarAppearance = UINavigationBarAppearance()
-            navBarAppearance.configureWithOpaqueBackground()
-            navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.red]
-            navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.red]
-            navBarAppearance.backgroundColor = UIColor.blue
+
   
             UINavigationBar.appearance().tintColor = .cyan
             UINavigationBar.appearance().barTintColor = .red
             UINavigationBar.appearance().backgroundColor = .red
             UINavigationBar.appearance().isTranslucent = false
-            UINavigationBar.appearance().standardAppearance = navBarAppearance
-            UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
+//            UINavigationBar.appearance().standardAppearance = navBarAppearance
+//            UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
             //ios 13以后 无法更改样式 只能自定义 https://www.likecs.com/ask-1014525.html
             // 接下来设置其他属性并打开图片选择器界面
         }
@@ -287,6 +284,19 @@ class QYSacnCodeViewController: QYBaseViewController, AVCaptureMetadataOutputObj
         }
 
     }
+
+    @available(iOS 14, *)
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        for result in results {
+            result.itemProvider.loadFileRepresentation(forTypeIdentifier: UTType.image.identifier) { url, error in
+                if let url = url {
+                    // 使用选择的图像
+                    print(url)
+                }
+            }
+        }
+    }
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.originalImage] as? UIImage else {
             self.navigationController?.popViewController(animated: true)
@@ -354,10 +364,27 @@ class QYSacnCodeViewController: QYBaseViewController, AVCaptureMetadataOutputObj
             self.showPromptText(true)
             break
         case .authorized:
+            if #available(iOS 14.0 , *){
+                var config = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
+//                config.filter = .images
+                config.selectionLimit = 4
+                let photoPicker = PHPickerViewController(configuration:config )
+                photoPicker.delegate = self
 
-            DispatchQueue.main.async {
-                self.present(self.imagePicker, animated: true)
+                photoPicker.modalPresentationStyle = .fullScreen
+                let navBarAppearance = UINavigationBarAppearance()
+                navBarAppearance.configureWithOpaqueBackground()
+                navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.red]
+                navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.red]
+                navBarAppearance.backgroundColor = UIColor.blue
+                photoPicker.navigationItem.standardAppearance  = navBarAppearance
+                self.present(photoPicker, animated: true)
+            }else{
+                DispatchQueue.main.async {
+                    self.present(self.imagePicker, animated: true)
+                }
             }
+            
             break
         case .notDetermined:
             if #available(iOS 14, *) {
