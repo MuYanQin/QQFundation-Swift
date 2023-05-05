@@ -133,6 +133,24 @@ class QYBaseViewController: UIViewController ,QQTableViewDelegate{
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:titlecColor.withAlphaComponent(alpha > 1 ? 1 :alpha)];
         }
     }
+    
+    func changWindowOrientation(_ orientation:UIInterfaceOrientationMask) -> Void{
+        if #available(iOS 16.0 , *){
+            //在视图控制器中，获取窗口场景。
+            guard let windowScene = view.window?.windowScene else { return }
+            //windowScene.requestGeometryUpdate(.iOS(interfaceOrientations: .landscapeRight))
+            //（同上） 请求窗口场景旋转到任何景观方向。
+            windowScene.requestGeometryUpdate(.iOS(interfaceOrientations:   orientation)) { error in
+                print("---requestGeometryUpdate 处理拒绝请求 \n\n")
+            }
+          //处理横屏View布局...
+        }else{
+            let orientationTarget = NSNumber(value: orientation.rawValue)
+            UIDevice.current.setValue(orientationTarget, forKey: "orientation")
+            UIViewController.attemptRotationToDeviceOrientation()
+        }
+    }
+    
 
 }
 

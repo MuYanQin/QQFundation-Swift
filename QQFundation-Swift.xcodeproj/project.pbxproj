@@ -43,6 +43,8 @@
 		4D2E860F29FB91DA00B9F97C /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D2E860E29FB91DA00B9F97C /* back@2x.png */; };
 		4D2E861329FBA20B00B9F97C /* sacnCode_right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D2E861229FBA20B00B9F97C /* sacnCode_right@2x.png */; };
 		4D34A0D629ED2A3700BD324D /* QYHoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D34A0D529ED2A3700BD324D /* QYHoverView.swift */; };
+		4D4A41EA2A04C71F003EE746 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4A41E92A04C71F003EE746 /* SwiftUIView.swift */; };
+		4D4A41ED2A04E600003EE746 /* OrientationItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4A41EC2A04E600003EE746 /* OrientationItemViewController.swift */; };
 		6E1E662A29E18FC50033A61E /* QYTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1E662929E18FC50033A61E /* QYTextField.swift */; };
 		6E23142629DBF5AB00337427 /* QYTagLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E23142529DBF5AB00337427 /* QYTagLayout.swift */; };
 		6E25229329DD1DCA00854729 /* QYPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E25229229DD1DCA00854729 /* QYPageView.swift */; };
@@ -142,6 +144,8 @@
 		4D2E860E29FB91DA00B9F97C /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		4D2E861229FBA20B00B9F97C /* sacnCode_right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sacnCode_right@2x.png"; sourceTree = "<group>"; };
 		4D34A0D529ED2A3700BD324D /* QYHoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QYHoverView.swift; sourceTree = "<group>"; };
+		4D4A41E92A04C71F003EE746 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		4D4A41EC2A04E600003EE746 /* OrientationItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationItemViewController.swift; sourceTree = "<group>"; };
 		6E1E662929E18FC50033A61E /* QYTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QYTextField.swift; sourceTree = "<group>"; };
 		6E23142529DBF5AB00337427 /* QYTagLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QYTagLayout.swift; sourceTree = "<group>"; };
 		6E25229229DD1DCA00854729 /* QYPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QYPageView.swift; sourceTree = "<group>"; };
@@ -388,6 +392,14 @@
 			path = QYHoverView;
 			sourceTree = "<group>";
 		};
+		4D4A41EB2A04E5F1003EE746 /* 横屏 */ = {
+			isa = PBXGroup;
+			children = (
+				4D4A41EC2A04E600003EE746 /* OrientationItemViewController.swift */,
+			);
+			path = "横屏";
+			sourceTree = "<group>";
+		};
 		6E25229129DD1D9200854729 /* QYPageVView */ = {
 			isa = PBXGroup;
 			children = (
@@ -410,12 +422,14 @@
 		6E37989D29CD8F5100D3168D /* home */ = {
 			isa = PBXGroup;
 			children = (
+				4D4A41EB2A04E5F1003EE746 /* 横屏 */,
 				4D2E860029FA0C6F00B9F97C /* 评论view */,
 				4D2E85FF29FA0C4A00B9F97C /* collectionView视图管理 */,
 				4D2E85FE29FA0C4100B9F97C /* 导航渐变 */,
 				4256C32B2418CEF900B08EBF /* cell */,
 				6E25229629DD40CA00854729 /* 分页 */,
 				42DB5036245134CC0050869B /* HomeViewController.swift */,
+				4D4A41E92A04C71F003EE746 /* SwiftUIView.swift */,
 			);
 			path = home;
 			sourceTree = "<group>";
@@ -756,6 +770,7 @@
 			files = (
 				6E37989C29CD7A1300D3168D /* QYBaseNavViewController.swift in Sources */,
 				427A3B282419CA9B00FE162B /* QQTableViewManager.swift in Sources */,
+				4D4A41EA2A04C71F003EE746 /* SwiftUIView.swift in Sources */,
 				6E81F93229D51CEB002C9FB8 /* QYCollectionView.swift in Sources */,
 				6E25229A29DD40F600854729 /* SecondViewController.swift in Sources */,
 				4D2E860229FA0C9600B9F97C /* QYCommentViewController.swift in Sources */,
@@ -773,6 +788,7 @@
 				4D2E860929FA7A2700B9F97C /* QYSacnCodeViewController.swift in Sources */,
 				427A3B292419CA9B00FE162B /* QQTableViewItem.swift in Sources */,
 				6E81F92E29D44E12002C9FB8 /* StackViewCell.swift in Sources */,
+				4D4A41ED2A04E600003EE746 /* OrientationItemViewController.swift in Sources */,
 				427A3B45241B626600FE162B /* QYButton.swift in Sources */,
 				42C40D252451389100359796 /* QQTabBarController.swift in Sources */,
 				427A3B2D2419CFED00FE162B /* QQTableViewSecItem.swift in Sources */,
@@ -985,7 +1001,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L4674B5247;
 				INFOPLIST_FILE = "QQFundation-Swift/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1008,7 +1024,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L4674B5247;
 				INFOPLIST_FILE = "QQFundation-Swift/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

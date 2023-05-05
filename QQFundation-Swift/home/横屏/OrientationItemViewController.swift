@@ -1,24 +1,32 @@
 //
-//  SearchViewController.swift
+//  OrientationItemViewController.swift
 //  QQFundation-Swift
 //
-//  Created by leaduMac on 2020/4/23.
-//  Copyright © 2020 leaduadmin. All rights reserved.
+//  Created by songping on 2023/5/5.
+//  Copyright © 2023 leaduadmin. All rights reserved.
 //
 
 import UIKit
-import SwiftUI
 
-class SearchViewController: UIViewController {
+class OrientationItemViewController: QYBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.view.backgroundColor = UIColor.white
-
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
 
+        changWindowOrientation(.landscapeRight)
+
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        changWindowOrientation(.portrait)
+
+    }
     /*
     // MARK: - Navigation
 

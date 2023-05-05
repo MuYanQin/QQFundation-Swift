@@ -130,6 +130,7 @@ extension UIDevice {
     static func tabBarFullHeight() -> CGFloat {
         return UIDevice.tabBarHeight() + UIDevice.safeDistanceBottom()
     }
+    
 }
 
 enum QYCalendarType {

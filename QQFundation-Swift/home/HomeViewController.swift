@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import SwiftUI
 
 class HomeViewController: QYBaseViewController ,QYSacnCodeDelegate{
+    
+    var viewUI = SwiftUIView()
+
+    
     func scanCodeResult(_ text: String) {
         
         print(text)
@@ -94,6 +99,25 @@ class HomeViewController: QYBaseViewController ,QYSacnCodeDelegate{
         }
         section.addItem(scanItem)
         
+        let SWIFTUIItem = testItem.init()
+        SWIFTUIItem.name = "集成SwiftUIDemo"
+        SWIFTUIItem.selectCellHandler = {(item) ->() in
+            let vc = UIHostingController(rootView: self.viewUI)
+    
+            self.navigationController?.pushViewController(vc, animated: true);
+        }
+        section.addItem(SWIFTUIItem)
+        
+        
+        let orientationItem = testItem.init()
+        orientationItem.name = "强制横屏"
+        orientationItem.selectCellHandler = {(item) ->() in
+            let vc = OrientationItemViewController()
+            self.navigationController?.pushViewController(vc, animated: true);
+        }
+        section.addItem(orientationItem)
+        
+        
         self.baseArray.append(section);
         self.tableManager .reloadDataFromArray(sections: self.baseArray);
         
@@ -104,7 +128,8 @@ class HomeViewController: QYBaseViewController ,QYSacnCodeDelegate{
     }
     
     @objc func ac() -> () {
-        
+        self.viewUI.text = "test11"
+
     }
     /*
     // MARK: - Navigation

@@ -23,9 +23,14 @@ class MineViewController: UIViewController ,QQTableViewDelegate{
         self.view.addSubview(view)
   
     }
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .landscapeRight
+    }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+
+
        let alert =  QYAlertViewController.alertController(withTitle: "提示", descText: "", cancel: "取消", button: "确定") { index in
-            
+
         }
         self.present(alert, animated: true)
     }
