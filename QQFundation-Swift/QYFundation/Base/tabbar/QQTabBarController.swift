@@ -22,6 +22,8 @@ let kwidth = UIScreen.main.bounds.size.width
 }
 
 class QQTabBarController: UITabBarController {
+       private var items = [QQTabBarItem]()
+
     weak var customDelegate : QQTabBarControllerDelegate?
     var font : UIFont = UIFont.systemFont(ofSize: 10){
         didSet{
@@ -93,17 +95,32 @@ class QQTabBarController: UITabBarController {
         super.viewWillAppear(animated)
         
     }
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate(alongsideTransition: { (context) in
+            let tabWidth = Int(self.tabBar.bounds.width) /  self.items.count
+            for (n,s) in self.items.enumerated(){
+                if s.isBigItem  {
+                    s.frame = CGRect(x: Double(n * tabWidth), y:Double(s.offset) , width: Double(s.bigItemSize.width), height: Double(s.bigItemSize.height))
+                    s.center.x = self.tabBar.center.x
+
+                }else{
+                    s.frame = CGRect(x: Double(n * tabWidth), y:Double(0) , width: Double(tabWidth), height: Double(self.tabBar.frame.size.height))
+                }
+            }
+        }, completion: nil)
+    }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        for item in self.tabBar.subviews {
-            if item.isKind(of: NSClassFromString("UITabBarButton")!){
-                item.removeFromSuperview()
-            }
-        }
+//        for item in self.tabBar.subviews {
+//            if item.isKind(of: NSClassFromString("UITabBarButton")!){
+//                item.removeFromSuperview()
+//            }
+//        }
     }
     
     private func creatTabItem(items:Array<QQTabBarItem>) -> Void {
-        let tabWidth = Int(kwidth) /  items.count
+        let tabWidth = Int(self.tabBar.bounds.width) /  items.count
         var index = 0
         for (n,s) in items.enumerated(){
             if s.isBigItem  {
@@ -134,6 +151,7 @@ class QQTabBarController: UITabBarController {
             s.setTitleColor(selectedColor, for: .selected)
             s.titleLabel?.font = font
             s.titleLabel?.textAlignment = .center
+            self.items.append(s)
             self.tabBar.addSubview(s)
         }
     }
