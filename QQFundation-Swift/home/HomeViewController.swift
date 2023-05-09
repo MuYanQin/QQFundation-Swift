@@ -31,6 +31,8 @@ class HomeViewController: QYBaseViewController ,QYSacnCodeDelegate{
         self.tableManager.register(cellClass: testCell.self, itemClass: testItem.self);
         self.tableManager.register(cellClass:StackViewCell.self, itemClass: StackViewItem.self);
         self.tableManager.register(cellClass: TestTTView.self, itemClass: TestTTItem.self);
+        self.tableManager.register(cellClass: QQEmptyCell.self, itemClass: QQEmptyItem.self);
+        
         self.baseTableView.q_height -= QYTabBarFulHeight
         let section = QQTableViewSection();
         
@@ -99,6 +101,9 @@ class HomeViewController: QYBaseViewController ,QYSacnCodeDelegate{
         }
         section.addItem(scanItem)
         
+        let empty = QQEmptyItem()
+        section.addItem(empty)
+
         let SWIFTUIItem = testItem.init()
         SWIFTUIItem.name = "集成SwiftUIDemo"
         SWIFTUIItem.selectCellHandler = {(item) ->() in

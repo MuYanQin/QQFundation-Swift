@@ -82,7 +82,7 @@ class QYBaseViewController: UIViewController ,QQTableViewDelegate{
         return bar
     }()
     func navAlpha(_ alpha: CGFloat) {
-        guard let color = navigationController?.navigationBar.barTintColor else { return  }
+        guard let color = navigationController?.navigationBar.standardAppearance.backgroundColor else { return  }
         navBar.backgroundColor = color.withAlphaComponent(alpha)
 
         backButton?.backgroundColor = UIColor.white.withAlphaComponent(1 - alpha)
@@ -94,6 +94,7 @@ class QYBaseViewController: UIViewController ,QQTableViewDelegate{
     }
 
     @objc func backClick(){
+        self.navigationController?.popViewController(animated: true)
         
     }
     override func viewDidLoad() {

@@ -25,6 +25,41 @@ extension NSObject {
         return ""
     }
     
+    /// 字典转json
+    /// - Parameter dic: 字典
+    /// - Returns: 无
+    static func dictionaryToJson(_ dic: [String: Any]) -> String? {
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: dic, options: .prettyPrinted)
+            guard var jsonString = String(data: jsonData, encoding: .utf8) else {
+                return nil
+            }
+            jsonString = jsonString.replacingOccurrences(of: " ", with: "")
+            jsonString = jsonString.replacingOccurrences(of: "\n", with: "")
+            return jsonString
+        } catch {
+            print(error.localizedDescription)
+            return nil
+        }
+    }
+    
+    
+    /// json转字典
+    /// - Parameter jsonString: 字符串
+    /// - Returns: 无
+    static func dictionaryWithJsonString(_ jsonString: String?) -> [String: Any]? {
+        guard let jsonString = jsonString else { return nil }
+        guard let jsonData = jsonString.data(using: .utf8) else { return nil }
+        do {
+            let dict = try JSONSerialization.jsonObject(with: jsonData, options: [.mutableContainers]) as? [String: Any]
+            return dict
+        } catch {
+            print("json解析失败：\(error)")
+            return nil
+        }
+    }
+
+    
     func currentShowVC() -> UIViewController {
         let rootVc = UIApplication.shared.keyWindow?.rootViewController
         let currentVc = findCurrentShowingVC(rootVc!)
