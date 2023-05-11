@@ -8,8 +8,79 @@
 
 import UIKit
 
-extension NSObject {
+extension FileManager{
     
+    static func appHomePath() -> String {
+        return NSHomeDirectory()
+    }
+    
+    static func documentsPath() -> String {
+        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+        return paths[0]
+    }
+    
+    
+    static func cachesPath() -> String {
+        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+        return paths[0]
+    }
+    
+    static func contentUrlWith(_ path :String) -> Array<Any> {
+        if path.isEmpty{
+            return []
+        }
+        let fileManager = FileManager.default
+        do{
+            let array = try fileManager.contentsOfDirectory(atPath: path)
+            return array
+        }catch let error {
+            print(error)
+        }
+        return []
+    }
+    static func isContainAtPath(_ path :String) -> Bool {
+        if path.isEmpty{
+            return false
+        }
+        let fileManager = FileManager.default
+        let bret =  fileManager.fileExists(atPath: path)
+        return bret
+    }
+    
+    static func removeItemAtPath(_ path:String) -> Bool {
+        let fileManager = FileManager.default
+        do {
+            try fileManager.removeItem(atPath: path)
+        } catch let error as NSError {
+            print("\(path)==删除失败\(error)")
+            return false
+        }
+        return true
+    }
+    
+    static func createFolder(withPath path: String, folderName name: String, success result: @escaping (String?, Error?) -> ()) {
+        if path.isEmpty || name.isEmpty {
+            print("\(#function)--路径不能为空")
+            return
+        }
+        let fileManager = FileManager.default
+                
+        let testDirectory = URL(fileURLWithPath: path).appendingPathComponent(name, isDirectory: true)
+
+        do {
+            try fileManager.createDirectory(at: testDirectory, withIntermediateDirectories: true)
+            result(testDirectory.path, nil)
+        } catch let error {
+            result(nil, error)
+        }
+
+    }
+    
+
+    
+}
+
+extension NSObject {
     /// 转换为字符串
     /// - Parameter str: 需要转换的值
     static func relay(_ str:Any) -> String {
@@ -102,6 +173,31 @@ extension String{
 }
 
 extension UIDevice {
+    
+    static func systemVersion() -> CGFloat {
+        return CGFloat((UIDevice.current.systemVersion as NSString).floatValue)
+    }
+
+    static func AppName() -> String? {
+        let bundleName = Bundle.main.infoDictionary?["CFBundleExecutable"] as? String
+        return bundleName
+    }
+
+    static func APPBundleID() -> String? {
+        let bundleID = Bundle.main.infoDictionary?["CFBundleIdentifier"] as? String
+        return bundleID
+    }
+
+    static func APPBuild() -> String? {
+        let appBuild = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
+        return appBuild
+    }
+
+    static func APPVersion() -> String? {
+        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+        return appVersion
+    }
+
     
     /// 顶部安全区高度
     static func safeDistanceTop() -> CGFloat {

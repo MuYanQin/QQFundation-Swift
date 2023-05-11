@@ -82,10 +82,17 @@ class QYBaseViewController: UIViewController ,QQTableViewDelegate{
         return bar
     }()
     func navAlpha(_ alpha: CGFloat) {
-        guard let color = navigationController?.navigationBar.standardAppearance.backgroundColor else { return  }
-        navBar.backgroundColor = color.withAlphaComponent(alpha)
+        if #available(iOS 13.0, *) {
+            guard let color = navigationController?.navigationBar.standardAppearance.backgroundColor else { return  }
+            navBar.backgroundColor = color.withAlphaComponent(alpha)
 
-        backButton?.backgroundColor = UIColor.white.withAlphaComponent(1 - alpha)
+            backButton?.backgroundColor = UIColor.white.withAlphaComponent(1 - alpha)
+        } else {
+            guard let color = navigationController?.navigationBar.barTintColor else { return  }
+            navBar.backgroundColor = color.withAlphaComponent(alpha)
+            backButton?.backgroundColor = UIColor.white.withAlphaComponent(1 - alpha)
+        }
+
 
         guard let attributes = navigationController?.navigationBar.titleTextAttributes else { return  }
         guard let titlecColor = attributes[NSAttributedString.Key.foregroundColor] as? UIColor else { return  }

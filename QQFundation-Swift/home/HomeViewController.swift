@@ -11,7 +11,6 @@ import SwiftUI
 
 class HomeViewController: QYBaseViewController ,QYSacnCodeDelegate{
     
-    var viewUI = SwiftUIView()
 
     
     func scanCodeResult(_ text: String) {
@@ -107,9 +106,7 @@ class HomeViewController: QYBaseViewController ,QYSacnCodeDelegate{
         let SWIFTUIItem = testItem.init()
         SWIFTUIItem.name = "集成SwiftUIDemo"
         SWIFTUIItem.selectCellHandler = {(item) ->() in
-            let vc = UIHostingController(rootView: self.viewUI)
-    
-            self.navigationController?.pushViewController(vc, animated: true);
+            
         }
         section.addItem(SWIFTUIItem)
         
@@ -126,6 +123,15 @@ class HomeViewController: QYBaseViewController ,QYSacnCodeDelegate{
         self.baseArray.append(section);
         self.tableManager .reloadDataFromArray(sections: self.baseArray);
         
+
+        UserInfo.writeUserInfo(["name":"秦慕乔","id":"123","gender":"1"])
+        print(UserInfo.sharedInstance().name)
+        print(UserInfo.sharedInstance().id)
+        print(UserInfo.sharedInstance().gender)
+        UserInfo.cleanUpInfo()
+        print(UserInfo.sharedInstance().name)
+        print(UserInfo.sharedInstance().id)
+        print(UserInfo.sharedInstance().gender)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -133,7 +139,6 @@ class HomeViewController: QYBaseViewController ,QYSacnCodeDelegate{
     }
     
     @objc func ac() -> () {
-        self.viewUI.text = "test11"
 
     }
     /*
