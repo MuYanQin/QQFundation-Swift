@@ -79,6 +79,9 @@ extension FileManager{
 
     
 }
+extension Array{
+    
+}
 
 extension NSObject {
     /// 转换为字符串
@@ -374,6 +377,7 @@ extension Date{
          return dateFormatter.string(from: date)
     }
 }
+import CoreImage
 extension UIImage{
     static func imageWithColor(_ color: UIColor) -> UIImage? {
         let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
@@ -390,6 +394,37 @@ extension UIImage{
         
         return image
     }
+    
+    static func generateQRCode(from string: String) -> UIImage? {
+        let data = string.data(using: .utf8)
+        guard let qrFilter = CIFilter(name: "CIQRCodeGenerator") else { return nil }
+        qrFilter.setValue(data, forKey: "inputMessage")
+        guard let ciOutputImage = qrFilter.outputImage else { return nil }
+        
+        return self.createUIImageFromCIImage(image: ciOutputImage, size: 200)
+    }
+    
+   private static func createUIImageFromCIImage(image: CIImage, size: CGFloat) -> UIImage {
+           let extent = image.extent.integral
+           let scale = min(size / extent.width, size / extent.height)
+               
+           /// Create bitmap
+           let width: size_t = size_t(extent.width * scale)
+           let height: size_t = size_t(extent.height * scale)
+           let cs: CGColorSpace = CGColorSpaceCreateDeviceGray()
+           let bitmap: CGContext = CGContext(data: nil, width: width, height: height, bitsPerComponent: 8, bytesPerRow: 0, space: cs, bitmapInfo: 1)!
+          
+           ///
+           let context = CIContext.init()
+           let bitmapImage = context.createCGImage(image, from: extent)
+           bitmap.interpolationQuality = .none
+           bitmap.scaleBy(x: scale, y: scale)
+           bitmap.draw(bitmapImage!, in: extent)
+               
+           let scaledImage = bitmap.makeImage()
+           return UIImage.init(cgImage: scaledImage!)
+       }
+    
 }
 
 class QYFormatter: NSObject,NSCacheDelegate {

@@ -123,15 +123,24 @@ class HomeViewController: QYBaseViewController ,QYSacnCodeDelegate{
         self.baseArray.append(section);
         self.tableManager .reloadDataFromArray(sections: self.baseArray);
         
+        QYNetManager.RTGet(url: "https://indexrxn.chinahrt.com/my_courses?goodsType=016003&login_name=rx_18afd44d3dc44faba99e8a6d1c3cd079&page_offset=1&page_size=10&user_id=7d15f65740054218b042487a912717ae&webPlatformId=69", param: nil) { res in
+            
+        } failed: { err in
+            
+        }
+        
+        let dic = ["wd":"一心一意",
+                   "city":"合肥",
+                   "key":"9fb1050d51053e5ae75513ea08566ccc"
+        ]
+        QYNetManager.RTSPost(url: "http://apis.juhe.cn/simpleWeather/query", param:dic) { res in
+            
+        } failed: { err in
+            
+        }
 
-        UserInfo.writeUserInfo(["name":"秦慕乔","id":"123","gender":"1"])
-        print(UserInfo.sharedInstance().name)
-        print(UserInfo.sharedInstance().id)
-        print(UserInfo.sharedInstance().gender)
-        UserInfo.cleanUpInfo()
-        print(UserInfo.sharedInstance().name)
-        print(UserInfo.sharedInstance().id)
-        print(UserInfo.sharedInstance().gender)
+
+
     }
 
     override func viewWillAppear(_ animated: Bool) {

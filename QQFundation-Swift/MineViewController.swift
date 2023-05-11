@@ -21,29 +21,20 @@ class MineViewController: UIViewController ,QQTableViewDelegate{
         view.layer.shadowOffset = CGSize(width: 2, height: 0)
         view.layer.shadowPath = UIBezierPath(rect: view.bounds).cgPath
         self.view.addSubview(view)
+        
+        let v = UIImageView(image: UIImage.generateQRCode(from: "www.github.com"))
+        v.frame = CGRectMake(100, 220, 200, 200)
+        v.backgroundColor = UIColor.red
+        self.view.addSubview(v)
   
     }
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .landscapeRight
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-
-
        let alert =  QYAlertViewController.alertController(withTitle: "提示", descText: "", cancel: "取消", button: "确定") { index in
 
         }
         self.present(alert, animated: true)
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

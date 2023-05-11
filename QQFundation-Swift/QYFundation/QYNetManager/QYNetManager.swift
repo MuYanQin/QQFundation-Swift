@@ -35,12 +35,12 @@ class QYNetManager{
     ///   - success: 成功回调
     ///   - failed: 失败回调
     static func RTGet(url:String,
-                      param:Dictionary<String,Any>? = nil,
+                      param:Dictionary<String,Any>?,
                       from:UIViewController? = nil,
                       success:@escaping ((_ res:Any) -> Void),
                       failed:@escaping  ((_ err:Error) -> Void)){
         
-        TXD(url: url, method: HTTPMethod.get, encoding: URLEncodedFormParameterEncoder.default as! ParameterEncoding) { res in
+        TXD(url: url,param: param, method: HTTPMethod.get, encoding: URLEncoding.default as ParameterEncoding,from: from) { res in
             success(res)
         } failed: { err in
             failed(err)
@@ -55,12 +55,12 @@ class QYNetManager{
     ///   - success: 成功回调
     ///   - failed: 失败回调
     static func RTSPost(url:String,
-                      param:Dictionary<String,Any>? = nil,
+                      param:Dictionary<String,Any>? ,
                       from:UIViewController? = nil,
                       success:@escaping ((_ res:Any) -> Void),
                       failed:@escaping  ((_ err:Error) -> Void)){
         
-        TXD(url: url, method: HTTPMethod.post, encoding: URLEncodedFormParameterEncoder(destination: .httpBody) as! ParameterEncoding) { res in
+        TXD(url: url,param: param, method: HTTPMethod.post, encoding:URLEncoding.default as ParameterEncoding ,from: from) { res in
             success(res)
         } failed: { err in
             failed(err)
@@ -162,6 +162,7 @@ class QYNetManager{
             encoding: encoding,
             requestModifier: {$0.timeoutInterval = 15})
             .responseData{ res in
+            self.apiLog(res)
              switch res.result{
             
              case let .success(data):
@@ -179,6 +180,30 @@ class QYNetManager{
          }
         
         map[url] = dataRequest;
+    }
+    
+    //统一打印日志方法，只在DEBUG模式下生效
+    private static func apiLog(_ response: AFDataResponse<Data>) {
+        #if DEBUG
+        print("\n----------START----------")
+        if let request = response.request, let url = request.url {
+            let urlString = String(describing: url)
+            print("接口地址：\(urlString)")
+        }
+        print("allHTTPHeaderFields：\(String(describing: response.request?.allHTTPHeaderFields))")
+        print("httpMethod：\(String(describing: response.request?.httpMethod))")
+        if ((response.request?.httpBody) != nil) {
+            print("httpBody：\(String(describing: NSString(data: (response.request?.httpBody)!, encoding: String.Encoding.utf8.rawValue)))")
+        }
+        print("----------返回数据----------")
+        if let data = response.data {
+            guard let json = NSString(data: data, encoding: String.Encoding.utf8.rawValue) else{
+                 return
+            }
+            print("\(String(describing: json))")
+        }
+        print("----------END----------\n")
+        #endif
     }
     
 }

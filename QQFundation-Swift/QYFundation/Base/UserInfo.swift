@@ -91,10 +91,10 @@ class UserInfo: NSObject {
         }
         return [:]
     }
-    static func setCacheInfo() -> Void{
+    private static func setCacheInfo() -> Void{
         sharedInstance().setValuesForKeys(getUserInfoDic())
     }
-    static func getUserInfoPath(_ userId:String) ->String{
+    private static func getUserInfoPath(_ userId:String) ->String{
         return URL(fileURLWithPath: FileManager.documentsPath()).appendingPathComponent("\(userId).txt", isDirectory: true).path
     }
     override func setValue(_ value: Any?, forUndefinedKey key: String) {
