@@ -105,8 +105,9 @@ class QYNetManager{
         }, to: url,method: .post).uploadProgress(closure: { progress in
             print("Upload Progress: \(progress.fractionCompleted)")
         }).responseData{ res in
+            
+            self.apiLog(res)
             switch res.result{
-           
             case let .success(data):
                 guard let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) else{
                      return
