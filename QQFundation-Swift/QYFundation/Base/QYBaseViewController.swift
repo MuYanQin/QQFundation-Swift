@@ -153,9 +153,24 @@ class QYBaseViewController: UIViewController ,QQTableViewDelegate{
             }
           //处理横屏View布局...
         }else{
-            let orientationTarget = NSNumber(value: orientation.rawValue)
-            UIDevice.current.setValue(orientationTarget, forKey: "orientation")
-            UIViewController.attemptRotationToDeviceOrientation()
+
+            switch orientation {
+            case .portrait:
+                UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+
+                break
+            case .landscapeLeft:
+                UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft.rawValue, forKey: "orientation")
+
+                break
+            case .landscapeRight:
+                UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
+
+                break
+
+            default:
+                break
+            }
         }
     }
     
